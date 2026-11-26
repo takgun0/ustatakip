@@ -14,6 +14,7 @@ import { Field, FieldError, FieldHint, Input, Label, Textarea } from "@/componen
 import { ErrorState, InfoBox, Notice } from "@/components/ui/States";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { IconCamera, IconTrash } from "@/components/ui/icons";
+import { BackLink } from "@/components/ui/BackLink";
 
 const CHANNELS: Array<{ value: NotifyChannel; title: string; text: string; available: boolean }> = [
   { value: "wa_link", title: "WhatsApp linki", text: "Mesaj hazır gelir, kendi WhatsApp'ınızdan tek dokunuşla gönderirsiniz.", available: true },
@@ -98,7 +99,8 @@ export default function AyarlarPage() {
   const err = (k: string) => errors[k];
 
   return (
-    <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-6 pt-7 pb-14">
+    <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-6 pt-5 pb-14">
+      <BackLink href="/panel/">Aktif işler</BackLink>
       <div className="flex flex-col gap-1">
         <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">Ayarlar</h1>
         <p className="m-0 text-[15px] text-ut-text-muted">Müşterilerinizin takip sayfasında görünen işletme bilgileri</p>

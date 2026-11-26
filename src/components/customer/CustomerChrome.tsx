@@ -1,4 +1,8 @@
 import type { ReactNode } from "react";
+
+/** Başlıktaki geri düğmesinin hedefi ve ekran okuyucu adı */
+type Back = { href: string; label: string };
+import { cn } from "@/lib/cn";
 import { initials } from "@/lib/initials";
 import { formatCode } from "@/lib/tracking";
 import { waMeLink } from "@/lib/notifications";
@@ -7,6 +11,7 @@ import type { CustomerView } from "@/lib/customer-view";
 import { buttonClass, ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { BrandMark } from "@/components/ui/BrandMark";
+import { BackIconLink } from "@/components/ui/BackLink";
 import { ErrorState, LoadingRegion, Skeleton } from "@/components/ui/States";
 import { IconPhone, IconSearch, IconWhatsApp } from "@/components/ui/icons";
 
@@ -22,9 +27,10 @@ export function CustomerFrame({ header, children, footer }: { header: ReactNode;
 }
 
 /** M2 başlığı: işletme logosu (yoksa baş harfler), adı ve kısa tanıtımı */
-export function BusinessHeader({ business }: { business: CustomerView["business"] }) {
+export function BusinessHeader({ business, back }: { business: CustomerView["business"]; back?: Back }) {
   return (
-    <header className="flex items-center gap-3 border-b border-ut-border bg-ut-surface px-5 py-4">
+    <header className={cn("flex items-center gap-3 border-b border-ut-border bg-ut-surface py-4 pr-5", back ? "pl-2" : "pl-5")}>
+      {back && <BackIconLink href={back.href} label={back.label} />}
       {business.logoUrl ? (
         // eslint-disable-next-line @next/next/no-img-element -- statik dışa aktarımda görsel optimizasyonu yok
         <img src={business.logoUrl} alt={`${business.name} logosu`} width={48} height={48} className="size-12 shrink-0 rounded-ut object-cover" />
@@ -45,9 +51,10 @@ export function BusinessHeader({ business }: { business: CustomerView["business"
   );
 }
 
-export function PlainHeader() {
+export function PlainHeader({ back }: { back?: Back } = {}) {
   return (
-    <header className="flex items-center gap-3 border-b border-ut-border bg-ut-surface px-5 py-4">
+    <header className={cn("flex items-center gap-3 border-b border-ut-border bg-ut-surface py-4 pr-5", back ? "pl-2" : "pl-5")}>
+      {back && <BackIconLink href={back.href} label={back.label} />}
       <BrandMark tone="onLight" size={40} />
       <span className="text-[17px] font-bold">UstaTakip</span>
     </header>
@@ -120,7 +127,7 @@ export function TrackingProblem({ error, onRetry }: { error: ApiError | null; on
         : "Takip bilgisi alınamadı";
   const text = !error ? "Bağlantının tamamını açtığınızdan emin olun ya da takip kodunuzla sorgulayın." : error.message;
   return (
-    <CustomerFrame header={<PlainHeader />}>
+    <CustomerFrame header={<PlainHeader back={{ href: "/takip/", label: "Takip sorgulamaya dön" }} />}>
       {terminal ? (
         <div className="flex flex-col items-center gap-3 rounded-ut border border-dashed border-ut-border bg-ut-surface px-6 py-10 text-center">
           <span className="flex size-12 items-center justify-center rounded-full bg-ut-primary-soft text-ut-primary" aria-hidden="true">

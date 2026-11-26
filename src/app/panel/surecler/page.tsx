@@ -12,6 +12,7 @@ import { EmptyState, ErrorState, LoadingRegion, Notice, Skeleton } from "@/compo
 import { StageProgress } from "@/components/ui/StageProgress";
 import { IconLayers, IconPlus, IconTrash } from "@/components/ui/icons";
 import { StageListEditor, type DraftStage } from "@/components/panel/StageListEditor";
+import { BackLink } from "@/components/ui/BackLink";
 
 type Stage = { id: string; name: string; position: number; color: string; job_stage_events: Array<{ count: number }> };
 type Template = {
@@ -194,7 +195,8 @@ export default function SureclerPage() {
   }
 
   return (
-    <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-4 pt-7 pb-14 sm:px-6">
+    <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-4 pt-5 pb-14 sm:px-6">
+      <BackLink href="/panel/">Aktif işler</BackLink>
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="flex flex-col gap-1">
           <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">Süreçler</h1>

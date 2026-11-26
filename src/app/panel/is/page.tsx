@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useBusiness } from "@/lib/business";
 import { getSupabase } from "@/lib/supabase";
@@ -20,7 +19,8 @@ import { StageProgressMini } from "@/components/ui/StageProgress";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { FieldError, Label, Textarea } from "@/components/ui/Field";
 import { EmptyState, ErrorState, LoadingRegion, Notice, Skeleton } from "@/components/ui/States";
-import { IconArrowLeft, IconArrowRight, IconCheck, IconPhone, IconSearch, IconWhatsApp } from "@/components/ui/icons";
+import { IconArrowRight, IconCheck, IconPhone, IconSearch, IconWhatsApp } from "@/components/ui/icons";
+import { BackLink } from "@/components/ui/BackLink";
 import { StagePhotos, type PhotoItem } from "@/components/panel/StagePhotos";
 import { OfferPanel } from "@/components/panel/OfferPanel";
 import { deleteStagePhoto, signedUrls, uploadStagePhoto, type JobMedia } from "@/lib/media";
@@ -410,10 +410,7 @@ function IsDetay() {
 function Shell({ children }: { children: React.ReactNode }) {
   return (
     <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-6 pt-5 pb-14">
-      <Link href="/panel/" className="inline-flex min-h-11 items-center gap-1.5 self-start text-sm font-semibold no-underline">
-        <IconArrowLeft size={18} />
-        Aktif işler
-      </Link>
+      <BackLink href="/panel/">Aktif işler</BackLink>
       {children}
     </main>
   );

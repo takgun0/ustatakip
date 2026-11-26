@@ -25,7 +25,7 @@ export default function TrackingPage() {
 
   const v = state.view;
   return (
-    <CustomerFrame header={<BusinessHeader business={v.business} />} footer={<ContactBar business={v.business} code={v.job.code} />}>
+    <CustomerFrame header={<BusinessHeader business={v.business} back={{ href: "/takip/", label: "Başka bir işi sorgula" }} />} footer={<ContactBar business={v.business} code={v.job.code} />}>
       <Summary view={v} />
       <StatusNotice view={v} token={token!} />
       {v.openOffers.map((o) => (

@@ -8,7 +8,7 @@ import { normalizeTrackingCode, formatCode } from "@/lib/tracking";
 import { toFieldErrors, trackLookupSchema, type FieldErrors } from "@/lib/validation";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { BrandMark } from "@/components/ui/BrandMark";
+import { PlainHeader } from "@/components/customer/CustomerChrome";
 import { Field, FieldError, FieldHint, Input, Label } from "@/components/ui/Field";
 import { Notice } from "@/components/ui/States";
 import { IconArrowRight, IconQr } from "@/components/ui/icons";
@@ -82,10 +82,7 @@ export default function TakipPage() {
 
   return (
     <div className="mx-auto box-border flex min-h-dvh max-w-[480px] flex-col">
-      <header className="flex items-center gap-3 border-b border-ut-border bg-ut-surface px-5 py-4">
-        <BrandMark tone="onLight" size={40} />
-        <span className="text-[17px] font-bold">UstaTakip</span>
-      </header>
+      <PlainHeader back={{ href: "/", label: "Ana sayfaya dön" }} />
 
       <main className="flex flex-col gap-4 p-4">
         <div className="flex flex-col gap-1 px-1 pt-2">

@@ -17,7 +17,8 @@ import { Card, CardTitle } from "@/components/ui/Card";
 import { CodeDisplay } from "@/components/ui/CodeDisplay";
 import { Field, FieldError, FieldHint, Input, Label, MoneyInput, Select, Textarea } from "@/components/ui/Field";
 import { EmptyState, ErrorState, LoadingRegion, Notice, Skeleton } from "@/components/ui/States";
-import { IconArrowLeft, IconArrowRight, IconLayers, IconPlus } from "@/components/ui/icons";
+import { IconArrowRight, IconLayers, IconPlus } from "@/components/ui/icons";
+import { BackLink } from "@/components/ui/BackLink";
 
 type Templates = { status: "loading" } | { status: "error" } | { status: "ready"; own: ProcessTemplate[]; ready: ProcessTemplate[] };
 type Created = { id: string; code: string; token: string; customerName: string; customerPhone: string; title: string };
@@ -205,10 +206,7 @@ export default function YeniIsPage() {
 
   return (
     <main className="mx-auto box-border flex max-w-[720px] flex-col gap-5 px-6 pt-5 pb-14">
-      <Link href="/panel/" className="inline-flex min-h-11 items-center gap-1.5 self-start text-sm font-semibold no-underline">
-        <IconArrowLeft size={18} />
-        Aktif işler
-      </Link>
+      <BackLink href="/panel/">Aktif işler</BackLink>
       <div className="flex flex-col gap-1">
         <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">Yeni iş</h1>
         <p className="m-0 text-[15px] text-ut-text-muted">Kaydettiğiniz anda müşteriniz için takip kodu, link ve QR üretilir.</p>

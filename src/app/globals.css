@@ -1,33 +1,37 @@
 @import "tailwindcss";
 
 /*
- * UstaTakip tasarım tokenları — design/Main.dc.html ile birebir.
- * Ad, değer ve kullanım kuralları tasarımdan gelir; yeni token eklenmez.
- * Tek onaylı istisna: --ut-whatsapp (WhatsApp düğmeleri). --ut-success beyaz metinle 3,3:1 kaldığı
- * için dolguda koyu yeşil kullanılır (beyazla 5,0:1, WCAG AA).
+ * UstaTakip tasarım tokenları. Token adları ve kullanım kuralları design/Main.dc.html'den gelir;
+ * renkler, yazı tipi ve yüzeyler sonradan modernleştirildi (indigo + arduvaz paleti, Plus Jakarta Sans).
+ * Kontrastlar WCAG AA: indigo/beyaz 6,3:1, soluk metin/zemin 4,6:1.
+ * --ut-whatsapp: --ut-success beyaz metinle 3,3:1 kaldığı için WhatsApp dolgusunda koyu yeşil (5,0:1).
  */
 :root {
-  --ut-primary: #1E3A5F;
-  --ut-primary-soft: #E8EEF5;
+  --ut-primary: #4F46E5;
+  --ut-primary-hover: #4338CA;
+  --ut-primary-soft: #EEF2FF;
   --ut-accent: #F59E0B;
   --ut-success: #16A34A;
   --ut-whatsapp: #15803D;
   --ut-warning: #D97706;
   --ut-danger: #DC2626;
   --ut-info: #2563EB;
-  --ut-bg: #F7F8FA;
+  --ut-bg: #F8FAFC;
   --ut-surface: #FFFFFF;
-  --ut-border: #E5E7EB;
-  --ut-text: #111827;
-  --ut-text-muted: #6B7280;
+  --ut-border: #E2E8F0;
+  --ut-text: #0F172A;
+  --ut-text-muted: #64748B;
   --ut-radius: 12px;
-  --ut-shadow: 0 1px 2px rgba(17, 24, 39, .06), 0 4px 12px rgba(17, 24, 39, .06);
+  --ut-radius-lg: 16px;
+  --ut-shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 6px 20px -6px rgba(15, 23, 42, .08);
+  --ut-shadow-lg: 0 2px 4px rgba(15, 23, 42, .04), 0 18px 40px -12px rgba(15, 23, 42, .16);
   --ut-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* Tailwind teması: bg-ut-primary, text-ut-text-muted, rounded-ut, shadow-ut, font-mono … */
 @theme inline {
   --color-ut-primary: var(--ut-primary);
+  --color-ut-primary-hover: var(--ut-primary-hover);
   --color-ut-primary-soft: var(--ut-primary-soft);
   --color-ut-accent: var(--ut-accent);
   --color-ut-success: var(--ut-success);
@@ -49,8 +53,10 @@
   --color-ut-accent-tint: rgba(245, 158, 11, .06);
 
   --radius-ut: var(--ut-radius);
+  --radius-ut-lg: var(--ut-radius-lg);
   --shadow-ut: var(--ut-shadow);
-  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --shadow-ut-lg: var(--ut-shadow-lg);
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: var(--ut-mono);
 }
 
@@ -64,8 +70,13 @@
     margin: 0;
     background: var(--ut-bg);
     color: var(--ut-text);
-    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(79, 70, 229, .18);
   }
 
   a {
@@ -81,6 +92,20 @@
   select {
     font-family: inherit;
   }
+
+  /* base katmanında: alanlardaki focus:outline-none + halka yardımcıları bunu ezebilsin */
+  :focus-visible {
+    outline: 2px solid var(--ut-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Giriş ve karşılama ekranlarındaki hafif indigo ışıma */
+.ut-glow {
+  background:
+    radial-gradient(900px 420px at 50% -160px, rgba(79, 70, 229, .14), transparent 70%),
+    radial-gradient(600px 300px at 100% 0, rgba(245, 158, 11, .08), transparent 70%),
+    var(--ut-bg);
 }
 
 /* Tasarımdaki foto yer tutucusu (çizgili zemin) */
@@ -102,11 +127,6 @@
   .ut-skeleton { animation: none; }
 }
 
-:focus-visible {
-  outline: 2px solid var(--ut-info);
-  outline-offset: 2px;
-}
-
 /* QR etiketi yazdırma: ekranda gizli, yazdırırken sayfada yalnızca etiket kalır */
 .ut-print-only { display: none; }
 @media print {
@@ -121,4 +141,9 @@
     background: #FFFFFF;
     color: #111827;
   }
+}
+
+/* İnce, sakin kaydırma çubukları */
+* {
+  scrollbar-color: #CBD5E1 transparent;
 }

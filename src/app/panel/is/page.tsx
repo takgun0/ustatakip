@@ -359,7 +359,7 @@ function IsDetay() {
     <Shell>
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex min-w-0 flex-col gap-1.5">
-          <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">
+          <h1 className="m-0 text-[28px] font-extrabold tracking-[-0.025em]">
             {job.customer_name}
           </h1>
           <span className="text-[15px] text-ut-text-muted">

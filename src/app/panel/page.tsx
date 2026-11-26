@@ -125,7 +125,7 @@ export default function PanelPage() {
     <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-6 pt-7 pb-14">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">Aktif işler</h1>
+          <h1 className="m-0 text-[28px] font-extrabold tracking-[-0.025em]">Aktif işler</h1>
           <p className="m-0 text-[15px] text-ut-text-muted">
             {load.status === "ready" ? `${jobs.length} aktif iş · ` : ""}
             {formatToday()}
@@ -166,7 +166,7 @@ export default function PanelPage() {
       </div>
 
       {chipNames.length > 0 && (
-        <div role="group" aria-label="Aşama filtresi" className="flex gap-2 overflow-x-auto pb-1">
+        <div role="group" aria-label="Aşama filtresi" className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:thin]">
           {[null, ...chipNames].map((name) => {
             const on = stageFilter === name;
             const count = searched.filter((j) => !name || j.stageName === name).length;

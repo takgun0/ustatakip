@@ -28,14 +28,18 @@ export function JobCard(p: JobCardProps) {
     <Link
       href={p.href}
       className={cn(
-        "flex flex-col gap-3 rounded-ut bg-ut-surface p-4 text-ut-text no-underline shadow-ut transition hover:text-ut-text hover:shadow-md",
-        p.flag === "counter" ? "border-[1.5px] border-ut-info" : "border border-ut-border",
+        "flex flex-col gap-3 rounded-ut-lg bg-ut-surface p-4 text-ut-text no-underline shadow-ut transition duration-200 hover:-translate-y-0.5 hover:border-ut-primary/30 hover:text-ut-text hover:shadow-ut-lg",
+        p.flag === "counter"
+          ? "border-[1.5px] border-ut-info"
+          : "border border-ut-border/80",
       )}
     >
       <div className="flex items-start justify-between gap-2">
         <div className="flex min-w-0 flex-col gap-0.5">
           <span className="text-base font-bold">{p.customerName}</span>
-          <span className="truncate text-sm text-ut-text-muted">{p.itemLabel ? `${p.itemLabel} · ${p.title}` : p.title}</span>
+          <span className="truncate text-sm text-ut-text-muted">
+            {p.itemLabel ? `${p.itemLabel} · ${p.title}` : p.title}
+          </span>
         </div>
         <span className="shrink-0 rounded-md bg-ut-bg px-2 py-1 font-mono text-xs font-semibold whitespace-nowrap text-ut-text-muted">
           {formatCode(p.trackingCode)}
@@ -46,13 +50,19 @@ export function JobCard(p: JobCardProps) {
           {p.delivered ? "Teslim edildi" : stageName}
         </StatusBadge>
         <span className="text-[13px] text-ut-text-muted">
-          Aşama {Math.min(p.activeIndex + 1, p.stages.length)} / {p.stages.length}
+          Aşama {Math.min(p.activeIndex + 1, p.stages.length)} /{" "}
+          {p.stages.length}
         </span>
       </div>
-      <StageProgressMini stages={p.stages} activeIndex={p.activeIndex} finished={last} />
+      <StageProgressMini
+        stages={p.stages}
+        activeIndex={p.activeIndex}
+        finished={last}
+      />
       {p.flag === "waiting" && (
         <StatusBadge tone="warning" size="sm" className="self-start">
-          Yanıt bekleyen teklif{p.offerAmountText ? ` · ${p.offerAmountText}` : ""}
+          Yanıt bekleyen teklif
+          {p.offerAmountText ? ` · ${p.offerAmountText}` : ""}
         </StatusBadge>
       )}
       {p.flag === "counter" && (
@@ -70,7 +80,10 @@ export function JobCard(p: JobCardProps) {
 
 export function JobCardSkeleton() {
   return (
-    <div className="flex flex-col gap-3 rounded-ut border border-ut-border bg-ut-surface p-4 shadow-ut" aria-hidden="true">
+    <div
+      className="flex flex-col gap-3 rounded-ut border border-ut-border bg-ut-surface p-4 shadow-ut"
+      aria-hidden="true"
+    >
       <div className="flex justify-between gap-2">
         <div className="flex flex-col gap-2">
           <span className="ut-skeleton block h-4 w-32" />

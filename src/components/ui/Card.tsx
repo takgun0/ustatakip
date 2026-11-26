@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-/** Kart yüzeyi: beyaz, 1 px --ut-border, köşe 12 px, hafif gölge. */
+/** Kart yüzeyi: beyaz, 1 px --ut-border, köşe 16 px, yumuşak katmanlı gölge. */
 export function Card({
   as: Tag = "section",
   padding = "md",
@@ -12,7 +12,7 @@ export function Card({
   return (
     <Tag
       className={cn(
-        "rounded-ut border border-ut-border bg-ut-surface shadow-ut",
+        "rounded-ut-lg border border-ut-border/80 bg-ut-surface shadow-ut",
         padding === "sm" && "p-4",
         padding === "md" && "p-[18px]",
         padding === "lg" && "p-5",

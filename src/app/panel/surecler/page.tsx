@@ -199,7 +199,7 @@ export default function SureclerPage() {
       <BackLink href="/panel/">Aktif işler</BackLink>
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="flex flex-col gap-1">
-          <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">Süreçler</h1>
+          <h1 className="m-0 text-[28px] font-extrabold tracking-[-0.025em]">Süreçler</h1>
           <p className="m-0 text-[15px] text-ut-text-muted">İşlerinizin geçtiği aşamalar. Müşteri takip sayfasında bu adları görür.</p>
         </div>
         <Button variant="accent" icon={<IconPlus size={18} />} onClick={startNew} disabled={load.status !== "ready"}>

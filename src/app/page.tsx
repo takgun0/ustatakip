@@ -9,12 +9,12 @@ export default function Home() {
     { href: "/giris/", title: "Esnaf girişi", text: "İş kaydedin, aşamaları güncelleyin, teklif gönderin.", icon: <IconWrench size={22} /> },
   ];
   return (
-    <main className="flex min-h-dvh flex-col items-center bg-ut-bg px-4 py-12 text-ut-text">
+    <main className="ut-glow flex min-h-dvh flex-col items-center px-4 py-12 text-ut-text">
       <div className="flex w-full max-w-[440px] flex-col gap-6">
         <header className="flex items-center gap-3.5">
           <BrandMark tone="onLight" size={52} />
           <div className="flex flex-col gap-0.5">
-            <h1 className="m-0 text-[30px] font-bold tracking-[-0.02em] text-ut-primary">UstaTakip</h1>
+            <h1 className="m-0 text-[30px] font-extrabold tracking-[-0.03em] text-ut-text">UstaTakip</h1>
             <p className="m-0 text-[15px] text-ut-text-muted">Esnaf için kargo takibi mantığında iş takibi</p>
           </div>
         </header>
@@ -23,7 +23,7 @@ export default function Home() {
             <Link
               key={it.href}
               href={it.href}
-              className="flex items-center gap-3 rounded-ut border border-ut-border bg-ut-surface px-4 py-4 text-ut-text no-underline shadow-ut hover:text-ut-text hover:shadow-md"
+              className="flex items-center gap-3 rounded-ut-lg border border-ut-border/80 bg-ut-surface px-4 py-4 text-ut-text no-underline shadow-ut transition duration-200 hover:-translate-y-0.5 hover:border-ut-primary/30 hover:text-ut-text hover:shadow-ut-lg"
             >
               <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-ut-primary-soft text-ut-primary">{it.icon}</span>
               <span className="flex flex-1 flex-col gap-0.5">

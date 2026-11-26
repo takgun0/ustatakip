@@ -248,7 +248,7 @@ export default function YeniIsPage() {
           <h1
             ref={headingRef}
             tabIndex={-1}
-            className="m-0 text-[28px] font-bold tracking-[-0.01em] outline-none"
+            className="m-0 text-[28px] font-extrabold tracking-[-0.025em] outline-none"
           >
             {created.customerName}
           </h1>
@@ -291,7 +291,7 @@ export default function YeniIsPage() {
     <main className="mx-auto box-border flex max-w-[720px] flex-col gap-5 px-6 pt-5 pb-14">
       <BackLink href="/panel/">Aktif işler</BackLink>
       <div className="flex flex-col gap-1">
-        <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">
+        <h1 className="m-0 text-[28px] font-extrabold tracking-[-0.025em]">
           Yeni iş
         </h1>
         <p className="m-0 text-[15px] text-ut-text-muted">

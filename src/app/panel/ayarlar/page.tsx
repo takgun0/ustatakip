@@ -103,7 +103,7 @@ export default function AyarlarPage() {
     <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-6 pt-5 pb-14">
       <BackLink href="/panel/">Aktif işler</BackLink>
       <div className="flex flex-col gap-1">
-        <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">Ayarlar</h1>
+        <h1 className="m-0 text-[28px] font-extrabold tracking-[-0.025em]">Ayarlar</h1>
         <p className="m-0 text-[15px] text-ut-text-muted">Müşterilerinizin takip sayfasında görünen işletme bilgileri</p>
       </div>
 
@@ -158,7 +158,7 @@ export default function AyarlarPage() {
                     checked={channel === c.value}
                     disabled={!c.available}
                     onChange={() => setChannel(c.value)}
-                    className="mt-1 size-5 accent-[#1E3A5F]"
+                    className="mt-1 size-5 accent-ut-primary"
                   />
                   <span className="flex flex-1 flex-col gap-1">
                     <span className="flex flex-wrap items-center gap-2 text-[15px] font-bold">

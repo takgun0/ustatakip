@@ -232,7 +232,7 @@ function Page({ children }: { children: React.ReactNode }) {
     <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-6 pt-5 pb-14">
       <BackLink href="/panel/">Aktif işler</BackLink>
       <div className="flex flex-col gap-1">
-        <h1 className="m-0 text-[28px] font-bold tracking-[-0.01em]">Analiz</h1>
+        <h1 className="m-0 text-[28px] font-extrabold tracking-[-0.025em]">Analiz</h1>
         <span className="text-[15px] text-ut-text-muted">İşlerinizin hangi aşamada beklediğini görün, darboğazı giderin.</span>
       </div>
       {children}

@@ -12,16 +12,22 @@ import { cn } from "@/lib/cn";
  *  ghost     · Vazgeç, Geri al
  *  whatsapp  · WhatsApp ile mesaj / paylaşım (koyu yeşil dolgu)
  */
-export type ButtonVariant = "primary" | "accent" | "secondary" | "danger" | "ghost" | "whatsapp";
+export type ButtonVariant =
+  "primary" | "accent" | "secondary" | "danger" | "ghost" | "whatsapp";
 export type ButtonSize = "md" | "lg" | "xl" | "2xl";
 
 const variantClass: Record<ButtonVariant, string> = {
-  primary: "border-0 bg-ut-primary text-white hover:brightness-110",
-  accent: "border-0 bg-ut-accent text-ut-text hover:brightness-105",
-  secondary: "border border-ut-border bg-ut-surface text-ut-primary hover:bg-ut-primary-soft",
-  danger: "border border-ut-danger bg-ut-surface text-ut-danger hover:bg-ut-danger-tint",
+  primary:
+    "border-0 bg-ut-primary text-white shadow-[0_1px_2px_rgba(15,23,42,.10),inset_0_1px_0_rgba(255,255,255,.14)] hover:bg-ut-primary-hover hover:text-white",
+  accent:
+    "border-0 bg-ut-accent text-ut-text shadow-[0_1px_2px_rgba(15,23,42,.10)] hover:brightness-105",
+  secondary:
+    "border border-ut-border bg-ut-surface text-ut-primary shadow-[0_1px_2px_rgba(15,23,42,.05)] hover:border-ut-primary/30 hover:bg-ut-primary-soft",
+  danger:
+    "border border-ut-danger bg-ut-surface text-ut-danger hover:bg-ut-danger-tint",
   ghost: "border-0 bg-transparent text-ut-primary hover:bg-ut-primary-soft",
-  whatsapp: "border-0 bg-ut-whatsapp text-white hover:text-white hover:brightness-110",
+  whatsapp:
+    "border-0 bg-ut-whatsapp text-white shadow-[0_1px_2px_rgba(15,23,42,.10),inset_0_1px_0_rgba(255,255,255,.14)] hover:text-white hover:brightness-110",
 };
 
 const sizeClass: Record<ButtonSize, string> = {
@@ -31,11 +37,15 @@ const sizeClass: Record<ButtonSize, string> = {
   "2xl": "h-14 text-base",
 };
 
-export function buttonClass(variant: ButtonVariant = "primary", size: ButtonSize = "md", extra?: string) {
+export function buttonClass(
+  variant: ButtonVariant = "primary",
+  size: ButtonSize = "md",
+  extra?: string,
+) {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-ut font-semibold no-underline transition",
+    "inline-flex items-center justify-center gap-2 rounded-ut font-semibold no-underline transition duration-150 active:translate-y-px",
     variant === "ghost" ? "px-3.5" : "px-[18px]",
-    "disabled:cursor-not-allowed disabled:border-0 disabled:bg-ut-border disabled:text-ut-text-muted disabled:brightness-100",
+    "disabled:cursor-not-allowed disabled:border-0 disabled:bg-ut-border disabled:text-ut-text-muted disabled:shadow-none disabled:brightness-100 disabled:active:translate-y-0",
     variantClass[variant],
     sizeClass[size],
     extra,
@@ -72,7 +82,9 @@ export function Button({
       aria-busy={loading || undefined}
       {...rest}
     >
-      {loading ? loadingText : (
+      {loading ? (
+        loadingText
+      ) : (
         <>
           {icon}
           {children}
@@ -89,9 +101,20 @@ type ButtonLinkProps = ComponentProps<typeof Link> & {
   block?: boolean;
 };
 
-export function ButtonLink({ variant = "primary", size = "md", icon, block, className, children, ...rest }: ButtonLinkProps) {
+export function ButtonLink({
+  variant = "primary",
+  size = "md",
+  icon,
+  block,
+  className,
+  children,
+  ...rest
+}: ButtonLinkProps) {
   return (
-    <Link className={buttonClass(variant, size, cn(block && "w-full", className))} {...rest}>
+    <Link
+      className={buttonClass(variant, size, cn(block && "w-full", className))}
+      {...rest}
+    >
       {icon}
       {children}
     </Link>

@@ -99,7 +99,13 @@ Mesajlar (iş kaydı, aşama değişti, teklif, karşı teklif, iş hazır, tesl
 
 ## Tasarım
 
-Arayüz, önceden hazırlanmış bir tasarım sistemine (`design/` klasörü) birebir uyar. Renkler, köşe yarıçapları ve gölgeler `--ut-*` adlı tasarım tokenlarıyla tanımlı; bileşenler (`Button`, `StageProgress`, `JobCard`, `StatusBadge` …) bu tokenları kullanır. Tasarıma yapılan tek ek, beyaz yazıyla yeterli kontrast sağlayan koyu yeşil WhatsApp rengidir (`--ut-whatsapp`).
+Arayüz, önceden hazırlanmış bir tasarım sisteminden (`design/` klasörü) yola çıktı; ekran düzenleri ve bileşen kuralları oradan gelir. Renkler, köşe yarıçapları ve gölgeler `--ut-*` adlı tasarım tokenlarıyla tanımlı; bileşenler (`Button`, `StageProgress`, `JobCard`, `StatusBadge` …) bu tokenları kullanır. Bu sayede tema sonradan tek dosyadan modernleştirildi:
+- indigo ana renk (`#4F46E5`) ve arduvaz tonlu zemin
+- Plus Jakarta Sans yazı tipi
+- 16 px köşeli kartlar ve yumuşak katmanlı gölgeler
+- buzlu cam görünümlü yapışkan üst bar
+
+Aşama durumları için amber/yeşil anlamı korundu. Tüm renk çiftleri WCAG AA kontrastını sağlar.
 
 ## Proje yapısı
 

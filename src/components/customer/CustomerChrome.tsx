@@ -16,7 +16,15 @@ import { ErrorState, LoadingRegion, Skeleton } from "@/components/ui/States";
 import { IconPhone, IconSearch, IconWhatsApp } from "@/components/ui/icons";
 
 /** Müşteri ekranlarının mobil çerçevesi (design/M2: 390 px genişlik, --ut-bg zemin) */
-export function CustomerFrame({ header, children, footer }: { header: ReactNode; children: ReactNode; footer?: ReactNode }) {
+export function CustomerFrame({
+  header,
+  children,
+  footer,
+}: {
+  header: ReactNode;
+  children: ReactNode;
+  footer?: ReactNode;
+}) {
   return (
     <div className="mx-auto box-border flex min-h-dvh max-w-[480px] flex-col bg-ut-bg">
       {header}
@@ -27,25 +35,46 @@ export function CustomerFrame({ header, children, footer }: { header: ReactNode;
 }
 
 /** M2 başlığı: işletme logosu (yoksa baş harfler), adı ve kısa tanıtımı */
-export function BusinessHeader({ business, back }: { business: CustomerView["business"]; back?: Back }) {
+export function BusinessHeader({
+  business,
+  back,
+}: {
+  business: CustomerView["business"];
+  back?: Back;
+}) {
   return (
-    <header className={cn("flex items-center gap-3 border-b border-ut-border bg-ut-surface py-4 pr-5", back ? "pl-2" : "pl-5")}>
+    <header
+      className={cn(
+        "sticky top-0 z-20 flex items-center gap-3 border-b border-ut-border/80 bg-white/85 py-4 pr-5 backdrop-blur-md",
+        back ? "pl-2" : "pl-5",
+      )}
+    >
       {back && <BackIconLink href={back.href} label={back.label} />}
       {business.logoUrl ? (
         // eslint-disable-next-line @next/next/no-img-element -- statik dışa aktarımda görsel optimizasyonu yok
-        <img src={business.logoUrl} alt={`${business.name} logosu`} width={48} height={48} className="size-12 shrink-0 rounded-ut object-cover" />
+        <img
+          src={business.logoUrl}
+          alt={`${business.name} logosu`}
+          width={48}
+          height={48}
+          className="size-12 shrink-0 rounded-ut object-cover"
+        />
       ) : (
         <div
           role="img"
           aria-label={`${business.name} logosu`}
-          className="flex size-12 shrink-0 items-center justify-center rounded-ut bg-ut-primary text-[17px] font-bold tracking-[0.02em] text-white"
+          className="flex size-12 shrink-0 items-center justify-center rounded-ut bg-linear-to-br from-[#6366F1] to-ut-primary-hover text-[17px] font-bold tracking-[0.02em] text-white shadow-[0_4px_12px_-2px_rgba(79,70,229,.4)]"
         >
           {initials(business.name)}
         </div>
       )}
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="truncate text-[17px] font-bold">{business.name}</span>
-        {business.tagline && <span className="truncate text-[13px] text-ut-text-muted">{business.tagline}</span>}
+        {business.tagline && (
+          <span className="truncate text-[13px] text-ut-text-muted">
+            {business.tagline}
+          </span>
+        )}
       </div>
     </header>
   );
@@ -53,25 +82,46 @@ export function BusinessHeader({ business, back }: { business: CustomerView["bus
 
 export function PlainHeader({ back }: { back?: Back } = {}) {
   return (
-    <header className={cn("flex items-center gap-3 border-b border-ut-border bg-ut-surface py-4 pr-5", back ? "pl-2" : "pl-5")}>
+    <header
+      className={cn(
+        "sticky top-0 z-20 flex items-center gap-3 border-b border-ut-border/80 bg-white/85 py-4 pr-5 backdrop-blur-md",
+        back ? "pl-2" : "pl-5",
+      )}
+    >
       {back && <BackIconLink href={back.href} label={back.label} />}
       <BrandMark tone="onLight" size={40} />
-      <span className="text-[17px] font-bold">UstaTakip</span>
+      <span className="text-[17px] font-extrabold tracking-[-0.02em]">
+        UstaTakip
+      </span>
     </header>
   );
 }
 
 /** Alt sabit çubuk: Ara + WhatsApp (design/M2) */
-export function ContactBar({ business, code }: { business: CustomerView["business"]; code: string }) {
+export function ContactBar({
+  business,
+  code,
+}: {
+  business: CustomerView["business"];
+  code: string;
+}) {
   if (!business.phone) return null;
   const text = `Merhaba, ${formatCode(code)} takip kodlu işim hakkında bilgi almak istiyorum.`;
   return (
-    <div className="sticky bottom-0 mt-auto flex gap-2.5 border-t border-ut-border bg-ut-surface px-4 pt-3 pb-5">
-      <a href={`tel:${business.phone}`} className={buttonClass("primary", "xl", "flex-1")}>
+    <div className="sticky bottom-0 mt-auto flex gap-2.5 border-t border-ut-border/80 bg-white/90 px-4 pt-3 pb-5 backdrop-blur-md">
+      <a
+        href={`tel:${business.phone}`}
+        className={buttonClass("primary", "xl", "flex-1")}
+      >
         <IconPhone size={20} />
         Ara
       </a>
-      <a href={waMeLink(text, business.phone)} target="_blank" rel="noopener noreferrer" className={buttonClass("whatsapp", "xl", "flex-1")}>
+      <a
+        href={waMeLink(text, business.phone)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={buttonClass("whatsapp", "xl", "flex-1")}
+      >
         <IconWhatsApp size={20} />
         WhatsApp
       </a>
@@ -92,7 +142,10 @@ export function TrackingSkeleton() {
         </div>
       }
     >
-      <LoadingRegion label="Takip bilgileri yükleniyor…" className="flex flex-col gap-3">
+      <LoadingRegion
+        label="Takip bilgileri yükleniyor…"
+        className="flex flex-col gap-3"
+      >
         <Card className="flex flex-col gap-3">
           <Skeleton className="h-3 w-24" />
           <Skeleton className="h-6 w-3/4" />
@@ -114,7 +167,13 @@ export function TrackingSkeleton() {
 }
 
 /** Token eksik/geçersiz/süresi dolmuş ya da bağlantı hatası */
-export function TrackingProblem({ error, onRetry }: { error: ApiError | null; onRetry: () => void }) {
+export function TrackingProblem({
+  error,
+  onRetry,
+}: {
+  error: ApiError | null;
+  onRetry: () => void;
+}) {
   const terminal = !error || error.status === 404 || error.status === 410;
   const title = !error
     ? "Takip bağlantısı eksik"
@@ -125,16 +184,29 @@ export function TrackingProblem({ error, onRetry }: { error: ApiError | null; on
           ? "Bu iş kapatıldı"
           : "Takip süresi doldu"
         : "Takip bilgisi alınamadı";
-  const text = !error ? "Bağlantının tamamını açtığınızdan emin olun ya da takip kodunuzla sorgulayın." : error.message;
+  const text = !error
+    ? "Bağlantının tamamını açtığınızdan emin olun ya da takip kodunuzla sorgulayın."
+    : error.message;
   return (
-    <CustomerFrame header={<PlainHeader back={{ href: "/takip/", label: "Takip sorgulamaya dön" }} />}>
+    <CustomerFrame
+      header={
+        <PlainHeader
+          back={{ href: "/takip/", label: "Takip sorgulamaya dön" }}
+        />
+      }
+    >
       {terminal ? (
         <div className="flex flex-col items-center gap-3 rounded-ut border border-dashed border-ut-border bg-ut-surface px-6 py-10 text-center">
-          <span className="flex size-12 items-center justify-center rounded-full bg-ut-primary-soft text-ut-primary" aria-hidden="true">
+          <span
+            className="flex size-12 items-center justify-center rounded-full bg-ut-primary-soft text-ut-primary"
+            aria-hidden="true"
+          >
             <IconSearch size={22} />
           </span>
           <h1 className="m-0 text-lg font-bold">{title}</h1>
-          <p className="m-0 max-w-sm text-sm leading-normal text-ut-text-muted">{text}</p>
+          <p className="m-0 max-w-sm text-sm leading-normal text-ut-text-muted">
+            {text}
+          </p>
           <ButtonLink href="/takip/" variant="primary" size="lg">
             Takip koduyla sorgula
           </ButtonLink>

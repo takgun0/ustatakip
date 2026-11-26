@@ -261,7 +261,7 @@ function IsDetay() {
               title={flash.title}
               action={
                 flash.wa && (
-                  <a href={flash.wa} target="_blank" rel="noopener noreferrer" className={buttonClass("secondary", "md", "mt-2 self-start")}>
+                  <a href={flash.wa} target="_blank" rel="noopener noreferrer" className={buttonClass("whatsapp", "md", "mt-2 self-start")}>
                     <IconWhatsApp size={18} />
                     Müşteriye WhatsApp&apos;tan haber ver
                   </a>

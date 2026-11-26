@@ -3,12 +3,15 @@
 /*
  * UstaTakip tasarım tokenları — design/Main.dc.html ile birebir.
  * Ad, değer ve kullanım kuralları tasarımdan gelir; yeni token eklenmez.
+ * Tek onaylı istisna: --ut-whatsapp (WhatsApp düğmeleri). --ut-success beyaz metinle 3,3:1 kaldığı
+ * için dolguda koyu yeşil kullanılır (beyazla 5,0:1, WCAG AA).
  */
 :root {
   --ut-primary: #1E3A5F;
   --ut-primary-soft: #E8EEF5;
   --ut-accent: #F59E0B;
   --ut-success: #16A34A;
+  --ut-whatsapp: #15803D;
   --ut-warning: #D97706;
   --ut-danger: #DC2626;
   --ut-info: #2563EB;
@@ -28,6 +31,7 @@
   --color-ut-primary-soft: var(--ut-primary-soft);
   --color-ut-accent: var(--ut-accent);
   --color-ut-success: var(--ut-success);
+  --color-ut-whatsapp: var(--ut-whatsapp);
   --color-ut-warning: var(--ut-warning);
   --color-ut-danger: var(--ut-danger);
   --color-ut-info: var(--ut-info);

@@ -135,7 +135,7 @@ export function CodeDisplay({ code, url, whatsappHref, layout = "card", qrAction
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className={buttonClass("primary", btnSize, cn(wide && "flex-[1_1_auto]"))}
+            className={buttonClass("whatsapp", btnSize, cn(wide && "flex-[1_1_auto]"))}
           >
             <IconWhatsApp size={18} />
             WhatsApp&apos;ta Paylaş

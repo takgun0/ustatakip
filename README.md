@@ -21,6 +21,7 @@ GitHub Pages sunucu kodu çalıştıramadığı için müşteri linkleri `/t/#<t
 
 - Kaynak: tasarım tuvali, kopyası `design/` klasöründe (`Main`, `M2`, `M3`, `E2`, `E4`).
 - Tokenlar `src/app/globals.css` içinde `--ut-*` adlarıyla birebir tanımlı ve Tailwind temasına eşli (`bg-ut-primary`, `rounded-ut`, `shadow-ut` …).
+- Tasarıma tek ek: `--ut-whatsapp` (`#15803D`). WhatsApp düğmelerinin koyu yeşil dolgusu; `--ut-success` beyaz metinle 3,3:1 kaldığı için daha koyu ton seçildi (5,0:1, WCAG AA). `Button` bileşeninde `whatsapp` varyantı.
 - Bileşenler `src/components/ui`: `Button`, `StatusBadge`, `StageProgress`, `JobCard`, `Card`, `Field`, `States` (boş / yükleniyor / hata), `AppHeader` …
 - Para biçimi `1.250,00 ₺` (`src/lib/money.ts`), tutarlar veritabanında kuruş cinsinden tam sayı.
 

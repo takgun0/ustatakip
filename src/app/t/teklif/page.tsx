@@ -284,7 +284,7 @@ function Outcome({ offer: o, view: v }: { offer: OfferDetail; view: CustomerView
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className={buttonClass("secondary", "md", "mt-2 self-start")}
+              className={buttonClass("whatsapp", "md", "mt-2 self-start")}
             >
               <IconWhatsApp size={18} />
               Ustaya WhatsApp&apos;tan haber ver

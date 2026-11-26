@@ -71,7 +71,7 @@ export function ContactBar({ business, code }: { business: CustomerView["busines
         <IconPhone size={20} />
         Ara
       </a>
-      <a href={waMeLink(text, business.phone)} target="_blank" rel="noopener noreferrer" className={buttonClass("secondary", "xl", "flex-1")}>
+      <a href={waMeLink(text, business.phone)} target="_blank" rel="noopener noreferrer" className={buttonClass("whatsapp", "xl", "flex-1")}>
         <IconWhatsApp size={20} />
         WhatsApp
       </a>

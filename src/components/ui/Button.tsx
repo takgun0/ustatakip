@@ -10,8 +10,9 @@ import { cn } from "@/lib/cn";
  *  secondary · alternatif yol (Pazarlık Yap, Linki kopyala)
  *  danger    · reddetme
  *  ghost     · Vazgeç, Geri al
+ *  whatsapp  · WhatsApp ile mesaj / paylaşım (koyu yeşil dolgu)
  */
-export type ButtonVariant = "primary" | "accent" | "secondary" | "danger" | "ghost";
+export type ButtonVariant = "primary" | "accent" | "secondary" | "danger" | "ghost" | "whatsapp";
 export type ButtonSize = "md" | "lg" | "xl" | "2xl";
 
 const variantClass: Record<ButtonVariant, string> = {
@@ -20,6 +21,7 @@ const variantClass: Record<ButtonVariant, string> = {
   secondary: "border border-ut-border bg-ut-surface text-ut-primary hover:bg-ut-primary-soft",
   danger: "border border-ut-danger bg-ut-surface text-ut-danger hover:bg-ut-danger-tint",
   ghost: "border-0 bg-transparent text-ut-primary hover:bg-ut-primary-soft",
+  whatsapp: "border-0 bg-ut-whatsapp text-white hover:text-white hover:brightness-110",
 };
 
 const sizeClass: Record<ButtonSize, string> = {

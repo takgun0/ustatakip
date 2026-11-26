@@ -36,7 +36,8 @@ export function StageProgress({ stages, activeIndex, className }: Props) {
             )}
             <span
               className={cn(
-                "relative box-border flex size-6 items-center justify-center rounded-full text-white",
+                // z-10: sonraki aşamanın bağlantı çizgisi DOM'da sonra geldiği için daireyi örtmesin
+                "relative z-10 box-border flex size-6 items-center justify-center rounded-full text-white",
                 done && "bg-ut-success",
                 act && "bg-ut-accent shadow-[0_0_0_4px_rgba(245,158,11,.25)]",
                 !done && !act && "border-2 border-ut-border bg-white",

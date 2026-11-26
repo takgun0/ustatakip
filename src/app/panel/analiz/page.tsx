@@ -17,8 +17,6 @@ type Summary = {
   active_jobs: number;
   delivered_jobs: number;
   avg_cycle_seconds: number | null;
-  avg_rating: number | null;
-  rating_count: number;
   offers_total: number;
   offers_accepted: number;
   offers_rejected: number;
@@ -95,11 +93,6 @@ export default function AnalizPage() {
           <Kpi label="Aktif iş" value={String(s?.active_jobs ?? 0)} />
           <Kpi label="Teslim edilen" value={String(s?.delivered_jobs ?? 0)} />
           <Kpi label="Ort. teslim süresi" value={s?.avg_cycle_seconds != null ? formatDuration(s.avg_cycle_seconds) : "—"} hint="Kayıttan teslime" />
-          <Kpi
-            label="Müşteri puanı"
-            value={s?.avg_rating != null ? `${String(s.avg_rating).replace(".", ",")} / 5` : "—"}
-            hint={s?.rating_count ? `${s.rating_count} değerlendirme` : "Henüz puan yok"}
-          />
           <Kpi
             label="Ek masraf onayı"
             value={rate != null ? `%${rate}` : "—"}

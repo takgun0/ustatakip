@@ -1,4 +1,4 @@
-// track-get · M2/M4: token ile müşteri takip verisini döner.
+// track-get · M2/M3: token ile müşteri takip verisini döner.
 // Oturum gerekmez; token 256 bit rastgeledir ve teslimden 30 gün sonra geçersizleşir.
 // Fotoğraflar özel bucket'tan 1 saatlik imzalı URL ile verilir.
 import { adminClient, clientIp, errorJson, json, preflight, readJson } from "../_shared/http.ts";
@@ -42,7 +42,7 @@ Deno.serve(async (req) => {
       return errorJson(410, "expired", "Bu takip bağlantısının süresi doldu (teslimden 30 gün sonra kapanır).");
     }
 
-    const [stages, events, media, offers, rating] = await Promise.all([
+    const [stages, events, media, offers] = await Promise.all([
       admin.from("template_stages").select("id, name, position, color").eq("template_id", job.template_id),
       admin.from("job_stage_events").select("id, stage_id, note, entered_at").eq("job_id", job.id),
       admin.from("job_media").select("id, stage_id, storage_path, caption, created_at").eq("job_id", job.id),
@@ -50,9 +50,8 @@ Deno.serve(async (req) => {
         .from("offers")
         .select("id, title, description, status, current_amount, final_amount, created_at, offer_rounds(round_no, actor, action, amount, note, created_at)")
         .eq("job_id", job.id),
-      admin.from("ratings").select("score, comment, created_at").eq("job_id", job.id).maybeSingle(),
     ]);
-    for (const r of [stages, events, media, offers, rating]) if (r.error) throw r.error;
+    for (const r of [stages, events, media, offers]) if (r.error) throw r.error;
 
     const paths = (media.data as RawMedia[]).map((m) => m.storage_path);
     const signedUrls: Record<string, string> = {};
@@ -75,7 +74,6 @@ Deno.serve(async (req) => {
       media: media.data as RawMedia[],
       signedUrls,
       offers: offers.data as RawOffer[],
-      rating: rating.data,
       topic: await jobTopic(token),
     });
     return json(view);

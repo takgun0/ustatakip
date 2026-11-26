@@ -103,6 +103,11 @@ function IsDetay() {
   const { job, stages, urls } = load;
   const activeIndex = Math.max(0, stages.findIndex((s) => s.id === job.current_stage_id));
   const delivered = job.status === "delivered";
+  /** Teslim bildirimi: esnaf kendi WhatsApp'ından tek dokunuşla gönderir */
+  const deliveredWa = waMeLink(
+    renderMessage({ type: "job_delivered", businessName: business.name, customerName: job.customer_name, title: job.title }),
+    job.customer_phone,
+  );
   const isActive = job.status === "active";
   const events = [...job.job_stage_events].sort((a, b) => a.entered_at.localeCompare(b.entered_at));
   const lastEvent = (stageId: string) => events.filter((e) => e.stage_id === stageId).at(-1);
@@ -132,7 +137,12 @@ function IsDetay() {
     setNote("");
     const result = data as { status: string; stage_id: string };
     if (result.status === "delivered") {
-      setFlash({ tone: "success", title: "İş teslim edildi", text: "Müşteri takip sayfasından hizmeti puanlayabilir. Takip bağlantısı 30 gün sonra kapanır." });
+      setFlash({
+        tone: "success",
+        title: "İş teslim edildi",
+        text: "Müşterinin takip sayfası güncellendi. Takip bağlantısı 30 gün sonra kapanır.",
+        wa: deliveredWa,
+      });
     } else {
       const reached = stages.find((s) => s.id === result.stage_id);
       const ready = reached && stages.at(-1)?.id === reached.id;
@@ -269,6 +279,20 @@ function IsDetay() {
               }
             >
               {flash.text}
+            </Notice>
+          )}
+          {!flash && delivered && (
+            <Notice
+              tone="success"
+              title="İş teslim edildi"
+              action={
+                <a href={deliveredWa} target="_blank" rel="noopener noreferrer" className={buttonClass("whatsapp", "md", "mt-2 self-start")}>
+                  <IconWhatsApp size={18} />
+                  Müşteriye WhatsApp&apos;tan haber ver
+                </a>
+              }
+            >
+              {job.delivered_at ? `${formatLong(job.delivered_at)} tarihinde teslim edildi.` : "Teslim edildi."} Müşterinize işin bittiğini bildirebilirsiniz.
             </Notice>
           )}
           <ol className="m-0 flex list-none flex-col p-0" aria-label="İş aşamaları">

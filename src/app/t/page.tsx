@@ -6,12 +6,11 @@ import { formatTRY } from "@/lib/money";
 import { formatCode } from "@/lib/tracking";
 import type { CustomerView, HistoryItem } from "@/lib/customer-view";
 import { cn } from "@/lib/cn";
-import { ButtonLink } from "@/components/ui/Button";
 import { Card, CardTitle, Eyebrow } from "@/components/ui/Card";
 import { StageProgress } from "@/components/ui/StageProgress";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Notice } from "@/components/ui/States";
-import { IconAlert, IconArrowRight, IconClock, IconStar } from "@/components/ui/icons";
+import { IconAlert, IconArrowRight, IconClock } from "@/components/ui/icons";
 import { BusinessHeader, ContactBar, CustomerFrame, TrackingProblem, TrackingSkeleton } from "@/components/customer/CustomerChrome";
 import { useTracking } from "@/components/customer/useTracking";
 
@@ -27,7 +26,7 @@ export default function TrackingPage() {
   return (
     <CustomerFrame header={<BusinessHeader business={v.business} back={{ href: "/takip/", label: "Başka bir işi sorgula" }} />} footer={<ContactBar business={v.business} code={v.job.code} />}>
       <Summary view={v} />
-      <StatusNotice view={v} token={token!} />
+      <StatusNotice view={v} />
       {v.openOffers.map((o) => (
         <Link
           key={o.id}
@@ -91,22 +90,15 @@ function Summary({ view: v }: { view: CustomerView }) {
   );
 }
 
-function StatusNotice({ view: v, token }: { view: CustomerView; token: string }) {
+function StatusNotice({ view: v }: { view: CustomerView }) {
   if (v.job.status === "delivered") {
     return (
       <Notice
         tone="success"
         title="İşiniz teslim edildi"
-        action={
-          !v.rating && (
-            <ButtonLink href={`/t/teslim/#${token}`} variant="primary" className="mt-2 self-start" icon={<IconStar size={18} />}>
-              Hizmeti puanla
-            </ButtonLink>
-          )
-        }
       >
         {v.job.deliveredAt && `${formatLong(v.job.deliveredAt)} tarihinde teslim edildi. `}
-        {v.rating ? "Puanınız için teşekkürler!" : "Deneyiminizi puanlayarak işletmeye yardımcı olabilirsiniz."}
+        Bizi tercih ettiğiniz için teşekkür ederiz.
       </Notice>
     );
   }

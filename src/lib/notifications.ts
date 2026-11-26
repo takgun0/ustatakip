@@ -16,7 +16,8 @@ export type NotificationEvent =
   | { type: "stage_changed"; businessName: string; customerName: string; title: string; stageName: string; url: string }
   | { type: "offer_sent"; businessName: string; customerName: string; title: string; offerTitle: string; amount: number; url: string }
   | { type: "counter_received"; customerName: string; trackingCode: string; amount: number; url: string }
-  | { type: "job_ready"; businessName: string; customerName: string; title: string; url: string };
+  | { type: "job_ready"; businessName: string; customerName: string; title: string; url: string }
+  | { type: "job_delivered"; businessName: string; customerName: string; title: string };
 
 export type NotificationType = NotificationEvent["type"];
 
@@ -54,6 +55,8 @@ export function renderMessage(event: NotificationEvent): string {
       return `${event.customerName} (${event.trackingCode}) teklifinize ${formatTRY(event.amount)} karşı teklif verdi. Yanıtlamak için: ${event.url}`;
     case "job_ready":
       return `Merhaba ${firstName(event.customerName)}, "${event.title}" işiniz hazır! Teslim almak için sizi bekliyoruz. Ayrıntılar: ${event.url} — ${event.businessName}`;
+    case "job_delivered":
+      return `Merhaba ${firstName(event.customerName)}, "${event.title}" işiniz tamamlandı ve teslim edildi. Bizi tercih ettiğiniz için teşekkür ederiz. — ${event.businessName}`;
   }
 }
 

@@ -32,9 +32,20 @@ describe("renderMessage", () => {
       { type: "offer_sent", ...base, offerTitle: "X", amount: 100 },
       { type: "counter_received", customerName: "Ayşe Kaya", trackingCode: "UT-1", amount: 90000, url: base.url },
       { type: "job_ready", ...base },
+      { type: "job_delivered", businessName: base.businessName, customerName: base.customerName, title: base.title },
     ];
     for (const e of events) expect(renderMessage(e).length).toBeGreaterThan(20);
     expect(renderMessage(events[3])).toContain("900,00 ₺");
+  });
+});
+
+describe("job_delivered", () => {
+  it("teslim mesajı ilk adla hitap eder, iş ve işletme adını içerir, link içermez", () => {
+    const text = renderMessage({ type: "job_delivered", businessName: base.businessName, customerName: base.customerName, title: base.title });
+    expect(text).toContain("Merhaba Ayşe");
+    expect(text).toContain('"Fren bakımı" işiniz tamamlandı ve teslim edildi');
+    expect(text).toContain("Yıldız Oto Servis");
+    expect(text).not.toContain("http");
   });
 });
 

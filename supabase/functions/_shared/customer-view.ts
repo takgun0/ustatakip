@@ -47,7 +47,6 @@ export type RawOffer = {
   created_at: string;
   offer_rounds: RawRound[];
 };
-export type RawRating = { score: number; comment: string | null; created_at: string };
 
 export type Photo = { id: string; url: string; caption: string | null };
 
@@ -103,7 +102,6 @@ export type CustomerView = {
   history: HistoryItem[];
   openOffers: OpenOffer[];
   offers: OfferDetail[];
-  rating: { score: number; comment: string | null } | null;
   /** Realtime kanal adı: job:<sha256(token)> */
   topic: string;
 };
@@ -118,7 +116,6 @@ export type BuildInput = {
   /** storage_path → imzalı URL; imzalanamayan fotoğraf gösterilmez */
   signedUrls: Record<string, string>;
   offers: RawOffer[];
-  rating: RawRating | null;
   topic: string;
 };
 
@@ -230,7 +227,6 @@ export function buildCustomerView(input: BuildInput): CustomerView {
     history,
     openOffers,
     offers,
-    rating: input.rating ? { score: input.rating.score, comment: input.rating.comment } : null,
     topic: input.topic,
   };
 }

@@ -77,7 +77,4 @@ export const IconGrip = (p: IconProps) => (
 export const IconTrash = (p: IconProps) => (
   <Svg {...p}><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" /></Svg>
 );
-export const IconStar = ({ filled, ...p }: IconProps & { filled?: boolean }) => (
-  <Svg {...p} fill={filled ? "currentColor" : "none"}><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z" /></Svg>
-);
 export const IconMail = (p: IconProps) => <Svg {...p}><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 6-10 7L2 6" /></Svg>;

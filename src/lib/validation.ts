@@ -99,13 +99,6 @@ export const trackingTokenSchema = z.string().refine(isTrackingToken, "Geçersiz
 
 export const trackGetSchema = z.object({ token: trackingTokenSchema });
 
-/** M4: teslim puanı */
-export const ratingSchema = z.object({
-  token: trackingTokenSchema,
-  score: z.number({ message: "1 ile 5 arasında puan verin" }).int().min(1, "1 ile 5 arasında puan verin").max(5, "1 ile 5 arasında puan verin"),
-  comment: optionalText(1000, "Yorum"),
-});
-
 /** E4: aşama fotoğrafı yükleme (multipart alanları; dosya ayrıca denetlenir) */
 export const mediaUploadSchema = z.object({
   jobId: z.uuid("Geçersiz iş"),

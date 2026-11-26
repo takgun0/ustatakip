@@ -49,7 +49,7 @@ npm run dev                  # http://localhost:3000
    - `…170000_stage_and_template_rpcs.sql`, `…170100_events_note_update_policy.sql` — aşama ve şablon işlemleri
    - `…180000_offer_functions.sql` — teklif yazma fonksiyonları (yalnızca service_role)
    - `…200000_analytics_views.sql` — E6 analiz görünümleri (`security_invoker`)
-   - Edge Function'ları dağıtın: `npx supabase functions deploy <ad>` (müşteri uçları `track-lookup`, `track-get`, `track-rate`, `offer-action` için `--no-verify-jwt`)
+   - Edge Function'ları dağıtın: `npx supabase functions deploy <ad>` (müşteri uçları `track-lookup`, `track-get`, `offer-action` için `--no-verify-jwt`)
 3. Hazır şablonları yükleyin: `supabase/seed.sql` (Oto Tamir, Oto Yıkama, Mobilya, Terzi). Tekrar çalıştırılabilir.
 4. **Authentication → URL Configuration**: *Site URL* ve *Redirect URLs* alanlarına `http://localhost:3000` ve yayın adresinizi (`https://<kullanıcı>.github.io/ustatakip`) ekleyin.
 5. **Authentication → Providers → Email**: Supabase'in varsayılan e-posta servisi yalnızca proje ekibine posta gönderir. Gerçek kullanıcılar için ya özel SMTP tanımlayın ya da demo için *Confirm email* seçeneğini kapatın.
@@ -84,8 +84,7 @@ npm run check:functions  # kopyalar güncel mi (testler de denetler)
 |---|---|---|
 | `job-create` | Esnaf (oturum zorunlu) | İşi doğrular, `UT-` takip kodu ve 256 bit token üretir, ilk aşama kaydını açar |
 | `track-lookup` | Müşteri (M1) | Kod + telefonun son 4 hanesini doğrular, takip token'ını döner. IP başına 15 dakikada 10, kod başına saatte 6 deneme |
-| `track-get` | Müşteri (M2/M3/M4) | Token'la takip verisini döner; fotoğraflar 1 saatlik imzalı URL. IP başına 10 dakikada 120 istek |
-| `track-rate` | Müşteri (M4) | Teslim edilen iş için tek seferlik 1–5 puan |
+| `track-get` | Müşteri (M2/M3) | Token'la takip verisini döner; fotoğraflar 1 saatlik imzalı URL. IP başına 10 dakikada 120 istek |
 | `offer-action` | Müşteri (M3) | Ek masraf teklifine yanıt: kabul, ret ya da karşı teklif (isteğe bağlı notla). Token doğrulanır, IP başına 10 dakikada 20 istek; IP yalnızca HMAC özeti olarak tura yazılır |
 | `offer-manage` | Esnaf (oturum zorunlu) | `op: "create"` yeni teklif (iş başına aynı anda tek açık teklif), `op: "respond"` karşı teklife kabul / ret / yeni fiyat |
 | `media-upload` | Esnaf (oturum zorunlu) | Aşama fotoğrafı: tür sihirli baytlardan (JPEG/PNG/WebP), en fazla 5 MB, EXIF/XMP/metin sunucuda atılır, özel `job-media` kovasına yazılır. İşletme başına 10 dakikada 60 yükleme, iş başına en fazla 40 fotoğraf |
@@ -97,7 +96,7 @@ Müşteri uçları oturum istemez (`verify_jwt: false`); her istek token ya da k
 - **M1 `/takip/`**: takip kodu + son 4 hane ya da "QR Okut" (tarayıcı destekliyorsa kamerayla; desteklemiyorsa telefonun kamera uygulaması QR'daki linki doğrudan açar).
 - **M2 `/t/#<token>`**: token adresin `#` kısmında durur, bu yüzden sunucuya ve GitHub Pages loglarına gitmez.
 - **M3 `/t/teklif/#<token>/<teklifId>`**: ek masraf teklifi; "Onayla", "Reddet" (onaylı) ya da "Pazarlık Yap" ile karşı teklif. Tur geçmişi, kalan tur ve sonuç kutuları gösterilir; karşı tekliften sonra ustaya WhatsApp mesajı hazır gelir.
-- **M4 `/t/teslim/#<token>`**: teslim özeti ve 1–5 puan.
+- **M4 `/t/teslim/#<token>`**: puanlama kaldırıldı; eski bağlantılar takip sayfasına (`/t/#<token>`) yönlendirilir. Teslimde esnaf, iş detayındaki yeşil düğmeyle müşteriye WhatsApp'tan "işiniz teslim edildi" mesajı gönderir.
 
 Aşama, fotoğraf ya da teklif değişince veritabanı tetikleyicisi `job:<sha256(token)>` kanalına içeriksiz bir Realtime yayını gönderir; sayfa bu sinyalle veriyi `track-get` üzerinden yeniden çeker. Kanal adından token çıkarılamaz, kanalda veri taşınmaz.
 
@@ -146,7 +145,7 @@ Yazma, yalnızca `service_role`'ün çağırabildiği `open_offer_tx` ve `apply_
 |---|---|
 | `analytics_stage_durations` | Her aşama kaydının giriş/çıkış zamanı ve süresi (çıkış = sonraki aşama, teslim ya da iptal; aktif işin son aşaması "açık") |
 | `analytics_stage_stats` | Şablon aşaması başına geçiş sayısı, ortalama / medyan / en uzun süre, şu an bekleyen iş, kaybedilen süre |
-| `analytics_business_summary` | Aktif / teslim edilen iş, ortalama teslim süresi, ortalama puan, teklif kabul oranı ve onaylanan ek masraf |
+| `analytics_business_summary` | Aktif / teslim edilen iş, ortalama teslim süresi, teklif kabul oranı ve onaylanan ek masraf |
 
 **Kaybedilen süre**: bir aşamadaki her geçişte, o aşamanın medyan süresini aşan kısmın toplamı. Hep uzun süren ama öngörülebilir aşamalar (ör. boya kuruması) kayıp sayılmaz; tipik süreyi aşan beklemeler darboğazı gösterir. Sayfada dönem (7/30/90 gün, tümü) ve süreç seçilebilir; hesaplar `src/lib/analytics.ts` içindedir (testli).
 
@@ -158,7 +157,7 @@ Yazma, yalnızca `service_role`'ün çağırabildiği `open_offer_tx` ve `apply_
 2. Settings → Secrets and variables → Actions → **Variables**: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. `NEXT_PUBLIC_BASE_PATH` ve `NEXT_PUBLIC_SITE_URL` repo adından otomatik üretilir.
 3. Supabase → Authentication → URL Configuration'a yayın adresini ekleyin.
 
-Statik dışa aktarımda dinamik segment yoktur: iş detayı `/panel/is/?id=…`, müşteri sayfaları `/t/#<token>`, `/t/teklif/#<token>/<teklifId>`, `/t/teslim/#<token>` biçimindedir.
+Statik dışa aktarımda dinamik segment yoktur: iş detayı `/panel/is/?id=…`, müşteri sayfaları `/t/#<token>`, `/t/teklif/#<token>/<teklifId>` biçimindedir.
 
 ## Bildirimler
 

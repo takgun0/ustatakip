@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildCustomerView, type BuildInput } from "./customer-view";
 import { checkLookup } from "./tracking";
-import { ratingSchema, trackLookupSchema } from "./validation";
+import { trackLookupSchema } from "./validation";
 
 describe("checkLookup (kod + son 4 hane)", () => {
   const job = { customer_phone: "+905321112233", token_expires_at: null, status: "active" };
@@ -40,15 +40,6 @@ describe("trackLookupSchema", () => {
   });
 });
 
-describe("ratingSchema", () => {
-  const token = "a".repeat(43);
-  it("1–5 arası tam sayı kabul eder", () => {
-    expect(ratingSchema.safeParse({ token, score: 5, comment: "" }).success).toBe(true);
-    expect(ratingSchema.safeParse({ token, score: 0, comment: "" }).success).toBe(false);
-    expect(ratingSchema.safeParse({ token, score: 4.5, comment: "" }).success).toBe(false);
-    expect(ratingSchema.safeParse({ token: "kisa", score: 5, comment: "" }).success).toBe(false);
-  });
-});
 
 describe("buildCustomerView", () => {
   const input: BuildInput = {
@@ -98,7 +89,6 @@ describe("buildCustomerView", () => {
         ],
       },
     ],
-    rating: null,
     topic: "job:abc",
   };
 

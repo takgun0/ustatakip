@@ -28,7 +28,10 @@ export const phoneSchema = z
   .transform((v, ctx) => {
     const p = normalizePhone(v);
     if (!p) {
-      ctx.addIssue({ code: "custom", message: "Geçerli bir cep telefonu girin (05xx xxx xx xx)" });
+      ctx.addIssue({
+        code: "custom",
+        message: "Geçerli bir cep telefonu girin (05xx xxx xx xx)",
+      });
       return z.NEVER;
     }
     return p;
@@ -46,7 +49,10 @@ export const signUpSchema = z.object({
   sector: z.enum([...SECTORS, "Diğer"], { message: "Sektör seçin" }),
   phone: phoneSchema,
   email: z.email("Geçerli bir e-posta girin").trim(),
-  password: z.string().min(8, "Şifre en az 8 karakter olmalı").max(72, "Şifre en fazla 72 karakter olabilir"),
+  password: z
+    .string()
+    .min(8, "Şifre en az 8 karakter olmalı")
+    .max(72, "Şifre en fazla 72 karakter olabilir"),
 });
 
 export const NOTIFY_CHANNELS = ["wa_link", "whatsapp_cloud", "sms"] as const;
@@ -58,6 +64,22 @@ export const businessSettingsSchema = z.object({
   notifyChannel: z.enum(NOTIFY_CHANNELS),
   kvkkText: optionalText(5000, "KVKK metni"),
 });
+
+/** E7 · mesaj şablonları (businesses.message_templates). Boş olanlar saklanmaz. */
+const templateText = z
+  .string()
+  .trim()
+  .min(1)
+  .max(1000, "Mesaj en fazla 1000 karakter olabilir");
+export const messageTemplatesSchema = z
+  .object({
+    job_created: templateText.optional(),
+    stage_changed: templateText.optional(),
+    offer_sent: templateText.optional(),
+    job_ready: templateText.optional(),
+    job_delivered: templateText.optional(),
+  })
+  .strict();
 
 /** Kuruş cinsinden tutar (en fazla 10 milyon ₺) */
 export const kurusSchema = z
@@ -74,7 +96,9 @@ export const jobCreateSchema = z.object({
   itemLabel: optionalText(120, "Araç / ürün bilgisi"),
   description: optionalText(2000, "Açıklama"),
   agreedAmount: kurusSchema.nullable(),
-  estimatedDelivery: z.iso.datetime({ offset: true, message: "Geçerli bir tarih seçin" }).nullable(),
+  estimatedDelivery: z.iso
+    .datetime({ offset: true, message: "Geçerli bir tarih seçin" })
+    .nullable(),
   note: optionalText(1000, "İlk aşama notu"),
 });
 export type JobCreateInput = z.input<typeof jobCreateSchema>;
@@ -87,15 +111,23 @@ export const trackLookupSchema = z.object({
     .transform((v, ctx) => {
       const c = normalizeTrackingCode(v);
       if (!c) {
-        ctx.addIssue({ code: "custom", message: "Takip kodunu UT-XXXX-XX biçiminde girin" });
+        ctx.addIssue({
+          code: "custom",
+          message: "Takip kodunu UT-XXXX-XX biçiminde girin",
+        });
         return z.NEVER;
       }
       return c;
     }),
-  last4: z.string().trim().regex(/^\d{4}$/, "Telefonunuzun son 4 hanesini girin"),
+  last4: z
+    .string()
+    .trim()
+    .regex(/^\d{4}$/, "Telefonunuzun son 4 hanesini girin"),
 });
 
-export const trackingTokenSchema = z.string().refine(isTrackingToken, "Geçersiz takip bağlantısı");
+export const trackingTokenSchema = z
+  .string()
+  .refine(isTrackingToken, "Geçersiz takip bağlantısı");
 
 export const trackGetSchema = z.object({ token: trackingTokenSchema });
 
@@ -107,7 +139,15 @@ export const mediaUploadSchema = z.object({
 });
 
 /** Aşama renkleri: yalnızca --ut-* paletinden (design/tokens) */
-export const STAGE_COLORS = ["#1E3A5F", "#2563EB", "#F59E0B", "#D97706", "#16A34A", "#DC2626", "#6B7280"] as const;
+export const STAGE_COLORS = [
+  "#1E3A5F",
+  "#2563EB",
+  "#F59E0B",
+  "#D97706",
+  "#16A34A",
+  "#DC2626",
+  "#6B7280",
+] as const;
 
 /** E5: süreç şablonu kaydetme */
 export const templateSaveSchema = z.object({
@@ -134,7 +174,10 @@ export const offerActionSchema = z
     amount: kurusSchema.nullable().optional(),
     note: optionalText(500, "Not").optional(),
   })
-  .refine((v) => v.action !== "counter" || v.amount != null, { message: "Karşı teklif tutarını girin", path: ["amount"] });
+  .refine((v) => v.action !== "counter" || v.amount != null, {
+    message: "Karşı teklif tutarını girin",
+    path: ["amount"],
+  });
 
 /** E4: esnafın yeni teklifi */
 export const offerCreateSchema = z.object({
@@ -152,7 +195,10 @@ export const offerRespondSchema = z
     amount: kurusSchema.nullable().optional(),
     note: optionalText(500, "Not").optional(),
   })
-  .refine((v) => v.action !== "propose" || v.amount != null, { message: "Yeni fiyatı girin", path: ["amount"] });
+  .refine((v) => v.action !== "propose" || v.amount != null, {
+    message: "Yeni fiyatı girin",
+    path: ["amount"],
+  });
 
 /** E4: aşama notu */
 export const stageNoteSchema = optionalText(1000, "Not");

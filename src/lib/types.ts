@@ -1,6 +1,7 @@
 export type NotifyChannel = "wa_link" | "whatsapp_cloud" | "sms";
 export type JobStatus = "active" | "delivered" | "cancelled";
-export type OfferStatus = "pending" | "accepted" | "rejected" | "countered" | "expired";
+export type OfferStatus =
+  "pending" | "accepted" | "rejected" | "countered" | "expired";
 
 export type Business = {
   id: string;
@@ -11,6 +12,17 @@ export type Business = {
   logo_path: string | null;
   notify_channel: NotifyChannel;
   kvkk_text: string | null;
+  /** Esnafın düzenlediği WhatsApp mesajları; yalnızca varsayılandan farklı olanlar */
+  message_templates: Partial<
+    Record<
+      | "job_created"
+      | "stage_changed"
+      | "offer_sent"
+      | "job_ready"
+      | "job_delivered",
+      string
+    >
+  > | null;
   created_at: string;
 };
 

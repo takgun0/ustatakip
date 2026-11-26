@@ -42,7 +42,7 @@ UstaTakip bu üç noktayı tek bir akışta toplar: **şeffaf süreç takibi**, 
 | E4 | İş detayı: aşama ilerletme, not, fotoğraf, teklif paneli | Esnaf |
 | E5 | Süreç şablonları: aşama ekleme, sürükle-bırak sıralama, renk | Esnaf |
 | E6 | Analiz: darboğaz aşaması, teslim süresi, teklif oranları | Esnaf |
-| E7 | İşletme ayarları | Esnaf |
+| E7 | İşletme ayarları, logo, KVKK metni, WhatsApp mesaj şablonları | Esnaf |
 
 Müşteri ekranları mobil öncelikli, esnaf paneli masaüstü ve mobil için tasarlandı. Tüm arayüz Türkçedir; para birimi `1.250,00 ₺` biçimindedir.
 
@@ -89,7 +89,7 @@ esnaf fiyat ─► bekliyor ─(müşteri onay)──────► kabul   (tu
 Analiz ekranı her aşamanın tipik (medyan) süresini hesaplar ve bu süreyi aşan beklemeleri toplar. Böylece her zaman uzun süren ama öngörülebilir aşamalar (ör. boya kuruması) değil, **beklenmedik biçimde uzayan** aşamalar darboğaz olarak öne çıkar. Hesaplar veritabanı görünümlerinde yapılır ve RLS'e tabidir.
 
 ### Bildirimler
-Mesajlar (iş kaydı, aşama değişti, teklif, karşı teklif, iş hazır, teslim edildi) Türkçe şablonlardan üretilir ve `wa.me` bağlantısı olarak hazırlanır. Esnaf mesajı kendi WhatsApp'ından tek dokunuşla gönderir. WhatsApp Business API ve SMS için aynı arayüzü uygulayan taslaklar var, ama bunlar etkin değil.
+Mesajlar (iş kaydı, aşama değişti, teklif, karşı teklif, iş hazır, teslim edildi) Türkçe şablonlardan üretilir ve `wa.me` bağlantısı olarak hazırlanır. Esnaf mesajı kendi WhatsApp'ından tek dokunuşla gönderir. Esnafa giden karşı teklif bildirimi dışındaki şablonları esnaf ayarlar ekranından kendi üslubuyla yeniden yazabilir. `{müşteri}`, `{iş}`, `{link}` gibi alanları imlecin olduğu yere ekler ve sonucu örnek bilgilerle anında önizler. Yalnızca varsayılandan farklı olan metinler saklanır. Veritabanı yalnızca bilinen mesaj türlerini ve sınırlı uzunlukta metni kabul eder. WhatsApp Business API ve SMS için aynı arayüzü uygulayan taslaklar var, ama bunlar etkin değil.
 
 ### Performans ve erişilebilirlik
 - Müşteri takip sayfası mobil Lighthouse ölçümünde **performans 93–94, erişilebilirlik 100, en iyi uygulamalar 100** aldı.

@@ -15,6 +15,7 @@ import { ErrorState, InfoBox, Notice } from "@/components/ui/States";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { IconCamera, IconTrash } from "@/components/ui/icons";
 import { BackLink } from "@/components/ui/BackLink";
+import { MessageTemplatesEditor } from "@/components/panel/MessageTemplatesEditor";
 
 const CHANNELS: Array<{ value: NotifyChannel; title: string; text: string; available: boolean }> = [
   { value: "wa_link", title: "WhatsApp linki", text: "Mesaj hazır gelir, kendi WhatsApp'ınızdan tek dokunuşla gönderirsiniz.", available: true },
@@ -169,7 +170,7 @@ export default function AyarlarPage() {
                 </label>
               ))}
             </fieldset>
-            <InfoBox>İş oluşturulduğunda, aşama değiştiğinde, teklif ve karşı teklif geldiğinde ve iş hazır olduğunda mesaj hazırlanır.</InfoBox>
+            <InfoBox>İş kaydedildiğinde, aşama değiştiğinde, teklif gönderildiğinde, iş hazır olduğunda ve teslim edildiğinde mesaj hazırlanır. Metinleri aşağıdaki &quot;WhatsApp mesajları&quot; bölümünden düzenleyebilirsiniz.</InfoBox>
           </Card>
 
           <Card padding="lg" className="flex flex-col gap-4">
@@ -234,6 +235,8 @@ export default function AyarlarPage() {
           {logoError && <ErrorState title="Logo yüklenemedi" description={logoError} />}
         </Card>
       </div>
+
+      <MessageTemplatesEditor />
     </main>
   );
 }

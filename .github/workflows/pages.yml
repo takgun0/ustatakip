@@ -43,7 +43,9 @@ jobs:
           node-version: 22
           cache: npm
 
-      - run: npm ci
+      # Windows'ta üretilen kilit dosyası Linux'a özgü isteğe bağlı paketleri (sharp-wasm32 →
+      # @emnapi/runtime) içermediği için `npm ci` reddeder; `npm install` eksikleri tamamlar.
+      - run: npm install --no-audit --no-fund
 
       - name: Edge Function ortak kodu güncel mi
         run: npm run check:functions

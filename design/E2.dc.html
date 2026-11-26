@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>E2 · Panel</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ut-primary:#1E3A5F;--ut-primary-soft:#E8EEF5;--ut-accent:#F59E0B;--ut-success:#16A34A;--ut-warning:#D97706;--ut-danger:#DC2626;--ut-info:#2563EB;--ut-bg:#F7F8FA;--ut-surface:#FFFFFF;--ut-border:#E5E7EB;--ut-text:#111827;--ut-text-muted:#6B7280;--ut-radius:12px;--ut-shadow:0 1px 2px rgba(17,24,39,.06),0 4px 12px rgba(17,24,39,.06);--ut-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#1E3A5F}a:hover{color:#111827}
+button,input,textarea{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: var(--ut-bg); color: var(--ut-text)">
+
+  <header style="background: var(--ut-primary); color: #FFFFFF">
+    <div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="position: relative; width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"></path></svg>
+          <span style="position: absolute; top: -3px; right: -3px; width: 11px; height: 11px; border-radius: 50%; background: var(--ut-accent); border: 2px solid var(--ut-primary)"></span>
+        </span>
+        <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.01em">UstaTakip</span>
+      </div>
+      <span aria-hidden="true" style="width: 1px; height: 24px; background: rgba(255,255,255,.25)"></span>
+      <span style="font-size: 15px; font-weight: 600">Yıldız Oto Servis</span>
+      <span style="flex: 1 1 0"></span>
+      <button type="button" style="height: 44px; padding: 0 18px; border: 0; border-radius: 12px; background: var(--ut-accent); color: var(--ut-text); font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Yeni İş</button>
+      <button type="button" aria-label="Hesap menüsü" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.14); color: #FFFFFF; font-size: 14px; font-weight: 700">MY</button>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 28px 24px 56px; display: flex; flex-direction: column; gap: 20px">
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Aktif işler</h1>
+        <p style="margin: 0; font-size: 15px; color: var(--ut-text-muted)">8 aktif iş · 26 Kasım Perşembe</p>
+      </div>
+      <div style="flex: 0 1 360px; min-width: 240px; display: flex; align-items: center; gap: 10px; height: 44px; box-sizing: border-box; padding: 0 14px; background: var(--ut-surface); border: 1px solid var(--ut-text-muted); border-radius: 12px; color: var(--ut-text-muted)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input type="search" aria-label="İş ara" placeholder="Plaka, müşteri veya takip kodu" style="flex: 1; min-width: 0; border: 0; background: transparent; font-size: 15px; color: var(--ut-text)">
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 12px">
+      <button type="button" onClick="{{ pickWaiting }}" aria-pressed="{{ waitingOn }}" style="flex: 1 1 260px; min-height: 64px; display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; border: 1.5px solid {{waitingBorder}}; background: var(--ut-surface); box-shadow: var(--ut-shadow); text-align: left; color: var(--ut-text)">
+        <span style="flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: rgba(217,119,6,.12); color: var(--ut-warning); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 15px; font-weight: 700">Yanıt bekleyen teklif</span><span style="font-size: 13px; color: var(--ut-text-muted)">Müşteri henüz yanıtlamadı</span></span>
+        <span style="font-size: 24px; font-weight: 700">2</span>
+      </button>
+      <button type="button" onClick="{{ pickCounter }}" aria-pressed="{{ counterOn }}" style="flex: 1 1 260px; min-height: 64px; display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; border: 1.5px solid {{counterBorder}}; background: var(--ut-surface); box-shadow: var(--ut-shadow); text-align: left; color: var(--ut-text)">
+        <span style="flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: rgba(37,99,235,.10); color: var(--ut-info); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m17 2 4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 15px; font-weight: 700">Karşı teklif geldi</span><span style="font-size: 13px; color: var(--ut-text-muted)">Yanıtınızı bekliyor</span></span>
+        <span style="font-size: 24px; font-weight: 700">1</span>
+      </button>
+    </div>
+
+    <div role="group" aria-label="Aşama filtresi" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px">
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="7">
+        <button type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" style="flex: 0 0 auto; height: 44px; padding: 0 8px 0 16px; border-radius: 999px; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px">{{c.label}}<span style="min-width: 26px; height: 26px; box-sizing: border-box; padding: 0 7px; border-radius: 999px; background: {{c.countBg}}; color: {{c.countFg}}; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center">{{c.count}}</span></button>
+      </sc-for>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px">
+      <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="8">
+        <a href="E4.dc.html" style="display: flex; flex-direction: column; gap: 12px; padding: 16px; background: var(--ut-surface); border: {{j.border}}; border-radius: 12px; box-shadow: var(--ut-shadow); text-decoration: none; color: var(--ut-text)">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+            <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-size: 16px; font-weight: 700">{{j.customer}}</span>
+              <span style="font-size: 14px; color: var(--ut-text-muted)">{{j.vehicle}}</span>
+            </div>
+            <span style="flex-shrink: 0; font-family: var(--ut-mono); font-size: 12px; font-weight: 600; color: var(--ut-text-muted); background: var(--ut-bg); padding: 4px 8px; border-radius: 6px">{{j.code}}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+            <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: {{j.stageBg}}; font-size: 13px; font-weight: 600"><span style="width: 7px; height: 7px; border-radius: 50%; background: {{j.stageDot}}"></span>{{j.stage}}</span>
+            <span style="font-size: 13px; color: var(--ut-text-muted)">Aşama {{j.n}} / 6</span>
+          </div>
+          <div style="display: flex; gap: 4px" aria-hidden="true">
+            <sc-for list="{{ j.segs }}" as="s" hint-placeholder-count="6"><span style="flex: 1; height: 6px; border-radius: 3px; background: {{s.bg}}"></span></sc-for>
+          </div>
+          <sc-if value="{{ j.waiting }}" hint-placeholder-val="{{ false }}">
+            <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(217,119,6,.12); font-size: 13px; font-weight: 600"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--ut-warning)"></span>Yanıt bekleyen teklif · {{j.offer}}</span>
+          </sc-if>
+          <sc-if value="{{ j.counter }}" hint-placeholder-val="{{ false }}">
+            <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(37,99,235,.10); font-size: 13px; font-weight: 600"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--ut-info)"></span>Karşı teklif geldi · {{j.offer}}</span>
+          </sc-if>
+          <div style="margin-top: auto; display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--ut-text-muted); border-top: 1px solid var(--ut-border); padding-top: 10px">
+            <span>Teslim: {{j.due}}</span><span>{{j.updated}}</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 40px 24px; border: 1px dashed var(--ut-border); border-radius: 12px; background: var(--ut-surface); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px">
+        <span style="font-size: 16px; font-weight: 600">Bu filtrede iş yok</span>
+        <button type="button" onClick="{{ clear }}" style="height: 44px; padding: 0 16px; border: 1px solid var(--ut-border); border-radius: 12px; background: var(--ut-surface); color: var(--ut-primary); font-size: 15px; font-weight: 600">Filtreleri temizle</button>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { stage: 0, flag: null };
+  }
+  renderVals() {
+    var self = this;
+    var names = ['Teslim Alındı', 'Arıza Tespiti', 'Parça Bekleniyor', 'Onarım', 'Test Sürüşü', 'Teslime Hazır'];
+    var all = [
+      { customer: 'Ayşe Kaya', vehicle: '2016 Renault Clio · 34 ABC 123', code: 'UT-7K4M-29', n: 4, flag: 'waiting', offer: '3.100,00 ₺', due: '27 Kas, 18:00', updated: 'Bugün 15:20' },
+      { customer: 'Murat Demir', vehicle: '2019 Fiat Egea · 06 KLM 482', code: 'UT-3PQ8-71', n: 2, flag: 'counter', offer: '5.900,00 ₺', due: '28 Kas, 17:00', updated: 'Bugün 13:40' },
+      { customer: 'Selin Aydın', vehicle: '2014 Ford Focus · 34 TR 5521', code: 'UT-9XD2-14', n: 3, flag: 'waiting', offer: '1.850,00 ₺', due: '29 Kas, 12:00', updated: 'Bugün 11:05' },
+      { customer: 'Hakan Öztürk', vehicle: '2021 Toyota Corolla · 34 HKN 07', code: 'UT-5BV7-02', n: 5, flag: null, due: 'Bugün, 19:00', updated: 'Bugün 14:10' },
+      { customer: 'Elif Şahin', vehicle: '2012 VW Polo · 16 EŞ 334', code: 'UT-2MN6-88', n: 6, flag: null, due: 'Bugün, 17:30', updated: 'Bugün 12:45' },
+      { customer: 'Kemal Arslan', vehicle: '2017 Hyundai i20 · 34 KA 9090', code: 'UT-8RT1-45', n: 2, flag: null, due: '28 Kas, 12:00', updated: 'Bugün 10:20' },
+      { customer: 'Zeynep Çelik', vehicle: '2018 Dacia Duster · 41 ZC 218', code: 'UT-6WQ3-60', n: 4, flag: null, due: '27 Kas, 16:00', updated: 'Dün 18:30' },
+      { customer: 'Burak Yılmaz', vehicle: '2015 Opel Astra · 34 BY 4410', code: 'UT-4HJ9-33', n: 1, flag: null, due: '30 Kas, 17:00', updated: 'Bugün 09:15' }
+    ];
+    var st = this.state.stage, fl = this.state.flag;
+    var jobs = all.filter(function (j) {
+      return (st === 0 || j.n === st) && (!fl || j.flag === fl);
+    }).map(function (j) {
+      var last = j.n === names.length;
+      var segs = names.map(function (nm, i) {
+        var k = i + 1;
+        return { key: nm, bg: k < j.n ? '#16A34A' : (k === j.n ? (last ? '#16A34A' : '#F59E0B') : '#E5E7EB') };
+      });
+      return Object.assign({}, j, {
+        key: j.code,
+        stage: names[j.n - 1],
+        stageBg: last ? 'rgba(22,163,74,.12)' : '#F59E0B',
+        stageDot: last ? '#16A34A' : '#111827',
+        segs: segs,
+        waiting: j.flag === 'waiting',
+        counter: j.flag === 'counter',
+        border: j.flag === 'counter' ? '1.5px solid #2563EB' : '1px solid #E5E7EB'
+      });
+    });
+    var chipDefs = [{ label: 'Tümü', v: 0 }].concat(names.map(function (nm, i) { return { label: nm, v: i + 1 }; }));
+    var chips = chipDefs.map(function (c) {
+      var on = st === c.v;
+      var count = all.filter(function (j) { return c.v === 0 || j.n === c.v; }).length;
+      return {
+        key: c.label, label: c.label, count: count, on: on,
+        bg: on ? '#1E3A5F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#111827', border: on ? '#1E3A5F' : '#E5E7EB',
+        countBg: on ? 'rgba(255,255,255,.2)' : '#E8EEF5', countFg: on ? '#FFFFFF' : '#1E3A5F',
+        pick: function () { self.setState({ stage: c.v }); }
+      };
+    });
+    return {
+      chips: chips,
+      jobs: jobs,
+      empty: jobs.length === 0,
+      waitingOn: fl === 'waiting',
+      counterOn: fl === 'counter',
+      waitingBorder: fl === 'waiting' ? '#D97706' : '#E5E7EB',
+      counterBorder: fl === 'counter' ? '#2563EB' : '#E5E7EB',
+      pickWaiting: function () { self.setState({ flag: self.state.flag === 'waiting' ? null : 'waiting' }); },
+      pickCounter: function () { self.setState({ flag: self.state.flag === 'counter' ? null : 'counter' }); },
+      clear: function () { self.setState({ stage: 0, flag: null }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

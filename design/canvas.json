@@ -1,0 +1,20 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-11-26T12:00:00Z"},
+  "title": "UstaTakip — Palet ve 4 Temel Ekran",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1280, "h": 2800, "title": "Palet ve Bileşenler"},
+    "M2.dc.html": {"x": 0, "y": 3240, "w": 390, "h": 1900, "title": "M2 · İş Takip (müşteri, mobil)"},
+    "M3.dc.html": {"x": 470, "y": 3240, "w": 390, "h": 1900, "title": "M3 · Teklif Detayı (müşteri, mobil)", "is_interactive": true},
+    "E2.dc.html": {"x": 940, "y": 3240, "w": 1280, "h": 1200, "title": "E2 · Panel (esnaf, responsive)", "expand": "fill", "is_interactive": true},
+    "E4.dc.html": {"x": 2300, "y": 3240, "w": 1280, "h": 1500, "title": "E4 · İş Detayı (esnaf, responsive)", "expand": "fill", "is_interactive": true}
+  },
+  "order": ["Main.dc.html", "M2.dc.html", "M3.dc.html", "E2.dc.html", "E4.dc.html"],
+  "notes": {
+    "t1": {"x": 0, "y": -300, "text": "UstaTakip — Palet ve Bileşenler", "kind": "title1", "maxW": 1280},
+    "t2": {"x": 0, "y": 2920, "text": "Ekranlar · Müşteri (mobil) ve Esnaf (responsive)", "kind": "title1", "maxW": 3580}
+  },
+  "designSystems": []
+}

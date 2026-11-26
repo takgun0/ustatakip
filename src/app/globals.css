@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/*
+ * UstaTakip tasarım tokenları — design/Main.dc.html ile birebir.
+ * Ad, değer ve kullanım kuralları tasarımdan gelir; yeni token eklenmez.
+ */
+:root {
+  --ut-primary: #1E3A5F;
+  --ut-primary-soft: #E8EEF5;
+  --ut-accent: #F59E0B;
+  --ut-success: #16A34A;
+  --ut-warning: #D97706;
+  --ut-danger: #DC2626;
+  --ut-info: #2563EB;
+  --ut-bg: #F7F8FA;
+  --ut-surface: #FFFFFF;
+  --ut-border: #E5E7EB;
+  --ut-text: #111827;
+  --ut-text-muted: #6B7280;
+  --ut-radius: 12px;
+  --ut-shadow: 0 1px 2px rgba(17, 24, 39, .06), 0 4px 12px rgba(17, 24, 39, .06);
+  --ut-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Tailwind teması: bg-ut-primary, text-ut-text-muted, rounded-ut, shadow-ut, font-mono … */
+@theme inline {
+  --color-ut-primary: var(--ut-primary);
+  --color-ut-primary-soft: var(--ut-primary-soft);
+  --color-ut-accent: var(--ut-accent);
+  --color-ut-success: var(--ut-success);
+  --color-ut-warning: var(--ut-warning);
+  --color-ut-danger: var(--ut-danger);
+  --color-ut-info: var(--ut-info);
+  --color-ut-bg: var(--ut-bg);
+  --color-ut-surface: var(--ut-surface);
+  --color-ut-border: var(--ut-border);
+  --color-ut-text: var(--ut-text);
+  --color-ut-text-muted: var(--ut-text-muted);
+
+  /* Durum tonları (tasarımdaki %10–12 renk tonu zeminleri) */
+  --color-ut-success-tint: rgba(22, 163, 74, .12);
+  --color-ut-warning-tint: rgba(217, 119, 6, .12);
+  --color-ut-danger-tint: rgba(220, 38, 38, .10);
+  --color-ut-info-tint: rgba(37, 99, 235, .10);
+  --color-ut-accent-tint: rgba(245, 158, 11, .06);
+
+  --radius-ut: var(--ut-radius);
+  --shadow-ut: var(--ut-shadow);
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-mono: var(--ut-mono);
+}
+
+/* Öğe varsayılanları base katmanında: Tailwind yardımcı sınıfları (ör. text-white) her zaman üstün gelir */
+@layer base {
+  html {
+    background: var(--ut-bg);
+  }
+
+  body {
+    margin: 0;
+    background: var(--ut-bg);
+    color: var(--ut-text);
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--ut-primary);
+  }
+  a:hover {
+    color: var(--ut-text);
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
+}
+
+/* Tasarımdaki foto yer tutucusu (çizgili zemin) */
+.ut-photo-placeholder {
+  background: repeating-linear-gradient(135deg, var(--ut-primary-soft) 0 8px, #FFFFFF 8px 16px);
+}
+
+/* Yükleniyor iskeleti */
+@keyframes ut-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+.ut-skeleton {
+  background: var(--ut-border);
+  border-radius: 8px;
+  animation: ut-pulse 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ut-skeleton { animation: none; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--ut-info);
+  outline-offset: 2px;
+}
+
+/* QR etiketi yazdırma: ekranda gizli, yazdırırken sayfada yalnızca etiket kalır */
+.ut-print-only { display: none; }
+@media print {
+  body * { visibility: hidden; }
+  .ut-print-only, .ut-print-only * { visibility: visible; }
+  .ut-print-only {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    color: #111827;
+  }
+}

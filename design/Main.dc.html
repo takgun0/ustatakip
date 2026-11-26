@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>UstaTakip · Palet ve Bileşenler</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ut-primary:#1E3A5F;--ut-primary-soft:#E8EEF5;--ut-accent:#F59E0B;--ut-success:#16A34A;--ut-warning:#D97706;--ut-danger:#DC2626;--ut-info:#2563EB;--ut-bg:#F7F8FA;--ut-surface:#FFFFFF;--ut-border:#E5E7EB;--ut-text:#111827;--ut-text-muted:#6B7280;--ut-radius:12px;--ut-shadow:0 1px 2px rgba(17,24,39,.06),0 4px 12px rgba(17,24,39,.06);--ut-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#1E3A5F}a:hover{color:#111827}
+button,input,textarea{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 1280px; min-height: 2800px; box-sizing: border-box; padding: 56px 64px 64px; background: var(--ut-bg); color: var(--ut-text); display: flex; flex-direction: column; gap: 48px">
+
+  <header style="display: flex; align-items: center; gap: 16px">
+    <div style="position: relative; width: 52px; height: 52px; border-radius: 12px; background: var(--ut-primary); color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"></path></svg>
+      <span style="position: absolute; top: -5px; right: -5px; width: 16px; height: 16px; border-radius: 50%; background: var(--ut-accent); border: 3px solid var(--ut-bg)"></span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: var(--ut-primary)">UstaTakip</h1>
+      <p style="margin: 0; font-size: 15px; color: var(--ut-text-muted)">Esnaf için kargo takibi mantığında iş takibi · Renk paleti, tipografi ve bileşenler</p>
+    </div>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px">
+      <h2 style="margin: 0; font-size: 20px; font-weight: 700">Ana palet</h2>
+      <span style="font-size: 14px; color: var(--ut-text-muted)">Kontrast oranları beyaz (--ut-surface) zemine göredir</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+      <sc-for list="{{ swatches }}" as="s" hint-placeholder-count="12">
+        <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; overflow: hidden; box-shadow: var(--ut-shadow); display: flex; flex-direction: column">
+          <div style="height: 92px; background: {{s.hex}}; border-bottom: 1px solid var(--ut-border)"></div>
+          <div style="padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ut-text-muted)">{{s.group}}</span>
+            <span style="font-family: var(--ut-mono); font-size: 13px; font-weight: 600">{{s.name}}</span>
+            <span style="font-family: var(--ut-mono); font-size: 13px; color: var(--ut-text-muted)">{{s.hex}}</span>
+            <span style="font-size: 13px; line-height: 1.4; margin-top: 4px">{{s.use}}</span>
+            <span style="font-size: 12px; line-height: 1.4; color: var(--ut-text-muted)">{{s.note}}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+    <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-size: 20px; font-weight: 700">Tipografi · Inter</h2>
+      <div style="display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--ut-border); padding-bottom: 12px"><span style="width: 120px; flex-shrink: 0; font-size: 12px; color: var(--ut-text-muted)">Sayfa başlığı 28/700</span><span style="font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Aktif işler</span></div>
+      <div style="display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--ut-border); padding-bottom: 12px"><span style="width: 120px; flex-shrink: 0; font-size: 12px; color: var(--ut-text-muted)">Bölüm 20/700</span><span style="font-size: 20px; font-weight: 700">Teklif geçmişi</span></div>
+      <div style="display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--ut-border); padding-bottom: 12px"><span style="width: 120px; flex-shrink: 0; font-size: 12px; color: var(--ut-text-muted)">Gövde 16/400</span><span style="font-size: 16px">Debriyaj seti takıldı, fren balataları yenilendi.</span></div>
+      <div style="display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--ut-border); padding-bottom: 12px"><span style="width: 120px; flex-shrink: 0; font-size: 12px; color: var(--ut-text-muted)">Yardımcı 13/500</span><span style="font-size: 13px; font-weight: 500; color: var(--ut-text-muted)">26 Kas, 15:20 · Son güncelleme</span></div>
+      <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 120px; flex-shrink: 0; font-size: 12px; color: var(--ut-text-muted)">Tutar 30/700</span><span style="font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums">1.250,00 ₺</span></div>
+    </div>
+    <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+      <h2 style="margin: 0; font-size: 20px; font-weight: 700">Biçim kuralları</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="height: 72px; border-radius: 12px; border: 2px solid var(--ut-primary); background: var(--ut-primary-soft)"></div>
+          <span style="font-size: 14px; font-weight: 600">Köşe 12 px</span>
+          <span style="font-size: 13px; color: var(--ut-text-muted)">Kart, buton, alan. Rozet: tam yuvarlak.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="height: 72px; border-radius: 12px; background: var(--ut-surface); border: 1px solid var(--ut-border); box-shadow: var(--ut-shadow)"></div>
+          <span style="font-size: 14px; font-weight: 600">Hafif gölge</span>
+          <span style="font-family: var(--ut-mono); font-size: 11px; color: var(--ut-text-muted); line-height: 1.5">0 1px 2px / 0 4px 12px · %6 --ut-text</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="height: 72px; border-radius: 12px; background: var(--ut-bg); border: 1px solid var(--ut-border); display: flex; align-items: center; justify-content: center; gap: 6px">
+            <span style="width: 44px; height: 44px; border-radius: 12px; border: 2px dashed var(--ut-primary); box-sizing: border-box"></span>
+          </div>
+          <span style="font-size: 14px; font-weight: 600">Dokunma 44 px</span>
+          <span style="font-size: 13px; color: var(--ut-text-muted)">En küçük buton ve filtre yüksekliği.</span>
+        </div>
+      </div>
+      <div style="border-radius: 12px; background: var(--ut-primary-soft); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 14px; font-weight: 600">Para formatı: 1.250,00 ₺</span>
+        <span style="font-size: 13px; line-height: 1.5">Binlik ayırıcı nokta, kuruş virgül, ₺ sonda ve boşlukla. Rakamlar <span style="font-family: var(--ut-mono)">tabular-nums</span> ile hizalanır.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 16px">
+    <h2 style="margin: 0; font-size: 20px; font-weight: 700">Bileşenler</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start">
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">Button</h3><span style="font-size: 13px; color: var(--ut-text-muted)">Yükseklik 44 px · köşe 12 px</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <button type="button" style="height: 44px; padding: 0 18px; border: 0; border-radius: 12px; background: var(--ut-primary); color: #FFFFFF; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Onayla</button>
+          <button type="button" style="height: 44px; padding: 0 18px; border: 0; border-radius: 12px; background: var(--ut-accent); color: var(--ut-text); font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Yeni İş</button>
+          <button type="button" style="height: 44px; padding: 0 18px; border: 1px solid var(--ut-border); border-radius: 12px; background: var(--ut-surface); color: var(--ut-primary); font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m17 2 4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>Pazarlık Yap</button>
+          <button type="button" style="height: 44px; padding: 0 18px; border: 1px solid var(--ut-danger); border-radius: 12px; background: var(--ut-surface); color: var(--ut-danger); font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>Reddet</button>
+          <button type="button" style="height: 44px; padding: 0 14px; border: 0; border-radius: 12px; background: transparent; color: var(--ut-primary); font-size: 15px; font-weight: 600">Vazgeç</button>
+          <button type="button" disabled style="height: 44px; padding: 0 18px; border: 0; border-radius: 12px; background: var(--ut-border); color: var(--ut-text-muted); font-size: 15px; font-weight: 600">Gönderiliyor…</button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; font-size: 13px; line-height: 1.45; color: var(--ut-text-muted)">
+          <span><strong style="color: var(--ut-text)">Birincil</strong> · ana karar (Onayla, Kabul Et)</span>
+          <span><strong style="color: var(--ut-text)">Vurgu</strong> · yeni kayıt, gönder</span>
+          <span><strong style="color: var(--ut-text)">İkincil</strong> · alternatif yol</span>
+          <span><strong style="color: var(--ut-text)">Tehlike</strong> · reddetme</span>
+        </div>
+      </div>
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">StatusBadge</h3><span style="font-size: 13px; color: var(--ut-text-muted)">Renk noktada, metin her zaman --ut-text</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: var(--ut-accent); color: var(--ut-text); font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-text)"></span>Aktif aşama · Onarım</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: rgba(22,163,74,.12); color: var(--ut-text); font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-success)"></span>Tamamlandı</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: var(--ut-bg); border: 1px solid var(--ut-border); color: var(--ut-text-muted); font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-border)"></span>Sırada</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: rgba(217,119,6,.12); color: var(--ut-text); font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-warning)"></span>Yanıt bekleyen teklif</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: rgba(37,99,235,.10); color: var(--ut-text); font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-info)"></span>Karşı teklif geldi</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: rgba(22,163,74,.12); color: var(--ut-text); font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-success)"></span>Onaylandı</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: rgba(220,38,38,.10); color: var(--ut-text); font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-danger)"></span>Reddedildi</span>
+        </div>
+        <p style="margin: 0; font-size: 13px; line-height: 1.5; color: var(--ut-text-muted)">Aktif aşama tek dolu amber rozettir; diğer durumlar %10–12 renk tonu üzerinde koyu metin kullanır.</p>
+      </div>
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">StageProgress</h3><span style="font-size: 13px; color: var(--ut-text-muted)">Aşamalar esnaftan gelir (2–8)</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between"><span style="font-size: 15px; font-weight: 700">Aşama 4 / 6 · Onarım</span><span style="font-size: 13px; color: var(--ut-text-muted)">Bugün 15:20</span></div>
+        <div style="display: flex; align-items: flex-start">
+          <sc-for list="{{ stages }}" as="s" hint-placeholder-count="6">
+            <div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px">
+              <span style="position: absolute; top: 11px; left: -50%; width: 100%; height: 3px; background: {{s.lineBg}}; display: {{s.lineDisp}}"></span>
+              <span style="position: relative; width: 24px; height: 24px; box-sizing: border-box; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #FFFFFF; background: {{s.dotBg}}; border: {{s.dotBorder}}; box-shadow: {{s.dotShadow}}">
+                <sc-if value="{{ s.done }}" hint-placeholder-val="{{ true }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+                <sc-if value="{{ s.act }}" hint-placeholder-val="{{ false }}"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-text)"></span></sc-if>
+              </span>
+              <span style="font-size: 12px; line-height: 1.25; text-align: center; padding: 0 2px; color: {{s.labelColor}}; font-weight: {{s.labelWeight}}">{{s.label}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin: 0; font-size: 13px; line-height: 1.5; color: var(--ut-text-muted)">Biten aşama yeşil + onay işareti, aktif aşama amber halka, sıradakiler gri çerçeve. Mini sürüm (kartlarda): 6 px yüksek segment çubuğu.</p>
+        <div style="display: flex; gap: 4px">
+          <span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-success)"></span>
+          <span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-success)"></span>
+          <span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-success)"></span>
+          <span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-accent)"></span>
+          <span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span>
+          <span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span>
+        </div>
+      </div>
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">CodeDisplay</h3><span style="font-size: 13px; color: var(--ut-text-muted)">Kod · link · QR</span></div>
+        <div style="display: flex; gap: 20px; align-items: center">
+          <div role="img" aria-label="Takip kodu QR" style="flex-shrink: 0; width: 120px; height: 120px; box-sizing: border-box; padding: 8px; border: 1px solid var(--ut-border); border-radius: 12px; background: #FFFFFF; display: grid; grid-template-columns: repeat(21, minmax(0, 1fr))">
+            <sc-for list="{{ qr }}" as="c" hint-placeholder-count="441"><span style="aspect-ratio: 1; background: {{c.bg}}"></span></sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+            <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ut-text-muted)">Takip kodu</span>
+            <span style="font-family: var(--ut-mono); font-size: 28px; font-weight: 700; letter-spacing: 0.04em; color: var(--ut-primary)">UT-3PQ8-71</span>
+            <span style="font-size: 13px; color: var(--ut-text-muted)">ustatakip.app/t/UT-3PQ8-71</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <button type="button" style="height: 44px; padding: 0 16px; border: 0; border-radius: 12px; background: var(--ut-primary); color: #FFFFFF; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.7A8.4 8.4 0 1 1 21 11.5z"></path></svg>WhatsApp'ta Paylaş</button>
+          <button type="button" style="height: 44px; padding: 0 16px; border: 1px solid var(--ut-border); border-radius: 12px; background: var(--ut-surface); color: var(--ut-primary); font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Linki kopyala</button>
+        </div>
+      </div>
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">Timeline</h3><span style="font-size: 13px; color: var(--ut-text-muted)">En yeni üstte · fotoğraflı</span></div>
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; gap: 14px">
+            <div style="display: flex; flex-direction: column; align-items: center; padding-top: 4px"><span style="width: 14px; height: 14px; border-radius: 50%; background: var(--ut-accent); box-shadow: 0 0 0 4px rgba(245,158,11,.22)"></span><span style="flex: 1; width: 2px; background: var(--ut-border); margin-top: 6px"></span></div>
+            <div style="flex: 1; min-width: 0; padding-bottom: 20px; display: flex; flex-direction: column; gap: 6px">
+              <div style="display: flex; justify-content: space-between; gap: 8px"><span style="font-size: 15px; font-weight: 700">Onarım</span><span style="font-size: 13px; color: var(--ut-text-muted)">26 Kas, 15:20</span></div>
+              <p style="margin: 0; font-size: 14px; line-height: 1.5">Debriyaj seti takıldı, fren balataları yenilendi.</p>
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+                <div style="aspect-ratio: 4 / 3; border-radius: 8px; background: repeating-linear-gradient(135deg, var(--ut-primary-soft) 0 8px, #FFFFFF 8px 16px); border: 1px solid var(--ut-border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--ut-text-muted)">Fotoğraf</div>
+                <div style="aspect-ratio: 4 / 3; border-radius: 8px; background: repeating-linear-gradient(135deg, var(--ut-primary-soft) 0 8px, #FFFFFF 8px 16px); border: 1px solid var(--ut-border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--ut-text-muted)">Fotoğraf</div>
+                <div style="aspect-ratio: 4 / 3; border-radius: 8px; background: repeating-linear-gradient(135deg, var(--ut-primary-soft) 0 8px, #FFFFFF 8px 16px); border: 1px solid var(--ut-border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--ut-text-muted)">Fotoğraf</div>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 14px">
+            <div style="display: flex; flex-direction: column; align-items: center; padding-top: 4px"><span style="width: 14px; height: 14px; border-radius: 50%; background: var(--ut-success)"></span></div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+              <div style="display: flex; justify-content: space-between; gap: 8px"><span style="font-size: 15px; font-weight: 700">Parça Bekleniyor</span><span style="font-size: 13px; color: var(--ut-text-muted)">24 Kas, 17:45</span></div>
+              <p style="margin: 0; font-size: 14px; line-height: 1.5">Debriyaj seti ve balatalar sipariş edildi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">OfferCard</h3><span style="font-size: 13px; color: var(--ut-text-muted)">Ek masraf teklifi</span></div>
+        <div style="border: 1px solid var(--ut-border); border-radius: 12px; overflow: hidden">
+          <div style="height: 120px; background: repeating-linear-gradient(135deg, var(--ut-primary-soft) 0 10px, #FFFFFF 10px 20px); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--ut-text-muted)">Fotoğraf · Aşınmış ön fren diski</div>
+          <div style="padding: 16px; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+              <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: rgba(217,119,6,.12); font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-warning)"></span>Yanıtınız bekleniyor</span>
+              <span style="font-size: 13px; color: var(--ut-text-muted)">Tur 2 / 3</span>
+            </div>
+            <span style="font-size: 17px; font-weight: 700">Ön fren diski değişimi</span>
+            <span style="font-size: 14px; line-height: 1.5; color: var(--ut-text-muted)">Muadil marka, 2 yıl garantili. Parça ve işçilik dahil.</span>
+            <div style="display: flex; align-items: baseline; gap: 10px"><span style="font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums">3.100,00 ₺</span><span style="font-size: 14px; color: var(--ut-text-muted); text-decoration: line-through; font-variant-numeric: tabular-nums">3.400,00 ₺</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">OfferHistory</h3><span style="font-size: 13px; color: var(--ut-text-muted)">En fazla 3 tur</span></div>
+        <div style="display: flex; align-items: center; gap: 10px">
+          <div style="display: flex; gap: 4px"><span style="width: 28px; height: 6px; border-radius: 3px; background: var(--ut-primary)"></span><span style="width: 28px; height: 6px; border-radius: 3px; background: var(--ut-primary)"></span><span style="width: 28px; height: 6px; border-radius: 3px; background: var(--ut-border)"></span></div>
+          <span style="font-size: 13px; font-weight: 600">2 / 3 tur kullanıldı</span>
+        </div>
+        <div style="border: 1px solid var(--ut-border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 12px">
+          <span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: var(--ut-primary); background: var(--ut-primary-soft); padding: 4px 10px; border-radius: 999px">Tur 1</span>
+          <div style="display: flex; gap: 10px"><span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--ut-primary); color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">U</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; color: var(--ut-text-muted)">Usta · 24 Kas, 14:05</span><span style="font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums">3.400,00 ₺</span></div></div>
+          <div style="display: flex; gap: 10px"><span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--ut-accent); color: var(--ut-text); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">S</span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; color: var(--ut-text-muted)">Siz · 24 Kas, 16:22</span><span style="font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums">2.800,00 ₺</span><span style="font-size: 14px">“Yan sanayi parça olabilir mi?”</span></div></div>
+        </div>
+        <div style="border: 1px dashed var(--ut-border); border-radius: 12px; padding: 12px 14px; font-size: 13px; color: var(--ut-text-muted)">Tur 3 · Henüz kullanılmadı</div>
+      </div>
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">CounterOfferForm</h3><span style="font-size: 13px; color: var(--ut-text-muted)">Müşteri ve esnaf ortak</span></div>
+        <label for="spec-amount" style="font-size: 14px; font-weight: 600">Karşı teklif tutarı</label>
+        <div style="display: flex; align-items: center; height: 52px; box-sizing: border-box; padding: 0 14px; border: 1px solid var(--ut-text-muted); border-radius: 12px; background: var(--ut-surface)">
+          <input id="spec-amount" inputmode="decimal" placeholder="2.900,00" style="flex: 1; min-width: 0; border: 0; background: transparent; font-size: 20px; font-weight: 600; color: var(--ut-text); font-variant-numeric: tabular-nums">
+          <span style="font-size: 18px; font-weight: 700; color: var(--ut-text-muted)">₺</span>
+        </div>
+        <label for="spec-note" style="font-size: 14px; font-weight: 600">Not <span style="font-weight: 400; color: var(--ut-text-muted)">(isteğe bağlı)</span></label>
+        <textarea id="spec-note" rows="2" placeholder="Örn. İşçilik dahil olursa onaylarım." style="box-sizing: border-box; width: 100%; padding: 12px 14px; border: 1px solid var(--ut-text-muted); border-radius: 12px; font-size: 15px; resize: vertical; color: var(--ut-text)"></textarea>
+        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--ut-primary-soft); font-size: 13px; line-height: 1.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ut-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+          <span>Bir teklifte en fazla 3 tur pazarlık yapılabilir. Kalan tur sayısı her zaman gösterilir.</span>
+        </div>
+        <button type="button" style="height: 48px; border: 0; border-radius: 12px; background: var(--ut-accent); color: var(--ut-text); font-size: 16px; font-weight: 600">Karşı Teklif Gönder</button>
+      </div>
+
+      <div style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; box-shadow: var(--ut-shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><h3 style="margin: 0; font-family: var(--ut-mono); font-size: 15px; font-weight: 700">JobCard</h3><span style="font-size: 13px; color: var(--ut-text-muted)">Esnaf panelindeki iş kartı</span></div>
+        <div style="padding: 16px; border: 1px solid var(--ut-info); border-radius: 12px; background: var(--ut-surface); box-shadow: var(--ut-shadow); display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+            <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 16px; font-weight: 700">Murat Demir</span><span style="font-size: 14px; color: var(--ut-text-muted)">2019 Fiat Egea · 06 KLM 482</span></div>
+            <span style="font-family: var(--ut-mono); font-size: 12px; font-weight: 600; color: var(--ut-text-muted); background: var(--ut-bg); padding: 4px 8px; border-radius: 6px; white-space: nowrap">UT-3PQ8-71</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px"><span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: var(--ut-accent); font-size: 13px; font-weight: 600"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--ut-text)"></span>Arıza Tespiti</span><span style="font-size: 13px; color: var(--ut-text-muted)">Aşama 2 / 6</span></div>
+          <div style="display: flex; gap: 4px"><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-success)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-accent)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span></div>
+          <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(37,99,235,.10); font-size: 13px; font-weight: 600"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--ut-info)"></span>Karşı teklif geldi</span>
+          <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--ut-text-muted); border-top: 1px solid var(--ut-border); padding-top: 10px"><span>Teslim: 28 Kas</span><span>13:40 güncellendi</span></div>
+        </div>
+      </div>
+
+      <div style="background: var(--ut-primary-soft); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+        <h3 style="margin: 0; font-size: 16px; font-weight: 700">Ekran kuralları</h3>
+        <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.5">
+          <li>Müşteri ekranları (M2, M3) 390 px mobil önceliklidir; ana eylemler başparmak bölgesinde, tam genişlik.</li>
+          <li>Esnaf ekranları (E2, E4) akışkandır: 1200 px kapsayıcı, telefonda kartlar tek sütuna, yan sütun alta iner.</li>
+          <li>Durum yalnızca renkle anlatılmaz: her rozet ve aşamada metin de vardır.</li>
+          <li>Tutarlar her yerde 1.250,00 ₺ biçimindedir.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2800}}'>
+class Component extends DCLogic {
+  stages(active) {
+    var names = ['Teslim Alındı', 'Arıza Tespiti', 'Parça Bekleniyor', 'Onarım', 'Test Sürüşü', 'Teslime Hazır'];
+    return names.map(function (label, i) {
+      var n = i + 1, done = n < active, act = n === active;
+      return {
+        key: label, label: label, done: done, act: act,
+        dotBg: done ? '#16A34A' : (act ? '#F59E0B' : '#FFFFFF'),
+        dotBorder: (done || act) ? '0' : '2px solid #E5E7EB',
+        dotShadow: act ? '0 0 0 4px rgba(245,158,11,.25)' : 'none',
+        lineBg: n <= active ? '#16A34A' : '#E5E7EB',
+        lineDisp: i === 0 ? 'none' : 'block',
+        labelColor: n <= active ? '#111827' : '#6B7280',
+        labelWeight: act ? '700' : '500'
+      };
+    });
+  }
+  qr(seed) {
+    var n = 21, s = seed, cells = [];
+    function rnd() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+    function finder(x, y, fx, fy) {
+      var dx = x - fx, dy = y - fy;
+      if (dx < -1 || dy < -1 || dx > 7 || dy > 7) return null;
+      if (dx < 0 || dy < 0 || dx > 6 || dy > 6) return false;
+      return dx === 0 || dy === 0 || dx === 6 || dy === 6 || (dx >= 2 && dx <= 4 && dy >= 2 && dy <= 4);
+    }
+    for (var y = 0; y < n; y++) {
+      for (var x = 0; x < n; x++) {
+        var on = finder(x, y, 0, 0);
+        if (on === null) on = finder(x, y, 14, 0);
+        if (on === null) on = finder(x, y, 0, 14);
+        if (on === null) on = (y === 6) ? x % 2 === 0 : (x === 6 ? y % 2 === 0 : rnd() > 0.52);
+        cells.push({ k: x + '-' + y, bg: on ? '#111827' : '#FFFFFF' });
+      }
+    }
+    return cells;
+  }
+  renderVals() {
+    return {
+      swatches: [
+        { group: 'Marka', name: '--ut-primary', hex: '#1E3A5F', use: 'Başlık, birincil buton, esnaf üst barı', note: 'Beyaz üzerinde 11,5:1' },
+        { group: 'Marka', name: '--ut-primary-soft', hex: '#E8EEF5', use: 'Seçili filtre, bilgi kutusu zemini', note: 'Yalnız zemin; üzerine --ut-text' },
+        { group: 'Marka', name: '--ut-accent', hex: '#F59E0B', use: 'Aktif aşama, Yeni İş butonu', note: 'Üzerine yalnız koyu metin (8,2:1)' },
+        { group: 'Durum', name: '--ut-success', hex: '#16A34A', use: 'Biten aşama, onay', note: 'İkon ve dolgu; küçük metinde değil (3,3:1)' },
+        { group: 'Durum', name: '--ut-warning', hex: '#D97706', use: 'Yanıt bekleyen teklif', note: 'İkon ve nokta; küçük metinde değil (3,2:1)' },
+        { group: 'Durum', name: '--ut-danger', hex: '#DC2626', use: 'Reddet, hata', note: 'Metin olarak uygun (4,8:1)' },
+        { group: 'Durum', name: '--ut-info', hex: '#2563EB', use: 'Karşı teklif geldi, bağlantı', note: 'Metin olarak uygun (5,2:1)' },
+        { group: 'Nötr', name: '--ut-bg', hex: '#F7F8FA', use: 'Sayfa zemini', note: '--ut-text-muted burada 4,6:1' },
+        { group: 'Nötr', name: '--ut-surface', hex: '#FFFFFF', use: 'Kart, form alanı, alt bar', note: 'Hafif gölgeyle zeminden ayrılır' },
+        { group: 'Nötr', name: '--ut-border', hex: '#E5E7EB', use: 'Kart kenarı, ayırıcı', note: 'Form alanı kenarı: --ut-text-muted' },
+        { group: 'Nötr', name: '--ut-text', hex: '#111827', use: 'Ana metin, rozet metni', note: 'Beyaz üzerinde 17,7:1' },
+        { group: 'Nötr', name: '--ut-text-muted', hex: '#6B7280', use: 'Yardımcı metin, tarih', note: 'Beyaz üzerinde 4,8:1' }
+      ],
+      stages: this.stages(4),
+      qr: this.qr(71)
+    };
+  }
+}
+</script>
+</body>
+</html>

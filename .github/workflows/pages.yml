@@ -1,0 +1,84 @@
+# UstaTakip → GitHub Pages (statik Next.js dışa aktarımı).
+#
+# - push / pull_request: yalnızca denetim + derleme (yayın YOK).
+# - Yayın yalnızca elle: Actions > "Pages" > Run workflow (workflow_dispatch).
+#   Her push'ta otomatik yayın isterseniz deploy işindeki `if:` satırını kaldırın.
+#
+# Gerekli ayarlar (Settings):
+#   Pages > Build and deployment > Source: "GitHub Actions"
+#   Secrets and variables > Actions > Variables:
+#     NEXT_PUBLIC_SUPABASE_URL              (https://<ref>.supabase.co)
+#     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY  (sb_publishable_…; tarayıcıya gider, gizli değildir)
+# service_role anahtarı ASLA burada kullanılmaz; yalnızca Supabase Edge Function secret'larında durur.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+      # Proje sayfası: https://<kullanıcı>.github.io/<repo>/
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Edge Function ortak kodu güncel mi
+        run: npm run check:functions
+
+      - name: Birim testleri
+        run: npx vitest run
+
+      - name: Tür denetimi
+        run: npx tsc --noEmit -p .
+
+      - name: Lint
+        run: npx eslint src
+
+      - name: Derle (out/)
+        run: npm run build
+
+      - name: Jekyll'i kapat
+        run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'workflow_dispatch'
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    # Yayın yalnızca elle tetiklenince (bkz. üstteki açıklama)
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

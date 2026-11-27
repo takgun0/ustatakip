@@ -11,7 +11,11 @@ begin
       ('Oto Tamir',  'Oto Tamir Standart',  array['Teslim Alındı','Arıza Tespiti','Parça Bekleniyor','Onarım','Test Sürüşü','Teslime Hazır']),
       ('Oto Yıkama', 'Oto Yıkama Standart', array['Teslim Alındı','Ön Yıkama','Detaylı Dış Temizlik','İç Temizlik','Kurulama ve Cila','Teslime Hazır']),
       ('Mobilya',    'Mobilya Üretim',      array['Sipariş Alındı','Ölçü ve Çizim','Malzeme Tedariki','Üretim','Boya ve Cila','Montaj','Teslime Hazır']),
-      ('Terzi',      'Terzi Dikim',         array['Teslim Alındı','Ölçü Alındı','Kesim','Dikim','Prova','Son Rötuş','Teslime Hazır'])
+      ('Terzi',      'Terzi Dikim',         array['Teslim Alındı','Ölçü Alındı','Kesim','Dikim','Prova','Son Rötuş','Teslime Hazır']),
+      ('Kaporta ve Boya',    'Kaporta ve Boya',    array['Teslim Alındı','Hasar Tespiti','Kaporta Onarımı','Boya Hazırlığı','Boya','Pasta ve Cila','Teslime Hazır']),
+      ('Elektronik Tamiri',  'Elektronik Tamiri',  array['Teslim Alındı','Arıza Tespiti','Parça Bekleniyor','Onarım','Test','Teslime Hazır']),
+      ('Tadilat ve Tesisat', 'Tadilat ve Tesisat', array['Keşif Yapıldı','Malzeme Tedariki','Söküm','Uygulama','Kontrol ve Temizlik','Teslime Hazır']),
+      ('Ayakkabı Tamiri',    'Ayakkabı Tamiri',    array['Teslim Alındı','İnceleme','Onarım','Boya ve Bakım','Teslime Hazır'])
     ) as t(sector, name, stages)
   loop
     if exists (select 1 from public.process_templates where business_id is null and sector = r.sector) then

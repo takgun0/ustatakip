@@ -11,7 +11,13 @@ import type { OfferStatus } from "@/lib/types";
 import { ButtonLink, Button } from "@/components/ui/Button";
 import { JobCard, JobCardSkeleton } from "@/components/ui/JobCard";
 import { EmptyState, ErrorState, LoadingRegion } from "@/components/ui/States";
-import { IconClock, IconPlus, IconSearch, IconSwap, IconWrench } from "@/components/ui/icons";
+import {
+  IconClock,
+  IconPlus,
+  IconSearch,
+  IconSwap,
+  IconWrench,
+} from "@/components/ui/icons";
 
 type Row = {
   id: string;
@@ -23,9 +29,18 @@ type Row = {
   current_stage_id: string | null;
   estimated_delivery: string | null;
   updated_at: string;
-  offers: Array<{ status: OfferStatus; current_amount: number; created_at: string }>;
+  offers: Array<{
+    status: OfferStatus;
+    current_amount: number;
+    created_at: string;
+  }>;
 };
-type Stage = { id: string; template_id: string; name: string; position: number };
+type Stage = {
+  id: string;
+  template_id: string;
+  name: string;
+  position: number;
+};
 
 type JobView = Row & {
   stages: Array<{ id: string; name: string }>;
@@ -35,21 +50,28 @@ type JobView = Row & {
   offerAmount: number | null;
 };
 
-type Load = { status: "loading" } | { status: "error" } | { status: "ready"; jobs: JobView[] };
+type Load =
+  | { status: "loading" }
+  | { status: "error" }
+  | { status: "ready"; jobs: JobView[] };
 
 /** E2 · /panel — aktif işler */
 export default function PanelPage() {
   useBusiness();
   const [load, setLoad] = useState<Load>({ status: "loading" });
   const [stageFilter, setStageFilter] = useState<string | null>(null);
-  const [flagFilter, setFlagFilter] = useState<"waiting" | "counter" | null>(null);
+  const [flagFilter, setFlagFilter] = useState<"waiting" | "counter" | null>(
+    null,
+  );
   const [query, setQuery] = useState("");
 
   const fetchJobs = useCallback(async () => {
     const supabase = getSupabase();
     const { data: rows, error } = await supabase
       .from("jobs")
-      .select("id, customer_name, item_label, title, tracking_code, template_id, current_stage_id, estimated_delivery, updated_at, offers(status, current_amount, created_at)")
+      .select(
+        "id, customer_name, item_label, title, tracking_code, template_id, current_stage_id, estimated_delivery, updated_at, offers(status, current_amount, created_at)",
+      )
       .eq("status", "active")
       .order("updated_at", { ascending: false })
       .returns<Row[]>();
@@ -70,8 +92,13 @@ export default function PanelPage() {
 
     const jobs: JobView[] = (rows ?? []).map((r) => {
       const own = stages.filter((s) => s.template_id === r.template_id);
-      const idx = Math.max(0, own.findIndex((s) => s.id === r.current_stage_id));
-      const open = r.offers.filter((o) => o.status === "countered" || o.status === "pending").sort((a, b) => b.created_at.localeCompare(a.created_at));
+      const idx = Math.max(
+        0,
+        own.findIndex((s) => s.id === r.current_stage_id),
+      );
+      const open = r.offers
+        .filter((o) => o.status === "countered" || o.status === "pending")
+        .sort((a, b) => b.created_at.localeCompare(a.created_at));
       const counter = open.find((o) => o.status === "countered");
       const waiting = open.find((o) => o.status === "pending");
       return {
@@ -92,12 +119,20 @@ export default function PanelPage() {
     void fetchJobs();
   }, [fetchJobs]);
 
-  const jobs = useMemo(() => (load.status === "ready" ? load.jobs : []), [load]);
+  const jobs = useMemo(
+    () => (load.status === "ready" ? load.jobs : []),
+    [load],
+  );
 
-  // Aşama çipleri: farklı şablonlarda aynı adlı aşamalar birleşir, sıra korunur
+  // Aşama çipleri: yalnızca içinde iş olan aşamalar. Farklı şablonlarda aynı adlı aşamalar
+  // birleşir, şablondaki sıra korunur (çok sektörlü işletmede boş aşamalar listeyi uzatmasın).
   const chipNames = useMemo(() => {
+    const occupied = new Set(jobs.map((j) => j.stageName));
     const seen = new Map<string, number>();
-    for (const j of jobs) j.stages.forEach((s, i) => (!seen.has(s.name) ? seen.set(s.name, i) : null));
+    for (const j of jobs)
+      j.stages.forEach((s, i) =>
+        occupied.has(s.name) && !seen.has(s.name) ? seen.set(s.name, i) : null,
+      );
     return [...seen.entries()].sort((a, b) => a[1] - b[1]).map(([n]) => n);
   }, [jobs]);
 
@@ -106,12 +141,27 @@ export default function PanelPage() {
     () =>
       jobs.filter((j) => {
         if (!q) return true;
-        const hay = [j.customer_name, j.item_label ?? "", j.title, j.tracking_code, formatCode(j.tracking_code)].join(" ").toLocaleLowerCase("tr-TR");
-        return hay.includes(q) || hay.replace(/\s/g, "").includes(q.replace(/\s/g, ""));
+        const hay = [
+          j.customer_name,
+          j.item_label ?? "",
+          j.title,
+          j.tracking_code,
+          formatCode(j.tracking_code),
+        ]
+          .join(" ")
+          .toLocaleLowerCase("tr-TR");
+        return (
+          hay.includes(q) ||
+          hay.replace(/\s/g, "").includes(q.replace(/\s/g, ""))
+        );
       }),
     [jobs, q],
   );
-  const visible = searched.filter((j) => (!stageFilter || j.stageName === stageFilter) && (!flagFilter || j.flag === flagFilter));
+  const visible = searched.filter(
+    (j) =>
+      (!stageFilter || j.stageName === stageFilter) &&
+      (!flagFilter || j.flag === flagFilter),
+  );
   const waitingCount = jobs.filter((j) => j.flag === "waiting").length;
   const counterCount = jobs.filter((j) => j.flag === "counter").length;
 
@@ -125,7 +175,9 @@ export default function PanelPage() {
     <main className="mx-auto box-border flex max-w-[1200px] flex-col gap-5 px-6 pt-7 pb-14">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <h1 className="m-0 text-[28px] font-extrabold tracking-[-0.025em]">Aktif işler</h1>
+          <h1 className="m-0 text-[28px] font-extrabold tracking-[-0.025em]">
+            Aktif işler
+          </h1>
           <p className="m-0 text-[15px] text-ut-text-muted">
             {load.status === "ready" ? `${jobs.length} aktif iş · ` : ""}
             {formatToday()}
@@ -147,7 +199,9 @@ export default function PanelPage() {
       <div className="flex flex-wrap gap-3">
         <FlagButton
           on={flagFilter === "waiting"}
-          onClick={() => setFlagFilter(flagFilter === "waiting" ? null : "waiting")}
+          onClick={() =>
+            setFlagFilter(flagFilter === "waiting" ? null : "waiting")
+          }
           tone="warning"
           icon={<IconClock size={20} />}
           title="Yanıt bekleyen teklif"
@@ -156,7 +210,9 @@ export default function PanelPage() {
         />
         <FlagButton
           on={flagFilter === "counter"}
-          onClick={() => setFlagFilter(flagFilter === "counter" ? null : "counter")}
+          onClick={() =>
+            setFlagFilter(flagFilter === "counter" ? null : "counter")
+          }
           tone="info"
           icon={<IconSwap size={20} />}
           title="Karşı teklif geldi"
@@ -166,10 +222,16 @@ export default function PanelPage() {
       </div>
 
       {chipNames.length > 0 && (
-        <div role="group" aria-label="Aşama filtresi" className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:thin]">
+        <div
+          role="group"
+          aria-label="Aşama filtresi"
+          className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:thin]"
+        >
           {[null, ...chipNames].map((name) => {
             const on = stageFilter === name;
-            const count = searched.filter((j) => !name || j.stageName === name).length;
+            const count = searched.filter(
+              (j) => !name || j.stageName === name,
+            ).length;
             return (
               <button
                 key={name ?? "__all"}
@@ -178,14 +240,18 @@ export default function PanelPage() {
                 onClick={() => setStageFilter(name)}
                 className={cn(
                   "inline-flex h-11 flex-none items-center gap-2 rounded-full border pr-2 pl-4 text-sm font-semibold",
-                  on ? "border-ut-primary bg-ut-primary text-white" : "border-ut-border bg-ut-surface text-ut-text",
+                  on
+                    ? "border-ut-primary bg-ut-primary text-white"
+                    : "border-ut-border bg-ut-surface text-ut-text",
                 )}
               >
                 {name ?? "Tümü"}
                 <span
                   className={cn(
                     "box-border inline-flex h-[26px] min-w-[26px] items-center justify-center rounded-full px-[7px] text-xs font-bold",
-                    on ? "bg-white/20 text-white" : "bg-ut-primary-soft text-ut-primary",
+                    on
+                      ? "bg-white/20 text-white"
+                      : "bg-ut-primary-soft text-ut-primary",
                   )}
                 >
                   {count}
@@ -197,7 +263,10 @@ export default function PanelPage() {
       )}
 
       {load.status === "loading" && (
-        <LoadingRegion label="İşler yükleniyor…" className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
+        <LoadingRegion
+          label="İşler yükleniyor…"
+          className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4"
+        >
           {Array.from({ length: 6 }, (_, i) => (
             <JobCardSkeleton key={i} />
           ))}
@@ -220,7 +289,11 @@ export default function PanelPage() {
           title="Henüz aktif iş yok"
           description="İlk işi kaydedin; sistem müşteriniz için takip kodu, link ve QR kod üretsin."
           action={
-            <ButtonLink href="/panel/is/yeni/" variant="accent" icon={<IconPlus size={18} />}>
+            <ButtonLink
+              href="/panel/is/yeni/"
+              variant="accent"
+              icon={<IconPlus size={18} />}
+            >
               Yeni İş
             </ButtonLink>
           }
@@ -240,8 +313,14 @@ export default function PanelPage() {
               stages={j.stages}
               activeIndex={j.activeIndex}
               flag={j.flag}
-              offerAmountText={j.offerAmount != null ? formatTRY(j.offerAmount) : undefined}
-              dueText={j.estimated_delivery ? formatDue(j.estimated_delivery) : undefined}
+              offerAmountText={
+                j.offerAmount != null ? formatTRY(j.offerAmount) : undefined
+              }
+              dueText={
+                j.estimated_delivery
+                  ? formatDue(j.estimated_delivery)
+                  : undefined
+              }
               updatedText={formatRelative(j.updated_at)}
             />
           ))}
@@ -286,13 +365,19 @@ function FlagButton({
       onClick={onClick}
       className={cn(
         "flex min-h-16 flex-[1_1_260px] items-center gap-3 rounded-ut border-[1.5px] bg-ut-surface px-4 py-3 text-left text-ut-text shadow-ut",
-        on ? (tone === "warning" ? "border-ut-warning" : "border-ut-info") : "border-ut-border",
+        on
+          ? tone === "warning"
+            ? "border-ut-warning"
+            : "border-ut-info"
+          : "border-ut-border",
       )}
     >
       <span
         className={cn(
           "flex size-10 shrink-0 items-center justify-center rounded-full",
-          tone === "warning" ? "bg-ut-warning-tint text-ut-warning" : "bg-ut-info-tint text-ut-info",
+          tone === "warning"
+            ? "bg-ut-warning-tint text-ut-warning"
+            : "bg-ut-info-tint text-ut-info",
         )}
       >
         {icon}

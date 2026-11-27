@@ -38,7 +38,16 @@ export const phoneSchema = z
     return p;
   });
 
-export const SECTORS = ["Oto Tamir", "Oto Yıkama", "Mobilya", "Terzi"] as const;
+export const SECTORS = [
+  "Oto Tamir",
+  "Oto Yıkama",
+  "Kaporta ve Boya",
+  "Mobilya",
+  "Elektronik Tamiri",
+  "Tadilat ve Tesisat",
+  "Terzi",
+  "Ayakkabı Tamiri",
+] as const;
 
 export const signInSchema = z.object({
   email: z.email("Geçerli bir e-posta girin").trim(),

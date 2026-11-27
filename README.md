@@ -122,6 +122,8 @@ src/
 supabase/
   migrations/          Şema, RLS politikaları, tetikleyiciler, analiz görünümleri
   functions/           Edge Functions (iş kaydı, takip, teklif, fotoğraf yükleme)
+  seed.sql             Sektörlere göre hazır süreç şablonları
+  demo/                Demo işletmesi için her hedef sektörden örnek işler
 design/                Tasarım kaynağı (ekran taslakları ve tokenlar)
 ```
 

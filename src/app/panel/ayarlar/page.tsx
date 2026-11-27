@@ -208,7 +208,7 @@ export default function AyarlarPage() {
               // eslint-disable-next-line @next/next/no-img-element
               <img src={logo} alt={`${business.name} logosu`} className="size-20 rounded-ut border border-ut-border object-cover" />
             ) : (
-              <span role="img" aria-label="Logo yok" className="flex size-20 items-center justify-center rounded-ut bg-ut-primary text-2xl font-bold text-white">
+              <span role="img" aria-label="Logo yok" className="flex size-20 items-center justify-center rounded-ut bg-ut-primary text-2xl font-bold text-ut-on-fill">
                 {initials(business.name)}
               </span>
             )}

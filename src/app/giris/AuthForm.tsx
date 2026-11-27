@@ -122,7 +122,7 @@ export function AuthForm() {
             }}
             className={cn(
               "h-11 rounded-[10px] border text-[15px] font-semibold",
-              mode === m ? "border-ut-primary bg-ut-primary text-white" : "border-transparent bg-transparent text-ut-text",
+              mode === m ? "border-ut-primary bg-ut-primary text-ut-on-fill" : "border-transparent bg-transparent text-ut-text",
             )}
           >
             {label}

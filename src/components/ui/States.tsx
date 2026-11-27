@@ -55,7 +55,7 @@ export function ErrorState({
   return (
     <div role="alert" className={cn("flex flex-col items-start gap-3 rounded-ut bg-ut-danger-tint p-4", className)}>
       <div className="flex items-start gap-3">
-        <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-ut-danger text-white" aria-hidden="true">
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-ut-danger text-ut-on-fill" aria-hidden="true">
           <IconAlert size={18} />
         </span>
         <div className="flex flex-col gap-1">
@@ -75,11 +75,11 @@ export function ErrorState({
 export type NoticeTone = "success" | "danger" | "info" | "warning" | "neutral";
 
 const noticeTone: Record<NoticeTone, { wrap: string; dot: string; icon: ReactNode }> = {
-  success: { wrap: "bg-ut-success-tint", dot: "bg-ut-success text-white", icon: <IconCheck size={18} strokeWidth={2.6} /> },
-  danger: { wrap: "bg-ut-danger-tint", dot: "bg-ut-danger text-white", icon: <IconX size={18} strokeWidth={2.6} /> },
-  info: { wrap: "bg-ut-info-tint", dot: "bg-ut-info text-white", icon: <IconSwap size={18} /> },
-  warning: { wrap: "bg-ut-warning-tint", dot: "bg-ut-warning text-white", icon: <IconAlert size={18} /> },
-  neutral: { wrap: "bg-ut-primary-soft", dot: "bg-ut-primary text-white", icon: <IconInfo size={18} /> },
+  success: { wrap: "bg-ut-success-tint", dot: "bg-ut-success text-ut-on-fill", icon: <IconCheck size={18} strokeWidth={2.6} /> },
+  danger: { wrap: "bg-ut-danger-tint", dot: "bg-ut-danger text-ut-on-fill", icon: <IconX size={18} strokeWidth={2.6} /> },
+  info: { wrap: "bg-ut-info-tint", dot: "bg-ut-info text-ut-on-fill", icon: <IconSwap size={18} /> },
+  warning: { wrap: "bg-ut-warning-tint", dot: "bg-ut-warning text-ut-on-fill", icon: <IconAlert size={18} /> },
+  neutral: { wrap: "bg-ut-primary-soft", dot: "bg-ut-primary text-ut-on-fill", icon: <IconInfo size={18} /> },
 };
 
 /** Sonuç/bilgi kutusu (role=status) */

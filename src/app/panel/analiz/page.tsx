@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { stageColor } from "@/lib/theme";
 import { useBusiness } from "@/lib/business";
 import { getSupabase } from "@/lib/supabase";
 import { formatDuration } from "@/lib/dates";
@@ -163,7 +164,7 @@ export default function AnalizPage() {
                 <li key={x.stageId} className="flex flex-col gap-1.5">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <span className="flex items-center gap-2 text-[15px] font-semibold">
-                      <span className="size-2.5 rounded-full" style={{ background: x.color }} aria-hidden="true" />
+                      <span className="size-2.5 rounded-full" style={{ background: stageColor(x.color) }} aria-hidden="true" />
                       {x.name}
                     </span>
                     <span className="text-[15px] font-bold tabular-nums">{x.lostSeconds ? formatDuration(x.lostSeconds) : "Kayıp yok"}</span>
@@ -171,7 +172,7 @@ export default function AnalizPage() {
                   <div className="h-3 overflow-hidden rounded-full bg-ut-bg" aria-hidden="true">
                     <div
                       className="h-full rounded-full"
-                      style={{ width: `${Math.max(x.lostSeconds ? 2 : 0, (x.lostSeconds / maxLost) * 100)}%`, background: x === worst ? "var(--ut-warning)" : x.color }}
+                      style={{ width: `${Math.max(x.lostSeconds ? 2 : 0, (x.lostSeconds / maxLost) * 100)}%`, background: x === worst ? "var(--ut-warning)" : stageColor(x.color) }}
                     />
                   </div>
                   <span className="text-[13px] text-ut-text-muted">

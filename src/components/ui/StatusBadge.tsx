@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 export type BadgeTone = "active" | "success" | "queued" | "warning" | "info" | "danger";
 
 const toneClass: Record<BadgeTone, { wrap: string; dot: string }> = {
-  active: { wrap: "bg-ut-accent text-ut-text", dot: "bg-ut-text" },
+  active: { wrap: "bg-ut-accent text-ut-on-accent", dot: "bg-ut-on-accent" },
   success: { wrap: "bg-ut-success-tint text-ut-text", dot: "bg-ut-success" },
   queued: { wrap: "border border-ut-border bg-ut-bg text-ut-text-muted", dot: "bg-ut-border" },
   warning: { wrap: "bg-ut-warning-tint text-ut-text", dot: "bg-ut-warning" },

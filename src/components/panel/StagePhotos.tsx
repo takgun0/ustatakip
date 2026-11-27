@@ -72,7 +72,7 @@ export function StagePhotos({ stageName, photos, uploading, onAdd, onDelete, var
               onClick={() => onDelete(p)}
               disabled={disabled}
               aria-label={`${stageName} fotoğrafı ${i + 1}: sil`}
-              className="absolute top-1.5 right-1.5 flex size-8 items-center justify-center rounded-full border-0 bg-ut-text/70 text-white hover:bg-ut-danger disabled:opacity-50"
+              className="absolute top-1.5 right-1.5 flex size-8 items-center justify-center rounded-full border-0 bg-black/60 text-white hover:bg-ut-danger disabled:opacity-50"
             >
               <IconX size={16} />
             </button>

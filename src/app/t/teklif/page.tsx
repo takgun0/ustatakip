@@ -397,8 +397,8 @@ function Avatar({ who }: { who: "business" | "customer" | "pending" }) {
       aria-hidden="true"
       className={cn(
         "box-border flex size-[30px] shrink-0 items-center justify-center rounded-full text-xs font-bold",
-        who === "business" && "bg-ut-primary text-white",
-        who === "customer" && "bg-ut-accent text-ut-text",
+        who === "business" && "bg-ut-primary text-ut-on-fill",
+        who === "customer" && "bg-ut-accent text-ut-on-accent",
         who === "pending" && "border border-dashed border-ut-text-muted bg-ut-surface text-ut-text-muted",
       )}
     >

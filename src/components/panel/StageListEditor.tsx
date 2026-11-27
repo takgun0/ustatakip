@@ -13,6 +13,7 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, arrayMove, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { stageColor } from "@/lib/theme";
 import { STAGE_COLORS } from "@/lib/validation";
 import { cn } from "@/lib/cn";
 import { Input } from "@/components/ui/Field";
@@ -188,7 +189,7 @@ function StageRow({
           aria-label={`${label} rengi: ${colorName}. Değiştir`}
           className="flex size-11 shrink-0 items-center justify-center rounded-ut border border-ut-border bg-ut-surface hover:bg-ut-bg"
         >
-          <span className="size-5 rounded-full" style={{ background: stage.color }} aria-hidden="true" />
+          <span className="size-5 rounded-full" style={{ background: stageColor(stage.color) }} aria-hidden="true" />
         </button>
         <button
           type="button"
@@ -221,7 +222,7 @@ function StageRow({
                   "flex size-9 items-center justify-center rounded-full border-2 text-white",
                   on ? "border-ut-text" : "border-transparent",
                 )}
-                style={{ background: c }}
+                style={{ background: stageColor(c) }}
               >
                 {on && <IconCheck size={16} strokeWidth={3} />}
               </button>

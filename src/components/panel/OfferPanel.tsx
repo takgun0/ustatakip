@@ -673,8 +673,8 @@ function OfferSummary({ offer: o }: { offer: Offer }) {
                   className={cn(
                     "flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-bold",
                     r.actor === "business"
-                      ? "bg-ut-primary text-white"
-                      : "bg-ut-accent text-ut-text",
+                      ? "bg-ut-primary text-ut-on-fill"
+                      : "bg-ut-accent text-ut-on-accent",
                   )}
                 >
                   {r.actor === "business" ? "S" : "M"}

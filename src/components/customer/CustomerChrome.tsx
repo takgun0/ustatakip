@@ -11,6 +11,7 @@ import type { CustomerView } from "@/lib/customer-view";
 import { buttonClass, ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { BrandMark } from "@/components/ui/BrandMark";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { BackIconLink } from "@/components/ui/BackLink";
 import { ErrorState, LoadingRegion, Skeleton } from "@/components/ui/States";
 import { IconPhone, IconSearch, IconWhatsApp } from "@/components/ui/icons";
@@ -45,7 +46,7 @@ export function BusinessHeader({
   return (
     <header
       className={cn(
-        "sticky top-0 z-20 flex items-center gap-3 border-b border-ut-border/80 bg-white/85 py-4 pr-5 backdrop-blur-md",
+        "sticky top-0 z-20 flex items-center gap-3 border-b border-ut-border/80 bg-ut-surface/85 py-4 pr-3 backdrop-blur-md",
         back ? "pl-2" : "pl-5",
       )}
     >
@@ -63,7 +64,7 @@ export function BusinessHeader({
         <div
           role="img"
           aria-label={`${business.name} logosu`}
-          className="flex size-12 shrink-0 items-center justify-center rounded-ut bg-linear-to-br from-[#6366F1] to-ut-primary-hover text-[17px] font-bold tracking-[0.02em] text-white shadow-[0_4px_12px_-2px_rgba(79,70,229,.4)]"
+          className="flex size-12 shrink-0 items-center justify-center rounded-ut bg-linear-to-br from-[#6366F1] to-[#4338CA] text-[17px] font-bold tracking-[0.02em] text-white shadow-[0_4px_12px_-2px_rgba(79,70,229,.4)]"
         >
           {initials(business.name)}
         </div>
@@ -76,6 +77,7 @@ export function BusinessHeader({
           </span>
         )}
       </div>
+      <ThemeToggle />
     </header>
   );
 }
@@ -84,7 +86,7 @@ export function PlainHeader({ back }: { back?: Back } = {}) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-20 flex items-center gap-3 border-b border-ut-border/80 bg-white/85 py-4 pr-5 backdrop-blur-md",
+        "sticky top-0 z-20 flex items-center gap-3 border-b border-ut-border/80 bg-ut-surface/85 py-4 pr-3 backdrop-blur-md",
         back ? "pl-2" : "pl-5",
       )}
     >
@@ -93,6 +95,8 @@ export function PlainHeader({ back }: { back?: Back } = {}) {
       <span className="text-[17px] font-extrabold tracking-[-0.02em]">
         UstaTakip
       </span>
+      <span className="flex-1" />
+      <ThemeToggle />
     </header>
   );
 }
@@ -108,7 +112,7 @@ export function ContactBar({
   if (!business.phone) return null;
   const text = `Merhaba, ${formatCode(code)} takip kodlu işim hakkında bilgi almak istiyorum.`;
   return (
-    <div className="sticky bottom-0 mt-auto flex gap-2.5 border-t border-ut-border/80 bg-white/90 px-4 pt-3 pb-5 backdrop-blur-md">
+    <div className="sticky bottom-0 mt-auto flex gap-2.5 border-t border-ut-border/80 bg-ut-surface/90 px-4 pt-3 pb-5 backdrop-blur-md">
       <a
         href={`tel:${business.phone}`}
         className={buttonClass("primary", "xl", "flex-1")}

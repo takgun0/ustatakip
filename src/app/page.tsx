@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BASE_PATH } from "@/lib/site";
 import { cn } from "@/lib/cn";
 import { BrandMark } from "@/components/ui/BrandMark";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ButtonLink } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import {
@@ -165,7 +166,7 @@ function CheckDot({ tone }: { tone: "success" | "accent" }) {
         "flex size-7 shrink-0 items-center justify-center rounded-full",
         tone === "success"
           ? "bg-ut-success-tint text-ut-success"
-          : "bg-ut-accent text-ut-text",
+          : "bg-ut-accent text-ut-on-accent",
       )}
     >
       <IconCheck size={16} strokeWidth={2.6} />
@@ -180,7 +181,7 @@ function PhonePreview() {
       <div className="w-[300px] rotate-[1.5deg] rounded-[36px] bg-[#1E1B4B] p-3 shadow-[0_30px_70px_-10px_rgba(15,23,42,.55)] ring-1 ring-white/10">
         <div className="flex flex-col overflow-hidden rounded-[26px] bg-ut-bg text-ut-text">
           <div className="flex items-center gap-2.5 border-b border-ut-border bg-ut-surface px-4 pt-4 pb-3">
-            <span className="flex size-9 items-center justify-center rounded-[10px] bg-linear-to-br from-[#6366F1] to-ut-primary-hover text-[13px] font-bold text-white">
+            <span className="flex size-9 items-center justify-center rounded-[10px] bg-linear-to-br from-[#6366F1] to-[#4338CA] text-[13px] font-bold text-white">
               YO
             </span>
             <span className="flex flex-col">
@@ -240,7 +241,7 @@ function PhonePreview() {
               <span className="text-[13px] font-bold">3.100,00 ₺</span>
             </div>
             <div className="flex gap-2">
-              <span className="flex h-10 flex-1 items-center justify-center rounded-[10px] bg-ut-primary text-[13px] font-semibold text-white">
+              <span className="flex h-10 flex-1 items-center justify-center rounded-[10px] bg-ut-primary text-[13px] font-semibold text-ut-on-fill">
                 Ara
               </span>
               <span className="flex h-10 flex-1 items-center justify-center rounded-[10px] bg-ut-whatsapp text-[13px] font-semibold text-white">
@@ -259,7 +260,7 @@ export default function Home() {
   return (
     <div className="min-h-dvh bg-ut-bg text-ut-text">
       {/* Üst bar + hero */}
-      <div className="relative overflow-hidden bg-linear-to-br from-ut-primary via-ut-primary-hover to-[#312E81] text-white">
+      <div className="relative overflow-hidden bg-linear-to-br from-[#4F46E5] via-[#4338CA] to-[#312E81] text-white">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(700px_380px_at_85%_10%,rgba(245,158,11,.20),transparent_70%),radial-gradient(600px_400px_at_0%_100%,rgba(129,140,248,.35),transparent_70%)]"
@@ -289,6 +290,7 @@ export default function Home() {
             ))}
           </nav>
           <span className="flex-1" />
+          <ThemeToggle tone="onDark" />
           <Link
             href="/giris/"
             aria-label="Esnaf girişi"
@@ -350,11 +352,11 @@ export default function Home() {
                 maxLength={20}
                 placeholder="Örn. UT-7K4M-29"
                 aria-describedby="hero-code-hint"
-                className="box-border h-[52px] min-w-0 flex-[1_1_240px] rounded-ut border-0 bg-white px-4 font-mono text-[17px] tracking-[0.04em] text-ut-text shadow-[0_8px_24px_-8px_rgba(15,23,42,.4)] placeholder:text-ut-text-muted focus:ring-4 focus:ring-ut-accent/50 focus:outline-none"
+                className="box-border h-[52px] min-w-0 flex-[1_1_240px] rounded-ut border-0 bg-ut-surface px-4 font-mono text-[17px] tracking-[0.04em] text-ut-text shadow-[0_8px_24px_-8px_rgba(15,23,42,.4)] placeholder:text-ut-text-muted focus:ring-4 focus:ring-ut-accent/50 focus:outline-none"
               />
               <button
                 type="submit"
-                className="inline-flex h-[52px] flex-none cursor-pointer items-center gap-2 rounded-ut border-0 bg-ut-accent px-[22px] text-base font-bold text-ut-text shadow-[0_8px_24px_-8px_rgba(245,158,11,.6)] transition hover:brightness-105 active:translate-y-px"
+                className="inline-flex h-[52px] flex-none cursor-pointer items-center gap-2 rounded-ut border-0 bg-ut-accent px-[22px] text-base font-bold text-ut-on-accent shadow-[0_8px_24px_-8px_rgba(245,158,11,.6)] transition hover:brightness-105 active:translate-y-px"
               >
                 İşimi Takip Et
                 <IconArrowRight size={18} strokeWidth={2.4} />
@@ -395,8 +397,8 @@ export default function Home() {
                   className={cn(
                     "flex size-10 items-center justify-center rounded-full text-[17px] font-bold",
                     i === 3
-                      ? "bg-ut-accent text-ut-text"
-                      : "bg-ut-primary text-white",
+                      ? "bg-ut-accent text-ut-on-accent"
+                      : "bg-ut-primary text-ut-on-fill",
                   )}
                 >
                   {i + 1}
@@ -447,7 +449,7 @@ export default function Home() {
             </ButtonLink>
           </div>
 
-          <div className="relative flex flex-[1_1_440px] flex-col gap-5 overflow-hidden rounded-ut-lg bg-linear-to-br from-ut-primary to-[#312E81] p-8 text-white shadow-ut max-[480px]:p-6">
+          <div className="relative flex flex-[1_1_440px] flex-col gap-5 overflow-hidden rounded-ut-lg bg-linear-to-br from-[#4F46E5] to-[#312E81] p-8 text-white shadow-ut max-[480px]:p-6">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 bg-[radial-gradient(420px_260px_at_100%_0%,rgba(245,158,11,.18),transparent_70%)]"
@@ -473,7 +475,7 @@ export default function Home() {
             </ul>
             <Link
               href="/giris/"
-              className="relative mt-auto inline-flex h-11 items-center self-start rounded-ut bg-white px-[18px] text-[15px] font-semibold text-ut-primary no-underline transition hover:bg-ut-primary-soft hover:text-ut-primary"
+              className="relative mt-auto inline-flex h-11 items-center self-start rounded-ut bg-white px-[18px] text-[15px] font-semibold text-[#4F46E5] no-underline transition hover:bg-[#EEF2FF] hover:text-[#4F46E5]"
             >
               Esnaf paneline gir
             </Link>
@@ -500,7 +502,7 @@ export default function Home() {
               her adım kayıt altında kalır.
             </p>
             <div aria-hidden="true" className="flex flex-wrap gap-2">
-              <span className="inline-flex h-9 items-center rounded-[10px] bg-ut-primary px-3.5 text-sm font-semibold text-white">
+              <span className="inline-flex h-9 items-center rounded-[10px] bg-ut-primary px-3.5 text-sm font-semibold text-ut-on-fill">
                 Onayla
               </span>
               <span className="inline-flex h-9 items-center rounded-[10px] border-[1.5px] border-ut-danger px-3.5 text-sm font-semibold text-ut-danger">

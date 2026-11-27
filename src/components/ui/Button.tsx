@@ -18,9 +18,9 @@ export type ButtonSize = "md" | "lg" | "xl" | "2xl";
 
 const variantClass: Record<ButtonVariant, string> = {
   primary:
-    "border-0 bg-ut-primary text-white shadow-[0_1px_2px_rgba(15,23,42,.10),inset_0_1px_0_rgba(255,255,255,.14)] hover:bg-ut-primary-hover hover:text-white",
+    "border-0 bg-ut-primary text-ut-on-fill shadow-[0_1px_2px_rgba(15,23,42,.10),inset_0_1px_0_rgba(255,255,255,.14)] hover:bg-ut-primary-hover hover:text-ut-on-fill",
   accent:
-    "border-0 bg-ut-accent text-ut-text shadow-[0_1px_2px_rgba(15,23,42,.10)] hover:brightness-105",
+    "border-0 bg-ut-accent text-ut-on-accent shadow-[0_1px_2px_rgba(15,23,42,.10)] hover:brightness-105",
   secondary:
     "border border-ut-border bg-ut-surface text-ut-primary shadow-[0_1px_2px_rgba(15,23,42,.05)] hover:border-ut-primary/30 hover:bg-ut-primary-soft",
   danger:

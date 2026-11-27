@@ -8,6 +8,7 @@ import {
   type FormEvent,
 } from "react";
 import Link from "next/link";
+import { stageColor } from "@/lib/theme";
 import { useBusiness } from "@/lib/business";
 import {
   getSupabase,
@@ -404,13 +405,13 @@ export default function YeniIsPage() {
                     className={cn(
                       "inline-flex h-8 items-center gap-2 rounded-full border border-ut-border px-3 text-[13px] font-semibold",
                       i === 0
-                        ? "bg-ut-accent text-ut-text"
+                        ? "bg-ut-accent text-ut-on-accent"
                         : "bg-ut-surface text-ut-text-muted",
                     )}
                   >
                     <span
                       className="size-2 rounded-full"
-                      style={{ background: s.color }}
+                      style={{ background: stageColor(s.color) }}
                       aria-hidden="true"
                     />
                     {s.name}

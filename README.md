@@ -106,6 +106,7 @@ Arayüz, önceden hazırlanmış bir tasarım sisteminden (`design/` klasörü) 
 - 16 px köşeli kartlar ve yumuşak katmanlı gölgeler
 - buzlu cam görünümlü yapışkan üst bar
 - özgün logo: "U" biçiminde bir aşama yolu ve üzerinde işin şu an bulunduğu yeri gösteren amber nokta. Hem "Usta"nın U'sunu hem de kargo takibi fikrini taşır. Sekme ikonu, Apple ikonu ve tüm başlıklarda aynı çizim kullanılır.
+- koyu mod: başlıklardaki ay/güneş düğmesiyle açılır, seçim yoksa cihazın ayarını izler. Koyu değerler aynı `--ut-*` tokenlarının `[data-theme="dark"]` karşılıklarıdır (kontrastlar WCAG AA); tema, sayfa çizilmeden önce küçük bir satır içi betikle seçildiği için beyaz parlama olmaz.
 
 Aşama durumları için amber/yeşil anlamı korundu. Tüm renk çiftleri WCAG AA kontrastını sağlar.
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { stageColor } from "@/lib/theme";
 import { useBusiness } from "@/lib/business";
 import { getSupabase } from "@/lib/supabase";
 import { STAGE_COLORS, templateSaveSchema, toFieldErrors, type FieldErrors } from "@/lib/validation";
@@ -409,7 +410,7 @@ function ColorStrip({ stages }: { stages: Array<{ id: string; color: string }> }
   return (
     <span className="flex gap-1" aria-hidden="true">
       {stages.map((s) => (
-        <span key={s.id} className="h-1.5 flex-1 rounded-full" style={{ background: s.color }} />
+        <span key={s.id} className="h-1.5 flex-1 rounded-full" style={{ background: stageColor(s.color) }} />
       ))}
     </span>
   );

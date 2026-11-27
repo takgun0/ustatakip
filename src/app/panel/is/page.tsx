@@ -480,11 +480,11 @@ function IsDetay() {
                     <span
                       className={cn(
                         "box-border flex size-[30px] shrink-0 items-center justify-center rounded-full text-[13px] font-bold",
-                        done && "bg-ut-success text-white",
+                        done && "bg-ut-success text-ut-on-fill",
                         act &&
-                          "bg-ut-accent text-ut-text shadow-[0_0_0_4px_rgba(245,158,11,.25)]",
+                          "bg-ut-accent text-ut-on-accent shadow-[0_0_0_4px_rgba(245,158,11,.25)]",
                         up &&
-                          "border-2 border-ut-border bg-white text-ut-text-muted",
+                          "border-2 border-ut-border bg-ut-surface text-ut-text-muted",
                       )}
                     >
                       {done ? <IconCheck size={16} strokeWidth={3} /> : i + 1}

@@ -241,7 +241,7 @@ export default function PanelPage() {
                 className={cn(
                   "inline-flex h-11 flex-none items-center gap-2 rounded-full border pr-2 pl-4 text-sm font-semibold",
                   on
-                    ? "border-ut-primary bg-ut-primary text-white"
+                    ? "border-ut-primary bg-ut-primary text-ut-on-fill"
                     : "border-ut-border bg-ut-surface text-ut-text",
                 )}
               >
@@ -250,7 +250,7 @@ export default function PanelPage() {
                   className={cn(
                     "box-border inline-flex h-[26px] min-w-[26px] items-center justify-center rounded-full px-[7px] text-xs font-bold",
                     on
-                      ? "bg-white/20 text-white"
+                      ? "bg-ut-on-fill/20 text-ut-on-fill"
                       : "bg-ut-primary-soft text-ut-primary",
                   )}
                 >

@@ -77,7 +77,7 @@ export function QrScanner({ onResult, onClose }: { onResult: (text: string) => v
   const camera = phase === "starting" || phase === "scanning";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-ut-text/70 p-4 sm:items-center" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-4 sm:items-center" onClick={onClose}>
       <div
         role="dialog"
         aria-modal="true"
@@ -102,7 +102,7 @@ export function QrScanner({ onResult, onClose }: { onResult: (text: string) => v
 
         {camera && (
           <>
-            <div className="relative aspect-square overflow-hidden rounded-ut bg-ut-text">
+            <div className="relative aspect-square overflow-hidden rounded-ut bg-black">
               <video ref={videoRef} muted playsInline className="size-full object-cover" aria-label="Kamera görüntüsü" />
               <span className="pointer-events-none absolute inset-[15%] rounded-ut border-[3px] border-ut-accent" aria-hidden="true" />
             </div>

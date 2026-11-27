@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
+/* Koyu mod: <html data-theme="dark">. Tema, ilk boyamadan önce layout'taki betikle seçilir (src/lib/theme.ts). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /*
  * UstaTakip tasarım tokenları. Token adları ve kullanım kuralları design/Main.dc.html'den gelir;
  * renkler, yazı tipi ve yüzeyler sonradan modernleştirildi (indigo + arduvaz paleti, Plus Jakarta Sans).
  * Kontrastlar WCAG AA: indigo/beyaz 6,3:1, soluk metin/zemin 4,6:1.
  * --ut-whatsapp: --ut-success beyaz metinle 3,3:1 kaldığı için WhatsApp dolgusunda koyu yeşil (5,0:1).
+ * --ut-on-fill: renkli dolgu (primary, success, danger …) üzerindeki metin/ikon; koyu modda dolgular
+ *   açıldığı için koyu. --ut-on-accent: amber üzerindeki metin, iki temada da koyu.
  */
 :root {
   --ut-primary: #4F46E5;
@@ -26,6 +31,52 @@
   --ut-shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 6px 20px -6px rgba(15, 23, 42, .08);
   --ut-shadow-lg: 0 2px 4px rgba(15, 23, 42, .04), 0 18px 40px -12px rgba(15, 23, 42, .16);
   --ut-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ut-on-fill: #FFFFFF;
+  --ut-on-accent: #0F172A;
+  --ut-success-tint: rgba(22, 163, 74, .12);
+  --ut-warning-tint: rgba(217, 119, 6, .12);
+  --ut-danger-tint: rgba(220, 38, 38, .10);
+  --ut-info-tint: rgba(37, 99, 235, .10);
+  --ut-accent-tint: rgba(245, 158, 11, .06);
+  --ut-scrollbar: #CBD5E1;
+  --ut-selection: rgba(79, 70, 229, .18);
+  /* Esnafın seçtiği aşama renklerinden koyu zeminde kaybolanlar (lacivert, gri) */
+  --ut-stage-1e3a5f: #1E3A5F;
+  --ut-stage-6b7280: #6B7280;
+  color-scheme: light;
+}
+
+/*
+ * Koyu tema: arduvaz zemin, açık indigo vurgu. Kontrastlar (zemin #0B1120 / yüzey #111A2E):
+ * metin 14:1, soluk metin 6,8:1, primary metin 5,8:1 (yüzeyde, en düşük); dolgu üstü koyu metin (#0B1020) 6,3:1 ve üstü.
+ */
+[data-theme="dark"] {
+  --ut-primary: #818CF8;
+  --ut-primary-hover: #A5B4FC;
+  --ut-primary-soft: rgba(129, 140, 248, .14);
+  --ut-accent: #F59E0B;
+  --ut-success: #4ADE80;
+  --ut-warning: #FB923C;
+  --ut-danger: #F87171;
+  --ut-info: #60A5FA;
+  --ut-bg: #0B1120;
+  --ut-surface: #111A2E;
+  --ut-border: #24324D;
+  --ut-text: #E2E8F0;
+  --ut-text-muted: #94A3B8;
+  --ut-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 20px -6px rgba(0, 0, 0, .45);
+  --ut-shadow-lg: 0 2px 4px rgba(0, 0, 0, .3), 0 18px 40px -12px rgba(0, 0, 0, .6);
+  --ut-on-fill: #0B1020;
+  --ut-success-tint: rgba(74, 222, 128, .13);
+  --ut-warning-tint: rgba(251, 146, 60, .14);
+  --ut-danger-tint: rgba(248, 113, 113, .14);
+  --ut-info-tint: rgba(96, 165, 250, .14);
+  --ut-accent-tint: rgba(245, 158, 11, .08);
+  --ut-scrollbar: #334155;
+  --ut-selection: rgba(129, 140, 248, .3);
+  --ut-stage-1e3a5f: #94A3B8;
+  --ut-stage-6b7280: #9CA3AF;
+  color-scheme: dark;
 }
 
 /* Tailwind teması: bg-ut-primary, text-ut-text-muted, rounded-ut, shadow-ut, font-mono … */
@@ -44,13 +95,15 @@
   --color-ut-border: var(--ut-border);
   --color-ut-text: var(--ut-text);
   --color-ut-text-muted: var(--ut-text-muted);
+  --color-ut-on-fill: var(--ut-on-fill);
+  --color-ut-on-accent: var(--ut-on-accent);
 
   /* Durum tonları (tasarımdaki %10–12 renk tonu zeminleri) */
-  --color-ut-success-tint: rgba(22, 163, 74, .12);
-  --color-ut-warning-tint: rgba(217, 119, 6, .12);
-  --color-ut-danger-tint: rgba(220, 38, 38, .10);
-  --color-ut-info-tint: rgba(37, 99, 235, .10);
-  --color-ut-accent-tint: rgba(245, 158, 11, .06);
+  --color-ut-success-tint: var(--ut-success-tint);
+  --color-ut-warning-tint: var(--ut-warning-tint);
+  --color-ut-danger-tint: var(--ut-danger-tint);
+  --color-ut-info-tint: var(--ut-info-tint);
+  --color-ut-accent-tint: var(--ut-accent-tint);
 
   --radius-ut: var(--ut-radius);
   --radius-ut-lg: var(--ut-radius-lg);
@@ -76,7 +129,7 @@
   }
 
   ::selection {
-    background: rgba(79, 70, 229, .18);
+    background: var(--ut-selection);
   }
 
   a {
@@ -110,7 +163,7 @@
 
 /* Tasarımdaki foto yer tutucusu (çizgili zemin) */
 .ut-photo-placeholder {
-  background: repeating-linear-gradient(135deg, var(--ut-primary-soft) 0 8px, #FFFFFF 8px 16px);
+  background: repeating-linear-gradient(135deg, var(--ut-primary-soft) 0 8px, var(--ut-surface) 8px 16px);
 }
 
 /* Yükleniyor iskeleti */
@@ -145,7 +198,7 @@
 
 /* İnce, sakin kaydırma çubukları */
 * {
-  scrollbar-color: #CBD5E1 transparent;
+  scrollbar-color: var(--ut-scrollbar) transparent;
 }
 
 /* L1 bölüm bağlantıları için yumuşak kaydırma (hareket azaltma tercihine saygılı) */

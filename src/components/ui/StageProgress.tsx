@@ -42,14 +42,14 @@ export function StageProgress({ stages, activeIndex, className }: Props) {
             <span
               className={cn(
                 // z-10: sonraki aşamanın bağlantı çizgisi DOM'da sonra geldiği için daireyi örtmesin
-                "relative z-10 box-border flex size-6 items-center justify-center rounded-full text-white",
-                done && "bg-ut-success",
+                "relative z-10 box-border flex size-6 items-center justify-center rounded-full",
+                done && "bg-ut-success text-ut-on-fill",
                 act && "bg-ut-accent shadow-[0_0_0_4px_rgba(245,158,11,.25)]",
-                !done && !act && "border-2 border-ut-border bg-white",
+                !done && !act && "border-2 border-ut-border bg-ut-surface",
               )}
             >
               {done && <IconCheck size={14} strokeWidth={3} />}
-              {act && <span className="size-2 rounded-full bg-ut-text" />}
+              {act && <span className="size-2 rounded-full bg-ut-on-accent" />}
             </span>
             <span
               className={cn(

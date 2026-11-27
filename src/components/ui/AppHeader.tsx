@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { BrandMark } from "./BrandMark";
+import { ThemeToggle } from "./ThemeToggle";
 import { ButtonLink } from "./Button";
 import {
   IconChart,
@@ -49,7 +50,7 @@ export function AppHeader({
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-ut-border/80 bg-white/80 text-ut-text backdrop-blur-md">
+    <header className="sticky top-0 z-30 border-b border-ut-border/80 bg-ut-surface/80 text-ut-text backdrop-blur-md">
       <div className="mx-auto box-border flex max-w-[1200px] flex-wrap items-center gap-x-4 gap-y-3 px-6 py-3">
         <Link
           href="/panel/"
@@ -94,6 +95,7 @@ export function AppHeader({
             Yeni İş
           </ButtonLink>
         )}
+        <ThemeToggle />
         <div
           ref={wrapRef}
           className="relative"
@@ -108,7 +110,7 @@ export function AppHeader({
             aria-expanded={open}
             aria-controls={menuId}
             onClick={() => setOpen((v) => !v)}
-            className="size-11 cursor-pointer rounded-full border-0 bg-ut-primary-soft text-sm font-bold text-ut-primary transition hover:bg-ut-primary hover:text-white"
+            className="size-11 cursor-pointer rounded-full border-0 bg-ut-primary-soft text-sm font-bold text-ut-primary transition hover:bg-ut-primary hover:text-ut-on-fill"
           >
             {initialsText}
           </button>
@@ -155,7 +157,7 @@ export function AppHeader({
 export function AppHeaderSkeleton() {
   return (
     <header
-      className="border-b border-ut-border/80 bg-white/80 text-ut-text"
+      className="border-b border-ut-border/80 bg-ut-surface/80 text-ut-text"
       aria-hidden="true"
     >
       <div className="mx-auto box-border flex max-w-[1200px] items-center gap-4 px-6 py-3">

@@ -3,7 +3,10 @@ import { IconCheck } from "./icons";
 
 /**
  * StageProgress — "Biten aşama yeşil + onay işareti, aktif aşama amber halka, sıradakiler gri çerçeve.
- * Mini sürüm (kartlarda): 6 px yüksek segment çubuğu." Aşamalar esnaftan gelir (2–8).
+ * Mini sürüm (kartlarda): 6 px yüksek segment çubuğu." Aşamalar esnaftan gelir (2–12).
+ *
+ * 5'ten fazla aşamada dar kartta (42rem altı, kapsayıcı sorgusu) adlar birbirine biniyordu ("Geliştirme", "Değerlendirme"):
+ * orada yalnızca aktif aşamanın adı yazılır, diğerleri ekran okuyucuda kalır; altta sıradaki aşama belirtilir.
  */
 export type StageItem = { id: string; name: string };
 
@@ -17,8 +20,10 @@ type Props = {
 };
 
 export function StageProgress({ stages, activeIndex, className }: Props) {
-  return (
-    <ol className={cn("m-0 flex list-none items-start p-0", className)} aria-label="İş aşamaları">
+  const dense = stages.length > 5;
+  const next = stages[activeIndex + 1];
+  const list = (
+    <ol className={cn("m-0 flex list-none items-start p-0", !dense && className)} aria-label="İş aşamaları">
       {stages.map((s, i) => {
         const done = i < activeIndex;
         const act = i === activeIndex;
@@ -49,6 +54,7 @@ export function StageProgress({ stages, activeIndex, className }: Props) {
             <span
               className={cn(
                 "px-px text-center text-[11.5px] leading-tight",
+                dense && (act ? "@max-2xl:w-max" : "@max-2xl:sr-only"),
                 i <= activeIndex ? "text-ut-text" : "text-ut-text-muted",
                 act ? "font-bold" : "font-medium",
               )}
@@ -60,6 +66,17 @@ export function StageProgress({ stages, activeIndex, className }: Props) {
         );
       })}
     </ol>
+  );
+  if (!dense) return list;
+  return (
+    <div className={cn("@container flex flex-col gap-2", className)}>
+      {list}
+      {next && (
+        <p className="m-0 text-[13px] text-ut-text-muted @2xl:hidden" aria-hidden="true">
+          Sıradaki aşama: <span className="font-semibold text-ut-text">{next.name}</span>
+        </p>
+      )}
+    </div>
   );
 }
 

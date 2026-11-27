@@ -26,7 +26,9 @@ Deno.serve(async (req) => {
   try {
     const admin = adminClient();
     const ip = await ipHash(admin, clientIp(req));
-    if (!(await hitRateLimit(admin, `get:ip:${ip}`, 120, 10 * 60))) return tooMany(10);
+    // Token 256 bit olduğundan sınır tahmine karşı değil, yük için. Aynı Wi-Fi (tek IP) arkasındaki
+    // bir sınıf canlı sayfayı birlikte izleyebilsin diye geniş tutulur; her yayın her izleyiciye bir istek demek.
+    if (!(await hitRateLimit(admin, `get:ip:${ip}`, 600, 10 * 60))) return tooMany(10);
 
     const { data: job, error } = await admin
       .from("jobs")

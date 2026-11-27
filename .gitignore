@@ -44,3 +44,6 @@ next-env.d.ts
 /supabase/.temp/
 
 /.tmp-dev/
+
+# sunum: takip bağlantısı ve QR (token içerir, depoya girmez)
+/sunum/

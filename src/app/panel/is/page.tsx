@@ -5,8 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { useBusiness } from "@/lib/business";
 import { getSupabase } from "@/lib/supabase";
 import { formatLong, formatRelative } from "@/lib/dates";
-import { formatTRY } from "@/lib/money";
-import { formatPhone } from "@/lib/phone";
 import { renderMessage, waMeLink } from "@/lib/notifications";
 import { trackingUrl } from "@/lib/site";
 import { formatCode } from "@/lib/tracking";
@@ -35,6 +33,7 @@ import {
 import { BackLink } from "@/components/ui/BackLink";
 import { StagePhotos, type PhotoItem } from "@/components/panel/StagePhotos";
 import { OfferPanel } from "@/components/panel/OfferPanel";
+import { JobInfoCard } from "@/components/panel/JobInfoCard";
 import {
   deleteStagePhoto,
   signedUrls,
@@ -644,32 +643,7 @@ function IsDetay() {
             trackingUrl={url}
             onJobChanged={() => void fetchJob()}
           />
-          <Card as="section" padding="lg" className="flex flex-col gap-4">
-            <CardTitle size="lg">İş bilgileri</CardTitle>
-            <dl className="m-0 grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 text-[15px]">
-              <dt className="text-ut-text-muted">Telefon</dt>
-              <dd className="m-0 font-semibold tabular-nums">
-                {formatPhone(job.customer_phone)}
-              </dd>
-              <dt className="text-ut-text-muted">Anlaşılan</dt>
-              <dd className="m-0 font-semibold tabular-nums">
-                {job.agreed_amount != null ? formatTRY(job.agreed_amount) : "—"}
-              </dd>
-              <dt className="text-ut-text-muted">Tahmini teslim</dt>
-              <dd className="m-0 font-semibold">
-                {job.estimated_delivery
-                  ? formatLong(job.estimated_delivery)
-                  : "—"}
-              </dd>
-              <dt className="text-ut-text-muted">Kayıt</dt>
-              <dd className="m-0">{formatRelative(job.created_at)}</dd>
-            </dl>
-            {job.description && (
-              <p className="m-0 border-t border-ut-border pt-4 text-sm leading-normal">
-                {job.description}
-              </p>
-            )}
-          </Card>
+          <JobInfoCard job={job} onSaved={fetchJob} />
         </div>
       </div>
     </Shell>

@@ -101,6 +101,16 @@ export const jobCreateSchema = z.object({
     .nullable(),
   note: optionalText(1000, "İlk aşama notu"),
 });
+
+/** E4 · iş bilgilerini düzenleme (kod, token ve şablon değişmez; tetikleyici de engeller) */
+export const jobEditSchema = jobCreateSchema.pick({
+  customerName: true,
+  customerPhone: true,
+  title: true,
+  itemLabel: true,
+  description: true,
+  estimatedDelivery: true,
+});
 export type JobCreateInput = z.input<typeof jobCreateSchema>;
 
 /** M1: takip kodu + telefonun son 4 hanesi */

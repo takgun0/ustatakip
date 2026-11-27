@@ -40,7 +40,7 @@ UstaTakip bu üç noktayı tek bir akışta toplar: **şeffaf süreç takibi**, 
 | E1 | Esnaf girişi ve kayıt | Esnaf |
 | E2 | Aktif işler listesi | Esnaf |
 | E3 | Yeni iş kaydı (kod, link ve QR üretimi) | Esnaf |
-| E4 | İş detayı: aşama ilerletme, not, fotoğraf, teklif paneli | Esnaf |
+| E4 | İş detayı: aşama ilerletme, not, fotoğraf, teklif paneli, müşteri ve iş bilgilerini düzenleme | Esnaf |
 | E5 | Süreç şablonları: aşama ekleme, sürükle-bırak sıralama, renk | Esnaf |
 | E6 | Analiz: darboğaz aşaması, teslim süresi, teklif oranları | Esnaf |
 | E7 | İşletme ayarları, logo, KVKK metni, WhatsApp mesaj şablonları | Esnaf |

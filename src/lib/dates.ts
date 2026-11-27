@@ -1,10 +1,32 @@
 const TZ = "Europe/Istanbul";
 
-const dayKey = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
-const timeFmt = new Intl.DateTimeFormat("tr-TR", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
-const shortFmt = new Intl.DateTimeFormat("tr-TR", { timeZone: TZ, day: "numeric", month: "short" });
-const longFmt = new Intl.DateTimeFormat("tr-TR", { timeZone: TZ, day: "numeric", month: "long", weekday: "long" });
-const monthFmt = new Intl.DateTimeFormat("tr-TR", { timeZone: TZ, month: "long", year: "numeric" });
+const dayKey = new Intl.DateTimeFormat("en-CA", {
+  timeZone: TZ,
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+const timeFmt = new Intl.DateTimeFormat("tr-TR", {
+  timeZone: TZ,
+  hour: "2-digit",
+  minute: "2-digit",
+});
+const shortFmt = new Intl.DateTimeFormat("tr-TR", {
+  timeZone: TZ,
+  day: "numeric",
+  month: "short",
+});
+const longFmt = new Intl.DateTimeFormat("tr-TR", {
+  timeZone: TZ,
+  day: "numeric",
+  month: "long",
+  weekday: "long",
+});
+const monthFmt = new Intl.DateTimeFormat("tr-TR", {
+  timeZone: TZ,
+  month: "long",
+  year: "numeric",
+});
 
 function daysBetween(a: Date, b: Date) {
   const ka = Date.parse(dayKey.format(a));
@@ -55,6 +77,15 @@ export function formatDuration(seconds: number): string {
   if (days > 0) return hours ? `${days} gün ${hours} sa` : `${days} gün`;
   if (hours > 0) return mins ? `${hours} sa ${mins} dk` : `${hours} sa`;
   return `${Math.max(mins, s > 0 ? 1 : 0)} dk`;
+}
+
+/** ISO → <input type="datetime-local"> değeri (yerel saat, dakika hassasiyeti) */
+export function isoToLocalInput(iso: string | null): string {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
 }
 
 /** <input type="datetime-local"> değeri → ISO (yerel saat) */

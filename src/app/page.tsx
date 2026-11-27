@@ -638,7 +638,8 @@ export default function Home() {
 
       <footer className="border-t border-ut-border bg-ut-surface">
         <div className="mx-auto box-border flex max-w-[1200px] flex-wrap items-center justify-between gap-x-6 gap-y-3 p-6 text-sm text-ut-text-muted">
-          <span>
+          <span className="flex items-center gap-2">
+            <BrandMark tone="onLight" size={22} className="shadow-none" />
             <strong className="text-ut-text">UstaTakip</strong> · © 2026 · Proje
             ödevi, demo verilerle çalışır
           </span>

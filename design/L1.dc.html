@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>L1 · Tanıtım</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ut-primary:#1E3A5F;--ut-primary-soft:#E8EEF5;--ut-accent:#F59E0B;--ut-success:#16A34A;--ut-warning:#D97706;--ut-danger:#DC2626;--ut-info:#2563EB;--ut-bg:#F7F8FA;--ut-surface:#FFFFFF;--ut-border:#E5E7EB;--ut-text:#111827;--ut-text-muted:#6B7280;--ut-radius:12px;--ut-shadow:0 1px 2px rgba(17,24,39,.06),0 4px 12px rgba(17,24,39,.06);--ut-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#1E3A5F}a:hover{color:#111827}
+button,input,textarea{font-family:inherit}
+.ut-nav{display:flex}
+.ut-faq summary{list-style:none;cursor:pointer}
+.ut-faq summary::-webkit-details-marker{display:none}
+.ut-faq details[open] .ut-chev{transform:rotate(180deg)}
+@media (max-width:860px){.ut-nav{display:none}.ut-hero-h{font-size:36px !important}.ut-login-txt{display:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: var(--ut-bg); color: var(--ut-text)">
+
+  <!-- Üst bar + hero -->
+  <div style="background: var(--ut-primary); color: #FFFFFF">
+    <header style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 12px 24px; display: flex; align-items: center; gap: 16px">
+      <a href="L1.dc.html" style="display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none">
+        <span style="position: relative; width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"></path></svg>
+          <span style="position: absolute; top: -3px; right: -3px; width: 11px; height: 11px; border-radius: 50%; background: var(--ut-accent); border: 2px solid var(--ut-primary)"></span>
+        </span>
+        <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.01em">UstaTakip</span>
+      </a>
+      <nav class="ut-nav" aria-label="Sayfa bölümleri" style="gap: 4px; margin-left: 16px">
+        <a href="#nasil" style="padding: 10px 12px; border-radius: 8px; color: rgba(255,255,255,.88); text-decoration: none; font-size: 15px; font-weight: 500">Nasıl çalışır</a>
+        <a href="#kimin" style="padding: 10px 12px; border-radius: 8px; color: rgba(255,255,255,.88); text-decoration: none; font-size: 15px; font-weight: 500">Kimler için</a>
+        <a href="#teklif" style="padding: 10px 12px; border-radius: 8px; color: rgba(255,255,255,.88); text-decoration: none; font-size: 15px; font-weight: 500">Teklif ve onay</a>
+        <a href="#sss" style="padding: 10px 12px; border-radius: 8px; color: rgba(255,255,255,.88); text-decoration: none; font-size: 15px; font-weight: 500">SSS</a>
+      </nav>
+      <span style="flex: 1 1 0"></span>
+      <a href="E2.dc.html" aria-label="Esnaf girişi" style="height: 44px; box-sizing: border-box; padding: 0 16px; border: 1.5px solid rgba(255,255,255,.6); border-radius: 12px; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><path d="m10 17 5-5-5-5"></path><path d="M15 12H3"></path></svg><span class="ut-login-txt">Esnaf </span>Girişi
+      </a>
+      <a href="M2.dc.html" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 12px; background: var(--ut-accent); color: var(--ut-text); text-decoration: none; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>İş Takip
+      </a>
+    </header>
+
+    <section style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 48px 24px 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
+      <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 20px">
+        <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,.12); font-size: 14px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-accent)"></span>Esnaf ile müşteri arasında şeffaf iş takibi</span>
+        <h1 class="ut-hero-h" style="margin: 0; font-size: 52px; line-height: 1.08; font-weight: 800; letter-spacing: -0.025em">Ustadaki işiniz,<br>kargo gibi takipte.</h1>
+        <p style="margin: 0; max-width: 520px; font-size: 18px; line-height: 1.55; color: rgba(255,255,255,.85)">Aracınız serviste, koltuğunuz döşemecide ya da cihazınız tamirde… UstaTakip ile işin hangi aşamada olduğunu fotoğraflarıyla görür, ek masrafları önceden onaylarsınız. Telefonla sormaya gerek kalmaz.</p>
+
+        <div role="search" aria-label="İş takip" style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 10px; max-width: 520px">
+          <label for="hero-code" style="flex: 1 0 100%; font-size: 14px; font-weight: 600; color: rgba(255,255,255,.85)">Takip kodunuz</label>
+          <input id="hero-code" type="text" inputmode="text" autocomplete="off" placeholder="Örn. UT-7K4M-29" style="flex: 1 1 240px; min-width: 0; height: 52px; box-sizing: border-box; padding: 0 16px; border: 0; border-radius: 12px; background: #FFFFFF; color: var(--ut-text); font-size: 17px; font-family: var(--ut-mono); letter-spacing: .04em">
+          <a href="M2.dc.html" style="flex: 0 0 auto; height: 52px; box-sizing: border-box; padding: 0 22px; border-radius: 12px; background: var(--ut-accent); color: var(--ut-text); text-decoration: none; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px">İşimi Takip Et<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+          <span style="flex: 1 0 100%; font-size: 14px; color: rgba(255,255,255,.7)">Kod, ustanızın gönderdiği WhatsApp mesajında ya da fişteki QR kodda yazar.</span>
+        </div>
+      </div>
+
+      <!-- Telefon önizlemesi -->
+      <div aria-hidden="true" style="flex: 1 1 340px; display: flex; justify-content: center">
+        <div style="width: 300px; padding: 12px; border-radius: 36px; background: #0F2238; box-shadow: 0 24px 60px rgba(0,0,0,.35)">
+          <div style="border-radius: 26px; background: var(--ut-bg); color: var(--ut-text); overflow: hidden; display: flex; flex-direction: column">
+            <div style="padding: 16px 16px 12px; background: var(--ut-surface); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--ut-border)">
+              <span style="width: 36px; height: 36px; border-radius: 10px; background: var(--ut-primary); color: #FFFFFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">YO</span>
+              <span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 700">Yıldız Oto Servis</span><span style="font-size: 12px; color: var(--ut-text-muted)">Kadıköy</span></span>
+            </div>
+            <div style="padding: 14px; display: flex; flex-direction: column; gap: 12px">
+              <div style="padding: 14px; background: var(--ut-surface); border-radius: 12px; box-shadow: var(--ut-shadow); display: flex; flex-direction: column; gap: 10px">
+                <span style="font-family: var(--ut-mono); font-size: 11px; font-weight: 600; color: var(--ut-text-muted)">UT-7K4M-29</span>
+                <span style="font-size: 15px; font-weight: 700">Fren ve debriyaj bakımı</span>
+                <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; background: rgba(245,158,11,.18); font-size: 12px; font-weight: 600"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--ut-accent)"></span>Onarım</span>
+                <div style="display: flex; gap: 4px">
+                  <span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-primary)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-primary)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-primary)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-accent)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span>
+                </div>
+                <span style="font-size: 12px; color: var(--ut-text-muted)">Tahmini teslim · 27 Kasım Cuma, 18:00</span>
+              </div>
+              <div style="padding: 12px; background: var(--ut-surface); border-radius: 12px; box-shadow: var(--ut-shadow); display: flex; gap: 10px">
+                <span style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 8px; background: repeating-linear-gradient(135deg, #E8EEF5 0 6px, #DDE5EF 6px 12px); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--ut-text-muted)">fotoğraf</span>
+                <span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 13px; font-weight: 600">Ön balatalar değiştirildi</span><span style="font-size: 12px; color: var(--ut-text-muted)">Bugün 14:10 · 2 fotoğraf</span></span>
+              </div>
+              <div style="padding: 12px; border-radius: 12px; background: var(--ut-surface); border: 1.5px solid var(--ut-warning); display: flex; align-items: center; gap: 10px">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ut-warning)"></span>
+                <span style="flex: 1; font-size: 13px; font-weight: 600">Onayınızı bekleyen teklif</span>
+                <span style="font-size: 13px; font-weight: 700">3.100,00 ₺</span>
+              </div>
+              <div style="display: flex; gap: 8px">
+                <span style="flex: 1; height: 40px; border-radius: 10px; background: var(--ut-primary); color: #FFFFFF; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center">Ara</span>
+                <span style="flex: 1; height: 40px; border-radius: 10px; border: 1px solid var(--ut-border); background: var(--ut-surface); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center">WhatsApp</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Nasıl çalışır -->
+  <section id="nasil" style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 32px">
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 640px">
+      <span style="font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ut-primary)">Nasıl çalışır</span>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 700; letter-spacing: -0.015em">Dört adımda, baştan sona görünür iş</h2>
+    </div>
+    <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <li style="padding: 24px; background: var(--ut-surface); border-radius: 12px; box-shadow: var(--ut-shadow); display: flex; flex-direction: column; gap: 12px">
+          <span style="width: 40px; height: 40px; border-radius: 50%; background: {{s.badgeBg}}; color: {{s.badgeFg}}; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{s.n}}</span>
+          <span style="font-size: 18px; font-weight: 700">{{s.title}}</span>
+          <span style="font-size: 15px; line-height: 1.55; color: var(--ut-text-muted)">{{s.body}}</span>
+          <span style="margin-top: auto; align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--ut-primary); background: var(--ut-primary-soft); padding: 5px 10px; border-radius: 999px">{{s.who}}</span>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <!-- Müşteriler için / Esnaflar için -->
+  <section id="kimin" style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 56px 24px 24px; display: flex; flex-wrap: wrap; gap: 20px">
+    <div style="flex: 1 1 440px; padding: 32px; background: var(--ut-surface); border-radius: 12px; box-shadow: var(--ut-shadow); display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ut-text-muted)">Müşteriler için</span>
+        <h2 style="margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.01em">“Ne oldu, ne zaman biter?” diye sormayın</h2>
+      </div>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px">
+        <sc-for list="{{ forCustomer }}" as="f" hint-placeholder-count="4">
+          <li style="display: flex; gap: 14px">
+            <span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(22,163,74,.12); color: var(--ut-success); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"></path></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 16px; font-weight: 600">{{f.title}}</span><span style="font-size: 15px; line-height: 1.5; color: var(--ut-text-muted)">{{f.body}}</span></span>
+          </li>
+        </sc-for>
+      </ul>
+      <a href="M2.dc.html" style="margin-top: auto; align-self: flex-start; height: 44px; box-sizing: border-box; padding: 0 18px; border-radius: 12px; background: var(--ut-accent); color: var(--ut-text); text-decoration: none; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center">Örnek takip ekranını gör</a>
+    </div>
+
+    <div style="flex: 1 1 440px; padding: 32px; background: var(--ut-primary); color: #FFFFFF; border-radius: 12px; box-shadow: var(--ut-shadow); display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.75)">Esnaflar için</span>
+        <h2 style="margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.01em">Telefon trafiği azalsın, güven artsın</h2>
+      </div>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px">
+        <sc-for list="{{ forMerchant }}" as="f" hint-placeholder-count="4">
+          <li style="display: flex; gap: 14px">
+            <span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(245,158,11,.22); color: var(--ut-accent); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"></path></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 16px; font-weight: 600">{{f.title}}</span><span style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,.78)">{{f.body}}</span></span>
+          </li>
+        </sc-for>
+      </ul>
+      <a href="E2.dc.html" style="margin-top: auto; align-self: flex-start; height: 44px; box-sizing: border-box; padding: 0 18px; border-radius: 12px; background: #FFFFFF; color: var(--ut-primary); text-decoration: none; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center">Esnaf paneline gir</a>
+    </div>
+  </section>
+
+  <!-- Teklif ve onay -->
+  <section id="teklif" style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 72px 24px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
+    <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ut-primary)">Teklif ve onay</span>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 700; letter-spacing: -0.015em">Sürpriz fatura yok.<br>Her ek masraf sizin onayınızla.</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--ut-text-muted)">İş sırasında yeni bir parça ya da ek işçilik gerekirse usta fotoğraf ve açıklamayla teklif gönderir. Siz onaylar, reddeder ya da kendi fiyatınızı önerirsiniz. Pazarlık <strong style="color: var(--ut-text)">en fazla 3 tur</strong> sürer ve her adım kayıt altında kalır.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span style="height: 36px; padding: 0 14px; border-radius: 10px; background: var(--ut-primary); color: #FFFFFF; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center">Onayla</span>
+        <span style="height: 36px; box-sizing: border-box; padding: 0 14px; border-radius: 10px; border: 1.5px solid var(--ut-danger); color: var(--ut-danger); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center">Reddet</span>
+        <span style="height: 36px; box-sizing: border-box; padding: 0 14px; border-radius: 10px; border: 1px solid var(--ut-border); background: var(--ut-surface); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center">Pazarlık Yap</span>
+      </div>
+    </div>
+    <div aria-label="Örnek teklif geçmişi" style="flex: 1 1 420px; padding: 24px; background: var(--ut-surface); border-radius: 12px; box-shadow: var(--ut-shadow); display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+        <span style="font-size: 16px; font-weight: 700">Ön fren diski değişimi</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(22,163,74,.12); font-size: 13px; font-weight: 600"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--ut-success)"></span>Onaylandı</span>
+      </div>
+      <div style="display: flex; gap: 4px" aria-hidden="true"><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-primary)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-primary)"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: var(--ut-border)"></span></div>
+      <sc-for list="{{ rounds }}" as="r" hint-placeholder-count="3">
+        <div style="display: flex; gap: 12px; align-items: flex-start">
+          <span style="flex-shrink: 0; width: 56px; font-size: 13px; font-weight: 700; color: var(--ut-text-muted); padding-top: 3px">{{r.tur}}</span>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 4px; padding-bottom: 14px; border-bottom: 1px solid var(--ut-border)">
+            <span style="display: flex; justify-content: space-between; gap: 8px; font-size: 15px"><span>{{r.who}}</span><strong>{{r.amount}}</strong></span>
+            <span style="font-size: 14px; color: var(--ut-text-muted)">{{r.note}}</span>
+          </div>
+        </div>
+      </sc-for>
+      <span style="font-size: 13px; color: var(--ut-text-muted)">Tur 3 kullanılmadı · Anlaşılan tutar 3.100,00 ₺</span>
+    </div>
+  </section>
+
+  <!-- Sektörler -->
+  <section style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 20px">
+    <h2 style="margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.01em">Aşamalı çalışan her esnaf için</h2>
+    <p style="margin: 0; max-width: 640px; font-size: 16px; line-height: 1.55; color: var(--ut-text-muted)">Aşamaları esnaf kendisi belirler: oto serviste “Arıza Tespiti”, mobilyacıda “Kesim ve Montaj”, terzide “Prova”.</p>
+    <ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px">
+      <sc-for list="{{ sectors }}" as="x" hint-placeholder-count="6">
+        <li style="min-height: 64px; padding: 14px 16px; box-sizing: border-box; background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px; display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600">
+          <span style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; background: var(--ut-primary-soft); color: var(--ut-primary); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{x.ab}}</span>{{x.name}}
+        </li>
+      </sc-for>
+    </ul>
+  </section>
+
+  <!-- SSS -->
+  <section id="sss" class="ut-faq" style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 72px 24px 24px; display: flex; flex-wrap: wrap; gap: 32px">
+    <div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ut-primary)">SSS</span>
+      <h2 style="margin: 0; font-size: 34px; line-height: 1.15; font-weight: 700; letter-spacing: -0.015em">Sık sorulan sorular</h2>
+    </div>
+    <div style="flex: 999 1 560px; display: flex; flex-direction: column; gap: 10px">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="5">
+        <details style="background: var(--ut-surface); border: 1px solid var(--ut-border); border-radius: 12px">
+          <summary style="min-height: 56px; box-sizing: border-box; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 16px; font-weight: 600">{{q.q}}<svg class="ut-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; color: var(--ut-text-muted); transition: transform .15s"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <p style="margin: 0; padding: 0 18px 18px; font-size: 15px; line-height: 1.6; color: var(--ut-text-muted)">{{q.a}}</p>
+        </details>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Son çağrı -->
+  <section style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 72px 24px">
+    <div style="padding: 40px 32px; border-radius: 12px; background: var(--ut-primary-soft); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
+      <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 8px">
+        <h2 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em; color: var(--ut-primary)">Elinizde takip kodu mu var?</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: var(--ut-text)">Kodu girin, işinizin son durumunu hemen görün. Esnafsanız panelinize giriş yapıp işlerinizi yönetin.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px">
+        <a href="M2.dc.html" style="height: 48px; box-sizing: border-box; padding: 0 20px; border-radius: 12px; background: var(--ut-accent); color: var(--ut-text); text-decoration: none; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center">İşimi Takip Et</a>
+        <a href="E2.dc.html" style="height: 48px; box-sizing: border-box; padding: 0 20px; border-radius: 12px; background: var(--ut-primary); color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center">Esnaf Girişi</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid var(--ut-border); background: var(--ut-surface)">
+    <div style="max-width: 1200px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; font-size: 14px; color: var(--ut-text-muted)">
+      <span><strong style="color: var(--ut-text)">UstaTakip</strong> · © 2026</span>
+      <nav aria-label="Alt bağlantılar" style="display: flex; flex-wrap: wrap; gap: 4px 20px">
+        <a href="#" style="color: var(--ut-text-muted); padding: 8px 0">Gizlilik</a>
+        <a href="#" style="color: var(--ut-text-muted); padding: 8px 0">KVKK Aydınlatma Metni</a>
+        <a href="#" style="color: var(--ut-text-muted); padding: 8px 0">İletişim</a>
+      </nav>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":3300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var steps = [
+      { n: 1, title: 'İş kaydı açılır', body: 'Esnaf aracı, mobilyayı ya da cihazı teslim alırken işi birkaç dokunuşla kaydeder ve kendi aşamalarını seçer.', who: 'Esnaf' },
+      { n: 2, title: 'Takip kodu paylaşılır', body: 'Müşteriye bir takip kodu verilir. Aynı kod link ve QR olarak WhatsApp’tan tek dokunuşla gönderilir.', who: 'Esnaf' },
+      { n: 3, title: 'Her adım görünür', body: 'Müşteri işin hangi aşamada olduğunu, ustanın eklediği fotoğrafları ve tahmini teslim zamanını görür.', who: 'Müşteri' },
+      { n: 4, title: 'Ek masraf onaya gelir', body: 'Beklenmedik bir masraf çıkarsa usta teklif gönderir. Müşteri onaylar, reddeder ya da pazarlık eder.', who: 'Esnaf ve müşteri' }
+    ].map(function (s, i) {
+      return Object.assign({}, s, {
+        badgeBg: i === 3 ? 'var(--ut-accent)' : 'var(--ut-primary)',
+        badgeFg: i === 3 ? 'var(--ut-text)' : '#FFFFFF'
+      });
+    });
+    return {
+      steps: steps,
+      forCustomer: [
+        { title: 'Üyelik ve uygulama gerekmez', body: 'Takip kodu ya da link yeterli; tarayıcıdan açılır.' },
+        { title: 'Fotoğraflarla kanıt', body: 'Değişen parçayı, yapılan işi kendi gözünüzle görün.' },
+        { title: 'Ek masraf önce size sorulur', body: 'Onaylamadığınız hiçbir tutar faturaya eklenmez.' },
+        { title: 'Tek dokunuşla ulaşın', body: 'Takip ekranından ustayı arayın ya da WhatsApp’tan yazın.' }
+      ],
+      forMerchant: [
+        { title: 'Tüm aktif işler tek panelde', body: 'Aşamaya göre filtreleyin, yanıt bekleyen teklifleri anında görün.' },
+        { title: 'Aşamayı tek dokunuşla ilerletin', body: 'Müşteri bildirimi otomatik gider, fotoğraf eklemek saniyeler sürer.' },
+        { title: 'Pazarlık kayıt altında', body: 'Kim hangi fiyatı ne zaman verdi; anlaşmazlığa yer kalmaz.' },
+        { title: 'Kod, link ve QR hazır', body: 'İş kaydı açılınca paylaşım bağlantısı kendiliğinden oluşur.' }
+      ],
+      rounds: [
+        { tur: 'Tur 1', who: 'Usta teklif etti', amount: '3.400,00 ₺', note: 'Orijinal parça, 2 adet disk' },
+        { tur: '', who: 'Müşteri önerdi', amount: '2.800,00 ₺', note: '“Yan sanayi parça olabilir mi?”' },
+        { tur: 'Tur 2', who: 'Usta yeni fiyat verdi', amount: '3.100,00 ₺', note: 'Muadil marka, 2 yıl garantili · Müşteri onayladı' }
+      ],
+      sectors: [
+        { ab: 'OS', name: 'Oto servis' },
+        { ab: 'KB', name: 'Kaporta ve boya' },
+        { ab: 'MD', name: 'Mobilya ve döşeme' },
+        { ab: 'ET', name: 'Elektronik tamiri' },
+        { ab: 'TT', name: 'Tadilat ve tesisat' },
+        { ab: 'TR', name: 'Terzi ve ayakkabı' }
+      ],
+      faq: [
+        { q: 'Müşteri olarak üye olmam gerekiyor mu?', a: 'Hayır. Ustanızın verdiği takip kodunu girmeniz ya da gönderdiği linke dokunmanız yeterli.' },
+        { q: 'Takip kodumu kaybettim, ne yapmalıyım?', a: 'İşi teslim ettiğiniz esnaftan kodu tekrar göndermesini isteyin; WhatsApp’tan tek dokunuşla iletebilir.' },
+        { q: 'Teklifi reddedersem ne olur?', a: 'İş ek masraf olmadan devam eder ya da usta yeni bir fiyat önerir. Kararınız teklif geçmişinde saklanır.' },
+        { q: 'Pazarlık neden en fazla 3 tur?', a: 'Sürecin uzamaması için. Üçüncü turun sonunda ya anlaşılır ya da teklif kapanır.' },
+        { q: 'Fotoğraflarımı kimler görebilir?', a: 'Yalnızca o işin takip kodunu bilen kişiler. Kodu kimseyle paylaşmamanızı öneririz.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

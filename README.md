@@ -33,6 +33,7 @@ UstaTakip bu üç noktayı tek bir akışta toplar: **şeffaf süreç takibi**, 
 
 | Kod | Ekran | Kim kullanır |
 |---|---|---|
+| L1 | Tanıtım sayfası: nasıl çalışır, teklif ve onay, SSS, takip kodu kutusu | Herkes |
 | M1 | Takip kodu ile sorgulama / QR okutma | Müşteri |
 | M2 | Canlı iş takibi: aşamalar, notlar, fotoğraflar, geçmiş | Müşteri |
 | M3 | Ek masraf teklifi: onay, ret, karşı teklif | Müşteri |

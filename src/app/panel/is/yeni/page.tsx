@@ -198,7 +198,7 @@ export default function YeniIsPage() {
       }
       setFormError(
         res.status === 401
-          ? "Oturumunuzun süresi dolmuş. Sayfayı yenileyip yeniden giriş yapın."
+          ? "Oturumunuz kapanmış (süresi dolmuş ya da bu hesaptan her yerden çıkış yapılmış olabilir). Sayfayı yenileyip yeniden giriş yapın."
           : (body?.error?.message ??
               "İş kaydedilemedi. Bağlantınızı kontrol edip yeniden deneyin."),
       );

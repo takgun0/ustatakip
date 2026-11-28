@@ -64,7 +64,9 @@ export function BusinessProvider({
   }, [load, router]);
 
   const signOut = useCallback(async () => {
-    await getSupabase().auth.signOut();
+    // Yalnızca bu cihazın oturumu kapanır. Varsayılan "global" çıkış, aynı hesapla (ör. ortak demo
+    // hesabı) başka cihazlarda açık oturumları da düşürüyor ve oradaki kayıtlar 401 alıyordu.
+    await getSupabase().auth.signOut({ scope: "local" });
     router.replace("/giris/");
   }, [router]);
 
